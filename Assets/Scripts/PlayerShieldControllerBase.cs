@@ -1,22 +1,20 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 public class PlayerShieldControllerBase : MonoBehaviour
 {
     public Transform shieldPivot;
-    
-    private Camera _mainCamera;
-
-    protected virtual void Awake()
-    {
-        _mainCamera = Camera.main;
-    }
+    public DeflectCollider deflectCollider;
 
     private void Update()
     {
-        var mousePosition = Pointer.current.position.ReadValue();
-        var mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mousePosition);
+        Rotate();
+        
+        deflectCollider.normal = shieldPivot.right;
+    }
+
+    private void Rotate()
+    {
+        var mouseWorldPosition = GeneralInput.Instance.GetMousePosition();
         
         var direction = (mouseWorldPosition - shieldPivot.position).normalized;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

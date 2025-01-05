@@ -55,4 +55,25 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate(Speed * Time.fixedDeltaTime * Direction);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Deflect"))
+        {
+            var deflectCollider = other.gameObject.GetComponent<DeflectCollider>();
+            var normal = deflectCollider.normal;
+            
+            if (Vector2.Dot(Direction, normal) > 0)
+            {
+                return;
+            }
+            
+            Direction = Vector2.Reflect(Direction, normal);
+            BounceLeft--;
+            if (BounceLeft <= 0)
+            {
+                BulletFactory.Instance.DestroyBullet(this);
+            }
+        }
+    }
 }

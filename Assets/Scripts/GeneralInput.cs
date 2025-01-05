@@ -17,6 +17,8 @@ public class GeneralInput : MonoBehaviour
     
     public Vector3 GetMousePosition()
     {
-        return _mainCamera.ScreenToWorldPoint(Pointer.current.position.ReadValue());
+        var pos = _mainCamera.ScreenToWorldPoint(Pointer.current.position.ReadValue());
+        pos.z = 0;
+        return pos;
     }
 }

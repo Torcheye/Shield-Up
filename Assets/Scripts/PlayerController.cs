@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -17,20 +18,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpPower = 2.5f;
     [SerializeField] private float jumpBufferTime = 0.2f;
     [SerializeField] private Animator animator;
+    [SerializeField] private int maxDoubleJump = 2;
     private InputAction _jumpAction;
     
     private float _jumpBufferTimer;
     private bool _isGrounded;
-    
     private bool _isInvincible;
     private Vector2 _velocity;
+    private int _doubleJumpCount;
     
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _jumpAction = InputSystem.actions.FindAction("Jump");
     }
-    
+
+    private void OnEnable()
+    {
+        _jumpBufferTimer = 0;
+        _doubleJumpCount = 0;
+        _velocity = Vector2.zero;
+    }
+
     private void Update()
     {
         HandleTimers(Time.deltaTime);
@@ -39,8 +48,16 @@ public class PlayerController : MonoBehaviour
     
     private void FixedUpdate()
     {
+        CheckIsGrounded();
+    }
+    
+    private void CheckIsGrounded()
+    {
         _isGrounded = Physics2D.Raycast(groundCheckPosition.position, Vector2.down, groundCheckDistance, LayerMask.GetMask("Ground"));
-        Debug.DrawRay(groundCheckPosition.position, Vector2.down * groundCheckDistance, Color.red);
+        if (_isGrounded && rb.linearVelocityY <= 0)
+        {
+            _doubleJumpCount = 0;
+        }    
     }
     
     private void HandleTimers(float deltaTime)
@@ -61,11 +78,12 @@ public class PlayerController : MonoBehaviour
         
         _velocity.x = move.x * moveSpeed;
 
-        if (_jumpBufferTimer > 0 && _isGrounded)
+        if (_jumpBufferTimer > 0)
         {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            //animator.SetTrigger(JumpStartTrigger);
-            _jumpBufferTimer = 0;
+            if (_isGrounded || (!_isGrounded && _doubleJumpCount < maxDoubleJump))
+            {
+                Jump();
+            }
         }
         
         rb.linearVelocity = new Vector2(_velocity.x, rb.linearVelocity.y);
@@ -76,6 +94,17 @@ public class PlayerController : MonoBehaviour
         }
 
         //animator.SetFloat(MoveSpeedAnimatorFloat, _currentMoveVelocity.magnitude / maxMoveSpeed);
+    }
+
+    private void Jump()
+    {
+        CheckIsGrounded();
+        
+        rb.linearVelocityY = 0;
+        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        
+        _jumpBufferTimer = 0;
+        _doubleJumpCount++;
     }
     
     public bool IsInvincible

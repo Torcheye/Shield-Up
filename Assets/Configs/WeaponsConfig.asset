@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: WeaponsConfig
   m_EditorClassIdentifier: 
   daggerPrefab: {fileID: 7212092133301199805, guid: e978b734d56726947b190b07bf6664b8, type: 3}
-  shieldPrefab: {fileID: 0}
+  daggerDmgL1: 1
+  daggerDmgL2: 2
+  daggerBleedL2: 1
+  daggerDmgL3: 3
+  daggerBleedL3: 3
+  shieldPrefab: {fileID: 7212092133301199805, guid: 2aba2b8c4ef5e274fb1072ac894d8623, type: 3}
+  shieldBlockL1: 2
+  shieldBlockL2: 5
+  shieldBlockL3: 99
   bombPrefab: {fileID: 0}
-  daggerDmg: 1
-  shieldBlock: 1
-  bombMaxAbsorb: 1
+  bombMaxAbsorbL1: 0
+  bombMaxAbsorbL2: 0
+  bombMaxAbsorbL3: 0
+  bombBaseDmg: 0

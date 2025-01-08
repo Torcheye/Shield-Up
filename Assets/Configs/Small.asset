@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Small
   m_EditorClassIdentifier: 
   speed: 5
-  damage: 10
+  damage: 1
   size: 0.5
   bounceLeft: 2
   lifeTime: 5

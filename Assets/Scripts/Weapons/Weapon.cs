@@ -1,24 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int RingIndex => _ringIndex;
-    public WeaponType type;
+    public int Id { get; set; }
+    public int Level { get; set; }
     
-    private int _ringIndex = -1;
-    
-    public void SetRingIndex(int ringIndex)
+    public void Initialize(int id)
     {
-        _ringIndex = ringIndex;
-        
-        if (_ringIndex == -1)
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
+        Id = id;
+        Level = 1;
     }
 }

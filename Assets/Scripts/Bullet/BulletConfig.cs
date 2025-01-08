@@ -4,7 +4,7 @@
 public class BulletConfig : ScriptableObject
 {
     public float speed;
-    public float damage;
+    public int damage;
     public float size;
     public int bounceLeft;
     public float lifeTime;

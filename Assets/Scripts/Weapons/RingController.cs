@@ -9,11 +9,9 @@ public class RingController : MonoBehaviour
     [SerializeField] private float[] rotateSpeeds;
     [SerializeField] private float firstRingRadius;
     [SerializeField] private float ringRadiusStep;
-    
-    [Header("Weapons")]
-    [SerializeField] private WeaponsConfig weaponsConfig;
 
     private List<List<Weapon>> _weapons;
+    private int _nextWeaponId;
 
     private void Awake()
     {
@@ -27,9 +25,17 @@ public class RingController : MonoBehaviour
     private void Start()
     {
         SpawnWeapon(WeaponType.Dagger, 0);
+        SpawnWeapon(WeaponType.Shield, 0);
         UpdateRing(0);
-        SpawnWeapon(WeaponType.Dagger, 1);
-        UpdateRing(1);
+    }
+    
+    private void Update()
+    {
+        transform.position = ringPivot.position;
+        for (var i = 0; i < 3; i++)
+        {
+            weaponPivots[i].Rotate(Vector3.back, rotateSpeeds[i] * Time.deltaTime);
+        }
     }
 
     private void UpdateRing(int ringIndex)
@@ -43,24 +49,15 @@ public class RingController : MonoBehaviour
             var x = Mathf.Cos(angle) * (firstRingRadius + ringRadiusStep * ringIndex);
             var y = Mathf.Sin(angle) * (firstRingRadius + ringRadiusStep * ringIndex);
             _weapons[ringIndex][i].transform.localPosition = new Vector3(x, y, 0);
-            Debug.Log(new Vector3(x, y, 0));
         }
     }
 
     private void SpawnWeapon(WeaponType type, int ringIndex)
     {
-        var w = Instantiate(weaponsConfig.GetWeaponPrefab(type), weaponPivots[ringIndex]).GetComponent<Weapon>();
+        var w = Instantiate(DataManager.Instance.weaponsConfig.GetWeaponPrefab(type), 
+            weaponPivots[ringIndex]).GetComponent<Weapon>();
         _weapons[ringIndex].Add(w);
         
-        w.SetRingIndex(ringIndex);
-    }
-
-    private void Update()
-    {
-        transform.position = ringPivot.position;
-        for (var i = 0; i < 3; i++)
-        {
-            weaponPivots[i].Rotate(Vector3.back, rotateSpeeds[i] * Time.deltaTime);
-        }
+        w.Initialize(_nextWeaponId++);
     }
 }

@@ -9,11 +9,11 @@ public class BulletShooter : MonoBehaviour
     public void ShootBullet()
     {
         var shootDirection = target.position - transform.position;
-        BulletFactory.Instance.SpawnBullet(defaultBulletConfig, transform.position, shootDirection);
+        BulletFactory.Instance.SpawnBullet(defaultBulletConfig, transform.position, shootDirection, true, transform);
     }
     
     private void Start()
     {
-        InvokeRepeating(nameof(ShootBullet), 1, shootInterval);
+        InvokeRepeating(nameof(ShootBullet), shootInterval, shootInterval);
     }
 }

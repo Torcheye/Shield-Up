@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Transform playerTransform;
-    public ShieldController shieldController;
+    public RingController ringController;
     
     [Header("Move")] 
     [SerializeField] private Rigidbody2D rb;

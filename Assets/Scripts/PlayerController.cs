@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,17 +22,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private int maxDoubleJump = 2;
     private InputAction _jumpAction;
+
+    [Header("Dash")] 
+    [SerializeField] private float dashDistance;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldown;
+    private InputAction _dashAction;
     
     private float _jumpBufferTimer;
     private bool _isGrounded;
     private bool _isInvincible;
     private Vector2 _velocity;
     private int _doubleJumpCount;
+    private float _dashCooldownTimer;
     
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _jumpAction = InputSystem.actions.FindAction("Jump");
+        _dashAction = InputSystem.actions.FindAction("Dash");
     }
 
     private void OnEnable()
@@ -42,8 +52,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleTimers(Time.deltaTime);
-        UpdateMove(Time.deltaTime);
+        HandleTimers();
+        
+        UpdateMove();
+        
+        if (_jumpBufferTimer > 0)
+        {
+            if (_isGrounded || (!_isGrounded && _doubleJumpCount < maxDoubleJump))
+            {
+                Jump();
+            }
+        }
+        
+        if (_dashAction.WasPressedThisFrame())
+        {
+            StartCoroutine(Dash());
+        }
     }
     
     private void FixedUpdate()
@@ -60,7 +84,7 @@ public class PlayerController : MonoBehaviour
         }    
     }
     
-    private void HandleTimers(float deltaTime)
+    private void HandleTimers()
     {
         if (_jumpAction.WasPressedThisFrame())
         {
@@ -68,23 +92,24 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _jumpBufferTimer -= deltaTime;
+            _jumpBufferTimer -= Time.deltaTime;
+        }
+        
+        if (_dashCooldownTimer > 0)
+        {
+            _dashCooldownTimer -= Time.deltaTime;
+        }
+        else if (_dashCooldownTimer < 0)
+        {
+            _dashCooldownTimer = 0;
         }
     }
     
-    private void UpdateMove(float deltaTime)
+    private void UpdateMove()
     {
         var move = _moveAction.ReadValue<Vector2>();
         
         _velocity.x = move.x * moveSpeed;
-
-        if (_jumpBufferTimer > 0)
-        {
-            if (_isGrounded || (!_isGrounded && _doubleJumpCount < maxDoubleJump))
-            {
-                Jump();
-            }
-        }
         
         rb.linearVelocity = new Vector2(_velocity.x, rb.linearVelocity.y);
 
@@ -106,6 +131,22 @@ public class PlayerController : MonoBehaviour
         _jumpBufferTimer = 0;
         _doubleJumpCount++;
     }
+
+    private IEnumerator Dash()
+    {
+        if (_dashCooldownTimer > 0)
+        {
+            yield break;
+        }
+        
+        _dashCooldownTimer = dashCooldown;
+        
+        var dashDirection = playerTransform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        rb.DOMove(rb.position + dashDirection * dashDistance, dashDuration);
+        IsInvincible = true;
+        yield return new WaitForSeconds(dashDuration);
+        IsInvincible = false;
+    }
     
     public bool IsInvincible
     {
@@ -116,6 +157,5 @@ public class PlayerController : MonoBehaviour
     private void OnSetInvincible(bool value)
     {
         _isInvincible = value;
-        // TODO: Implement invincibility effect
     }
 }

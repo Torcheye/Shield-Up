@@ -1442,6 +1442,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   maxDoubleJump: 3
   dashDistance: 3
+  upwardsDashDistance: 3
   dashDuration: 0.3
   dashCooldown: 1
 --- !u!50 &1912177605

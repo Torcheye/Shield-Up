@@ -138,13 +138,18 @@ public class PlayerController : MonoBehaviour
         {
             yield break;
         }
-        
         _dashCooldownTimer = dashCooldown;
+
+        var y = _moveAction.ReadValue<Vector2>().y > 0 ? 1 : 0;
+        var x = playerTransform.localScale.x > 0 ? 1 : -1;
+        var direction = new Vector2(x, y).normalized;
+        rb.DOMove(rb.position + direction * dashDistance, dashDuration);
         
-        var dashDirection = playerTransform.localScale.x > 0 ? Vector2.right : Vector2.left;
-        rb.DOMove(rb.position + dashDirection * dashDistance, dashDuration);
         IsInvincible = true;
+        rb.linearVelocityY = 0;
+        
         yield return new WaitForSeconds(dashDuration);
+        
         IsInvincible = false;
     }
     

@@ -15,4 +15,6 @@ public class BossDamageable : Damageable
 
         Hp = DataManager.Instance.bossConfig.GetBossHp(bossType);
     }
+    
+    public BossType BossType => bossType;
 }

@@ -63,4 +63,9 @@ public class Damageable : MonoBehaviour
         yield return new WaitForSeconds(DataManager.Instance.damageColorLastDuration);
         _damageColorTween = spriteRenderer.DOColor(Color.white, DataManager.Instance.damageColorFadeDuration);
     }
+    
+    public int GetHp()
+    {
+        return Hp;
+    }
 }

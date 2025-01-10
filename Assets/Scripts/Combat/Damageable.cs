@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private bool isPlayer;
-
-    protected int hp;
+    
+    protected bool IsPlayer;
+    protected int Hp;
     private Tween _damageColorTween;
     private float _damageCooldown;
     
-    protected virtual void Start()
-    {
-        hp = maxHealth;
-    }
+    protected virtual void Start() { }
 
     private void Update()
     {
@@ -27,16 +23,16 @@ public class Damageable : MonoBehaviour
 
     public bool TakeDamage(int dmg, bool isHostile)
     {
-        if (_damageCooldown > 0 || isHostile != isPlayer)
+        if (_damageCooldown > 0 || isHostile != IsPlayer)
         {
             return false;
         }
         
-        hp -= dmg;
+        Hp -= dmg;
         _damageCooldown = DataManager.Instance.damageCooldown;
-        Debug.Log($"{gameObject.name} takes {dmg} damage. Current HP: {hp}");
+        Debug.Log($"{gameObject.name} takes {dmg} damage. Current HP: {Hp}");
         
-        if (hp <= 0)
+        if (Hp <= 0)
         {
             Die();
         }

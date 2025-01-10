@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class DataManager : MonoBehaviour
     public float damageColorLastDuration;
     public float damageColorFadeDuration;
     public float damageCooldown;
+
+    [Header("Boss")] 
+    public Bounds bossMoveBounds;
+    public BossConfig bossConfig;
     
     private void Awake()
     {
@@ -29,4 +34,12 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    #if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(bossMoveBounds.center, bossMoveBounds.size);
+    }
+    #endif
 }

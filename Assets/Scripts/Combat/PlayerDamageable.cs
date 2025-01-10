@@ -1,16 +1,23 @@
-﻿public class PlayerDamageable : Damageable
+﻿using System;
+
+public class PlayerDamageable : Damageable
 {
+    private void OnEnable()
+    {
+        IsPlayer = true;
+    }
+
     protected override void Start()
     {
         base.Start();
         DataManager.Instance.playerHp = DataManager.Instance.playerMaxHp;
-        hp = DataManager.Instance.playerHp;
+        Hp = DataManager.Instance.playerHp;
         UIManager.Instance.UpdatePlayerHp(DataManager.Instance.playerHp, DataManager.Instance.playerMaxHp);
     }
 
     protected override void OnTakeDamage(int dmg)
     {
-        DataManager.Instance.playerHp = hp;
+        DataManager.Instance.playerHp = Hp;
         UIManager.Instance.UpdatePlayerHp(DataManager.Instance.playerHp, DataManager.Instance.playerMaxHp);
     }
 }

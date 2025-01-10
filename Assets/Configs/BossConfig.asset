@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b83537db874678b9c43cc3812775c4, type: 3}
+  m_Name: BossConfig
+  m_EditorClassIdentifier: 
+  baseHp: 50
+  baseMoveSpeed: 3
+  enables: 0100000000
+  hpOverrides: 0000000000
+  moveSpeedOverrides: 0000000000
+  eyeHp: 0
+  eyeMoveSpeed: 0
+  eyeBaseBullet: {fileID: 0}
+  eyeBaseShootInterval: 0
+  brainHp: 0
+  brainMoveSpeed: 0
+  mouthHp: 0
+  mouthMoveSpeed: 0
+  handHp: 0
+  handMoveSpeed: 0
+  footHp: 0
+  footMoveSpeed: 0
+  heartHp: 0
+  heartMoveSpeed: 0

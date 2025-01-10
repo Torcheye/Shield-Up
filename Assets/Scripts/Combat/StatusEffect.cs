@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class StatusEffect : MonoBehaviour
 {
+    [SerializeField] private bool isPlayer;
+    
     private readonly Dictionary<Effect, EffectTimer> _effects = new();
+    private Camera _camera;
 
     private void Awake()
     {
+        _camera = Camera.main;
         _effects.Clear();
         foreach (Effect effect in Enum.GetValues(typeof(Effect)))
         {
@@ -27,7 +31,23 @@ public class StatusEffect : MonoBehaviour
             {
                 effect.Value.TimeLeft = 0;
             }
-            UIManager.Instance.UpdatePlayerStatusEffects((int) effect.Key, effect.Value.GetProgress());
+            
+            if (isPlayer)
+            {
+                UpdatePlayerStatusEffect(effect.Key, effect.Value);
+            }
+        }
+    }
+    
+    private void UpdatePlayerStatusEffect(Effect effect, EffectTimer timer)
+    {
+        UIManager.Instance.UpdatePlayerStatusEffects((int) effect, timer.GetProgress());
+                
+        if (effect == Effect.Blind)
+        {
+            var screenPos = _camera.WorldToScreenPoint(transform.position) 
+                            / new Vector2(Screen.width, Screen.height);
+            UIManager.Instance.UpdateBlindEffect(screenPos, timer.GetProgress());
         }
     }
 

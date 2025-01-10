@@ -18,4 +18,4 @@ MonoBehaviour:
   bounceLeft: 2
   lifeTime: 5
   effect: 1
-  effectDuration: 3
+  effectDuration: 4

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damageable : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private StatusEffect statusEffect;
     
     protected bool IsPlayer;
     protected int Hp;
@@ -23,7 +24,7 @@ public class Damageable : MonoBehaviour
 
     public bool TakeDamage(int dmg, bool isHostile)
     {
-        if (_damageCooldown > 0 || isHostile != IsPlayer)
+        if (_damageCooldown > 0 || isHostile != IsPlayer || statusEffect.HasEffect(Effect.Invulnerable))
         {
             return false;
         }

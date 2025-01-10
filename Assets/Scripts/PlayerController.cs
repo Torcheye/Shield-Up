@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Transform playerTransform;
-    public RingController ringController;
+    [SerializeField] private StatusEffect statusEffect;
     
     [Header("Move")] 
     [SerializeField] private Rigidbody2D rb;
@@ -145,22 +145,9 @@ public class PlayerController : MonoBehaviour
         var direction = new Vector2(x, y).normalized;
         rb.DOMove(rb.position + direction * dashDistance, dashDuration);
         
-        IsInvincible = true;
+        statusEffect.AddEffect(Effect.Invulnerable, dashDuration);
         rb.linearVelocityY = 0;
         
         yield return new WaitForSeconds(dashDuration);
-        
-        IsInvincible = false;
-    }
-    
-    public bool IsInvincible
-    {
-        get => _isInvincible;
-        set => OnSetInvincible(value);
-    }
-    
-    private void OnSetInvincible(bool value)
-    {
-        _isInvincible = value;
     }
 }

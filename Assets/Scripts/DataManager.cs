@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class DataManager : MonoBehaviour
     public float damageColorFadeDuration;
     public float damageCooldown;
 
-    [Header("Boss")] 
+    [Header("Boss")]
     public Bounds bossMoveBounds;
     public BossConfig bossConfig;
     

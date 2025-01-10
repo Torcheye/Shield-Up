@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
         var direction = new Vector2(x, y).normalized;
         rb.DOMove(rb.position + direction * dashDistance, dashDuration);
         
-        statusEffect.AddEffect(Effect.Invulnerable, dashDuration);
+        statusEffect.ApplyEffect(Effect.Invulnerable, dashDuration);
         rb.linearVelocityY = 0;
         
         yield return new WaitForSeconds(dashDuration);

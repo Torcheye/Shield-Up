@@ -12,6 +12,11 @@ public class Damageable : MonoBehaviour
     private Tween _damageColorTween;
     private float _damageCooldown;
     
+    public void ApplyEffect(Effect effect, float duration)
+    {
+        statusEffect.ApplyEffect(effect, duration);
+    }
+    
     protected virtual void Start() { }
 
     private void Update()

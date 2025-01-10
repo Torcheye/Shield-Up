@@ -1,5 +1,4 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +8,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image playerHpBar;
     
-    [SerializeField] private StatusEffect playerStatusEffect;
-    [SerializeField] private TMP_Text playerStatusEffectText;
+    [SerializeField] private PlayerStatusEffectUI[] playerStatusEffectUIs;
 
     private void Awake()
     {
@@ -24,23 +22,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        UpdatePlayerStatusEffectText();
-    }
-
     public void UpdatePlayerHp(int currentHp, int maxHp)
     {
         playerHpBar.fillAmount = (float) currentHp / maxHp;
     }
     
-    public void UpdatePlayerStatusEffectText()
+    public void UpdatePlayerStatusEffects(int effectIndex, float progress)
     {
-        var effects = playerStatusEffect.Effects;
-        playerStatusEffectText.text = "";
-        foreach (var effect in effects)
-        {
-            playerStatusEffectText.text += $"{effect}\n";
-        }
+        playerStatusEffectUIs[effectIndex].UpdateStatusEffect(progress);
     }
 }

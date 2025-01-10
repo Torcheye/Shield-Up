@@ -26,6 +26,8 @@ public class Bullet : MonoBehaviour
         }
     }
     public Transform Source { get; set; }
+    public Effect Effect { get; set; }
+    public float EffectDuration { get; set; }
 
     [SerializeField] private Transform col;
     
@@ -41,6 +43,8 @@ public class Bullet : MonoBehaviour
         LifeLeft = config.lifeTime;
         IsHostile = hostile;
         Source = source;
+        Effect = config.effect;
+        EffectDuration = config.effectDuration;
         
         transform.position = position;
         Direction = direction.normalized;
@@ -108,8 +112,11 @@ public class Bullet : MonoBehaviour
         {
             var damageable = other.gameObject.GetComponent<Damageable>();
             bool hit = damageable.TakeDamage(Damage, _hostile);
-            if (hit) 
+            if (hit)
+            {
+                damageable.ApplyEffect(Effect, EffectDuration);
                 BulletFactory.Instance.DestroyBullet(this);
+            }
         }
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") && gameObject.activeInHierarchy)

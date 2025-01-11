@@ -6,7 +6,7 @@ public class Dagger : Weapon
     {
         if (other.CompareTag("Damageable"))
         {
-            var damageable = other.GetComponent<Damageable>();
+            var damageable = other.GetComponentInParent<Damageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(DataManager.Instance.weaponsConfig.GetDaggerDamage(Level), false);

@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 189049708}
   - component: {fileID: 189049709}
   - component: {fileID: 189049710}
+  - component: {fileID: 189049711}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Untagged
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossType: 0
-  moveInterval: 3
+  normalAttack: {fileID: 2047973317}
 --- !u!114 &189049710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +183,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+--- !u!114 &189049711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189049707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a719d85c0228466ea98f50a982d0673a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 555751778}
+  statusEffect: {fileID: 189049710}
+  bossType: 0
 --- !u!1 &217550413
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,13 +252,49 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414503185}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 889925444}
-  m_Father: {fileID: 1621555119}
+  m_Father: {fileID: 482184032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &482184031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482184032}
+  m_Layer: 5
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &482184032
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482184031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 414503186}
+  m_Father: {fileID: 1964362348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -455,7 +507,6 @@ GameObject:
   - component: {fileID: 555751779}
   - component: {fileID: 555751778}
   - component: {fileID: 555751781}
-  - component: {fileID: 555751782}
   m_Layer: 0
   m_Name: EyeSprite
   m_TagString: Damageable
@@ -569,21 +620,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &555751782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555751777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a719d85c0228466ea98f50a982d0673a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 555751778}
-  statusEffect: {fileID: 189049710}
-  bossType: 0
 --- !u!1 &567889899
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +631,6 @@ GameObject:
   - component: {fileID: 567889900}
   - component: {fileID: 567889901}
   - component: {fileID: 567889902}
-  - component: {fileID: 567889903}
   m_Layer: 0
   m_Name: Player Sprite
   m_TagString: Damageable
@@ -709,20 +744,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &567889903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567889899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3d543aafdd43b39977a46566a1ea73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 567889901}
-  statusEffect: {fileID: 1912177606}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1395,7 @@ PrefabInstance:
     - target: {fileID: 6955256385557785004, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: bossDamageable
       value: 
-      objectReference: {fileID: 555751782}
+      objectReference: {fileID: 189049711}
     - target: {fileID: 7674337954780208404, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -1731,7 +1752,6 @@ RectTransform:
   m_Children:
   - {fileID: 819840633}
   - {fileID: 1199347776}
-  - {fileID: 414503186}
   m_Father: {fileID: 1964362348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1980,7 +2000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1874683223}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: Bosses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2014,6 +2034,7 @@ GameObject:
   - component: {fileID: 1912177606}
   - component: {fileID: 1912177604}
   - component: {fileID: 1912177605}
+  - component: {fileID: 1912177607}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2104,6 +2125,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
+--- !u!114 &1912177607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912177601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3d543aafdd43b39977a46566a1ea73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 567889901}
+  statusEffect: {fileID: 1912177606}
 --- !u!1 &1924741616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,6 +2284,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 482184032}
   - {fileID: 1621555119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2490,7 +2526,7 @@ GameObject:
   - component: {fileID: 2047973318}
   - component: {fileID: 2047973319}
   m_Layer: 0
-  m_Name: BulletShooter
+  m_Name: NormalShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2520,12 +2556,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2047973317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ad72e9b43f431a96fb15277e363ff1, type: 3}
+  m_Script: {fileID: 11500000, guid: 82227485ec9a4645b2e255781646234e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBulletConfig: {fileID: 11400000, guid: d4f1a72854b821349bc4058e4ec384de, type: 2}
+  bulletConfig: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
   target: {fileID: 1912177602}
-  shootInterval: 1.5
+  angle: 10
+  attackTime: 1
 --- !u!1 &2059031047
 GameObject:
   m_ObjectHideFlags: 0

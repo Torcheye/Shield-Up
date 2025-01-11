@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossMoveController : MonoBehaviour
 {
     [SerializeField] private BossType bossType;
-    [SerializeField] private float moveInterval = 3f;
+    [SerializeField] private GameObject normalAttack;
     
     private float _moveSpeed;
     private Bounds _moveBounds;
-    
+    private IBossAttack _normalAttack;
+
+    private void Awake()
+    {
+        _normalAttack = normalAttack.GetComponent<IBossAttack>();
+    }
+
     private void Start()
     {
         var bossConfig = DataManager.Instance.bossConfig;
@@ -20,7 +27,7 @@ public class BossMoveController : MonoBehaviour
         
         _moveSpeed = bossConfig.GetBossMoveSpeed(bossType);
         _moveBounds = DataManager.Instance.bossMoveBounds;
-
+        
         StartCoroutine(DoLoop());
     }
     
@@ -33,7 +40,8 @@ public class BossMoveController : MonoBehaviour
             transform.DOMove(targetPosition, duration);
             yield return new WaitForSeconds(duration);
             
-            yield return new WaitForSeconds(moveInterval);
+            _normalAttack.Attack();
+            yield return new WaitForSeconds(_normalAttack.AttackTime);
         }
     }
     

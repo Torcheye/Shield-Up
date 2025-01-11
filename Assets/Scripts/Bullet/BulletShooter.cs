@@ -2,18 +2,21 @@
 
 public class BulletShooter : MonoBehaviour
 {
-    public BulletConfig defaultBulletConfig;
+    public BulletConfig bulletConfig;
     public Transform target;
-    public float shootInterval = 1f;
 
-    public void ShootBullet()
+    protected virtual void Shoot()
     {
-        var shootDirection = target.position - transform.position;
-        BulletFactory.Instance.SpawnBullet(defaultBulletConfig, transform.position, shootDirection, true, transform);
+        ShootBullet(GetTargetDirection());
     }
     
-    private void Start()
+    protected void ShootBullet(Vector2 dir)
     {
-        InvokeRepeating(nameof(ShootBullet), shootInterval, shootInterval);
+        BulletFactory.Instance.SpawnBullet(bulletConfig, transform.position, dir, true, transform);
+    }
+    
+    protected Vector2 GetTargetDirection()
+    {
+        return target.position - transform.position;
     }
 }

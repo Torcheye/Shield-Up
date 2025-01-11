@@ -8,6 +8,7 @@ public class BulletConfig : ScriptableObject
     public float size;
     public int bounceLeft;
     public float lifeTime;
+    public bool hasEffect;
     public Effect effect;
     public float effectDuration;
 }

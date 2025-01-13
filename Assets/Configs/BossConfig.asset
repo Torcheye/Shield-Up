@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BossConfig
   m_EditorClassIdentifier: 
   baseHp: 10
-  baseMoveSpeed: 4
+  baseMoveSpeed: 1
   enables: 0100000000
   hpOverrides: 0000000000
   moveSpeedOverrides: 0000000000

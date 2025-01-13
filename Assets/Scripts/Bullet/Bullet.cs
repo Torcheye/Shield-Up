@@ -89,7 +89,7 @@ public class Bullet : MonoBehaviour
             
             //if (Vector2.Dot(Direction, normal) > 0) return;
 
-            if (deflectCollider.returnToSource)
+            if (deflectCollider.returnToSource && Source != null)
             {
                 var direction = (Source.position - transform.position).normalized;
                 // randomize direction a bit

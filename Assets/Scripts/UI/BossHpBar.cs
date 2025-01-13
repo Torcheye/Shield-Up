@@ -1,10 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class BossHpBar : MonoBehaviour
 {
-    [SerializeField] private Image bar;
+    [SerializeField] private Image hp;
+    [SerializeField] private Image hit;
     [SerializeField] private BossDamageable bossDamageable;
     
     private int _maxHp;
@@ -17,8 +17,6 @@ public class BossHpBar : MonoBehaviour
     private void Update()
     {
         var fillAmount = (float) bossDamageable.GetHp() / _maxHp;
-        bar.fillAmount = fillAmount;
+        hp.fillAmount = fillAmount;
     }
-    
-    
 }

@@ -1,7 +1,6 @@
 eyeball.png
 size:694,221
 filter:Linear,Linear
-pma:true
 0
 bounds:188,9,63,129
 rotate:90

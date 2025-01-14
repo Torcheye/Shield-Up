@@ -119,12 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &189049708 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1103762274596448348, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
-  m_PrefabInstance: {fileID: 4512604999347007393}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &217550413
+--- !u!1 &75437150
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,29 +127,34 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 217550414}
+  - component: {fileID: 75437151}
   m_Layer: 0
-  m_Name: WeaponPivot1
+  m_Name: XpPickupDestination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &217550414
+--- !u!4 &75437151
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217550413}
+  m_GameObject: {fileID: 75437150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12.12, y: 6.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 503812095}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &189049708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1103762274596448348, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
+  m_PrefabInstance: {fileID: 4512604999347007393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &297837412
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,64 +274,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &503812093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 503812095}
-  - component: {fileID: 503812094}
-  m_Layer: 0
-  m_Name: Ring Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &503812094
+--- !u!114 &503812094 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+  m_PrefabInstance: {fileID: 6762546500124958271}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503812093}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e021000bbbe34f8cbf3081444c464325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringPivot: {fileID: 1776667318}
-  weaponPivots:
-  - {fileID: 790940802}
-  - {fileID: 217550414}
-  - {fileID: 1241565332}
-  rotateSpeeds:
-  - 100
-  - 100
-  - 100
-  firstRingRadius: 1.2
-  ringRadiusStep: 1
---- !u!4 &503812095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503812093}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.58, y: -5.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 790940802}
-  - {fileID: 217550414}
-  - {fileID: 1241565332}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +538,7 @@ MonoBehaviour:
   playerMaxHp: 10
   playerHp: 10
   playerXp: 0
-  xpToNextLevel: 3
+  xpToNextLevel: 1
   weaponsConfig: {fileID: 11400000, guid: adc6f4a23a8f4214dbcbbc5d1313f3b1, type: 2}
   damageColor: {r: 1, g: 0.9532509, b: 0, a: 1}
   damageColorLastDuration: 0.1
@@ -609,37 +562,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &790940801
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 790940802}
-  m_Layer: 0
-  m_Name: WeaponPivot0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &790940802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790940801}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 503812095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &819840633 stripped
 RectTransform:
@@ -952,37 +874,6 @@ Transform:
   - {fileID: 1968631305}
   - {fileID: 1337262629}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1241565331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1241565332}
-  m_Layer: 0
-  m_Name: WeaponPivot2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1241565332
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241565331}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 503812095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1337262628
 GameObject:
@@ -2024,6 +1915,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
+--- !u!1001 &6762546500124958271
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5774706340982723548, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_Name
+      value: Ring Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779806613066414186, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: ringPivot
+      value: 
+      objectReference: {fileID: 1776667318}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
 --- !u!1001 &7347577050999966080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2322,6 +2274,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4111161618495077873, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
+      propertyPath: ringController
+      value: 
+      objectReference: {fileID: 503812094}
+    - target: {fileID: 4111161618495077873, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
+      propertyPath: pickupDestination
+      value: 
+      objectReference: {fileID: 75437151}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2333,7 +2293,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1924741617}
   - {fileID: 1239462079}
-  - {fileID: 503812095}
+  - {fileID: 6762546500124958271}
   - {fileID: 9172312439478900388}
   - {fileID: 1396270840286112850}
   - {fileID: 1874683223}
@@ -2342,3 +2302,4 @@ SceneRoots:
   - {fileID: 1548053510}
   - {fileID: 297837414}
   - {fileID: 672007652}
+  - {fileID: 75437151}

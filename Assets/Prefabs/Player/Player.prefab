@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 1393656235317237623}
   - component: {fileID: 4111161618495077873}
   m_Layer: 0
-  m_Name: PlayerPickup
+  m_Name: PlayerUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,3 +385,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpTime: 0.7
+  ringController: {fileID: 0}

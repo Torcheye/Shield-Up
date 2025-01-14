@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b83537db874678b9c43cc3812775c4, type: 3}
   m_Name: BossConfig
   m_EditorClassIdentifier: 
-  baseHp: 10
+  baseHp: 50
   baseMoveSpeed: 1
   baseHit: 3
   enables: 0100000000

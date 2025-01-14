@@ -24,9 +24,31 @@ public class RingController : MonoBehaviour
 
     private void Start()
     {
-        SpawnWeapon(WeaponType.Dagger, 0);
-        SpawnWeapon(WeaponType.Shield, 0);
-        UpdateRing(0);
+        SpawnWeapon(WeaponType.Shield, 1);
+        UpdateRing(1);
+    }
+    
+    private int _nextWeaponRingIndex = 0;
+    private WeaponType _nextWeaponType = WeaponType.Dagger;
+    public void AddWeapon()
+    {
+        SpawnWeapon(_nextWeaponType, _nextWeaponRingIndex);
+        UpdateRing(_nextWeaponRingIndex);
+        
+        _nextWeaponRingIndex++;
+        if (_nextWeaponRingIndex >= 3)
+        {
+            _nextWeaponRingIndex = 0;
+        }
+        
+        if (_nextWeaponType == WeaponType.Dagger)
+        {
+            _nextWeaponType = WeaponType.Shield;
+        }
+        else
+        {
+            _nextWeaponType = WeaponType.Dagger;
+        }
     }
     
     private void Update()

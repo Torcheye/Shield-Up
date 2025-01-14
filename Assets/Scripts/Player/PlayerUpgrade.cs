@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
 public class PlayerUpgrade : MonoBehaviour
 {
     [SerializeField] private float pickUpTime;
+    [SerializeField] private RingController ringController;
+    [SerializeField] private Transform pickupDestination;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class PlayerUpgrade : MonoBehaviour
         if (other.CompareTag("XpPickup"))
         {
             var transform1 = other.attachedRigidbody.transform;
-            transform1.DOMove(transform.position, pickUpTime).SetEase(Ease.InBack);
+            transform1.DOMove(pickupDestination.position, pickUpTime).SetEase(Ease.InBack);
             StartCoroutine(PickUpXp(transform1.gameObject));
         }
     }
@@ -32,9 +33,10 @@ public class PlayerUpgrade : MonoBehaviour
         
         if (DataManager.Instance.playerXp >= DataManager.Instance.xpToNextLevel)
         {
-            //DataManager.Instance.playerXp = 0;
-            //DataManager.Instance.xpToNextLevel++;
-            Debug.Log("Upgrade!");
+            ringController.AddWeapon();
+            DataManager.Instance.playerXp = 0;
+            DataManager.Instance.xpToNextLevel++;
+            UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.xpToNextLevel);
         }
     }
 }

@@ -236,13 +236,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 189049713}
-  normalAttackInterval: 1.5
+  normalAttackInterval: 1.3
   enhancedAttackTime: 3
   angle: 15
   normalBullet: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
   enhancedBullet: {fileID: 11400000, guid: d4f1a72854b821349bc4058e4ec384de, type: 2}
   target: {fileID: 1912177602}
-  enhancedAttackPreparationTime: 2
 --- !u!1 &217550413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,7 +2836,6 @@ MonoBehaviour:
   normalBullet: {fileID: 0}
   enhancedBullet: {fileID: 0}
   target: {fileID: 1912177602}
-  enhancedAttackPreparationTime: 0
 --- !u!1 &2059031047
 GameObject:
   m_ObjectHideFlags: 0

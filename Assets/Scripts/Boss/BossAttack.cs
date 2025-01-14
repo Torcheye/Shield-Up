@@ -38,9 +38,11 @@ public class BossAttack : MonoBehaviour
     private IEnumerator DoEnhancedAttack()
     {
         loopNormalAttack = false;
+        moveController.DoMove = false;
         EnhancedAttack();
         yield return new WaitForSeconds(enhancedAttackTime);
         loopNormalAttack = true;
+        moveController.DoMove = true;
     }
 
     protected virtual void Attack() { }

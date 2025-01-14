@@ -24,7 +24,7 @@ public class BulletFactory : MonoBehaviour
         }
     }
     
-    public Bullet SpawnBullet(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source)
+    public Bullet SpawnBullet(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
         var bullet = _bullets.Find(b => !b.gameObject.activeSelf);
         if (bullet == null)
@@ -33,7 +33,7 @@ public class BulletFactory : MonoBehaviour
         }
         
         bullet.gameObject.SetActive(true);
-        bullet.Initialize(config, position, direction, hostile, source);
+        bullet.Initialize(config, position, direction, hostile, source, dynamicTarget);
         bullet.LifeLeft = config.lifeTime;
         return bullet;
     }

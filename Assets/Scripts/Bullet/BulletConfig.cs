@@ -11,4 +11,5 @@ public class BulletConfig : ScriptableObject
     public Effect effect;
     public float effectDuration;
     public bool penetrating;
+    public float chargeSpawnTime;
 }

@@ -9,6 +9,16 @@ public class EyeMoveController : BossMoveController
     {
         base.Start();
         splineAnimate.MaxSpeed = moveSpeed;
-        splineAnimate.Play();
+        
+        if (doMove)
+            splineAnimate.Play();
+    }
+    
+    protected override void OnSetMove()
+    {
+        if (doMove)
+            splineAnimate.Play();
+        else
+            splineAnimate.Pause();
     }
 }

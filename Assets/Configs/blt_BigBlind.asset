@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3a5096cadd460c8608059b352627d1, type: 3}
   m_Name: blt_BigBlind
   m_EditorClassIdentifier: 
-  speed: 3
-  damage: 3
-  size: 2
+  speed: 3.5
+  damage: 2
+  size: 6
   lifeTime: 10
   hasEffect: 1
   effect: 1
   effectDuration: 4
   penetrating: 1
+  chargeSpawnTime: 2

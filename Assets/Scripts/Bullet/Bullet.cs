@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -30,6 +32,7 @@ public class Bullet : MonoBehaviour
     public float EffectDuration { get; set; }
     public bool HasEffect { get; set; }
     public bool Penetrating { get; set; }
+    public float ChargeSpawnTime { get; set; }
 
     [SerializeField] private Transform col;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -38,8 +41,11 @@ public class Bullet : MonoBehaviour
     
     private float _size;
     private bool _hostile;
+    private bool _doMove;
+    private bool _doCollide;
+    private Transform _dynamicTarget;
     
-    public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source)
+    public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
         Speed = config.speed;
         Damage = config.damage;
@@ -51,9 +57,33 @@ public class Bullet : MonoBehaviour
         EffectDuration = config.effectDuration;
         HasEffect = config.hasEffect;
         Penetrating = config.penetrating;
+        ChargeSpawnTime = config.chargeSpawnTime;
         
         transform.position = position;
         Direction = direction.normalized;
+        _dynamicTarget = dynamicTarget;
+        _doMove = true;
+        _doCollide = true;
+        
+        if (ChargeSpawnTime > 0)
+        {
+            StartCoroutine(ChargeSpawn());
+        }
+    }
+
+    private IEnumerator ChargeSpawn()
+    {
+        var size = _size;
+        _size = 0;
+        _doMove = false;
+        _doCollide = false;
+        
+        DOTween.To(() => Size, x => Size = x, size, ChargeSpawnTime);
+        yield return new WaitForSeconds(ChargeSpawnTime);
+        _doMove = true;
+        _doCollide = true;
+        
+        Direction = (_dynamicTarget.position - transform.position).normalized;
     }
     
     private void OnSizeChanged()
@@ -72,11 +102,17 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(Speed * Time.fixedDeltaTime * Direction);
+        if (_doMove)
+        {
+            transform.Translate(Speed * Time.fixedDeltaTime * Direction);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!_doCollide)
+            return;
+        
         if (other.CompareTag("Deflect"))
         {
             if (Penetrating) 

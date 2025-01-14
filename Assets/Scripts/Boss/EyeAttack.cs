@@ -7,7 +7,6 @@ public class EyeAttack : BossAttack
     [SerializeField] private BulletConfig normalBullet;
     [SerializeField] private BulletConfig enhancedBullet;
     [SerializeField] private Transform target;
-    [SerializeField] private float enhancedAttackPreparationTime;
 
     protected override void Attack()
     {
@@ -18,13 +17,7 @@ public class EyeAttack : BossAttack
 
     protected override void EnhancedAttack()
     {
-        StartCoroutine(DoEnhancedAttack());
-    }
-    
-    private IEnumerator DoEnhancedAttack()
-    {
-        yield return new WaitForSeconds(enhancedAttackPreparationTime);
-        BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, GetTargetDirection(), true, transform);
+        BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, GetTargetDirection(), true, transform, target);
     }
 
     private void ShootBullet(Vector2 dir)

@@ -34,7 +34,6 @@ public class BulletFactory : MonoBehaviour
         
         bullet.gameObject.SetActive(true);
         bullet.Initialize(config, position, direction, hostile, source, dynamicTarget);
-        bullet.LifeLeft = config.lifeTime;
         return bullet;
     }
     

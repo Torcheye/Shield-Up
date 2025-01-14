@@ -7,8 +7,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [Header("HUD")]
-    [SerializeField] private Image playerHpBar;
+    [SerializeField] private Material playerHpBar;
     [SerializeField] private PlayerStatusEffectUI[] playerStatusEffectUIs;
+    [SerializeField] private Material playerXpBar;
 
     [Header("Effects")] 
     [SerializeField] private Image blindEffect;
@@ -16,6 +17,8 @@ public class UIManager : MonoBehaviour
 
     private static readonly int PlayerScreenPos = Shader.PropertyToID("_PlayerScreenPos");
     private static readonly int OuterRadius = Shader.PropertyToID("_OuterRadius");
+    private static readonly int Value = Shader.PropertyToID("_Value");
+    private static readonly int MaxValue = Shader.PropertyToID("_MaxValue");
 
     private void Awake()
     {
@@ -46,7 +49,14 @@ public class UIManager : MonoBehaviour
 
     public void UpdatePlayerHp(int currentHp, int maxHp)
     {
-        playerHpBar.fillAmount = (float) currentHp / maxHp;
+        playerHpBar.SetFloat(Value, currentHp);
+        playerHpBar.SetFloat(MaxValue, maxHp);
+    }
+    
+    public void UpdatePlayerXp(int currentXp, int xpToNextLevel)
+    {
+        playerXpBar.SetFloat(Value, currentXp);
+        playerXpBar.SetFloat(MaxValue, xpToNextLevel);
     }
     
     public void UpdatePlayerStatusEffects(int effectIndex, float progress)

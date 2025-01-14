@@ -7,10 +7,11 @@ public class DataManager : MonoBehaviour
     [Header("Player")]
     public int playerMaxHp;
     public int playerHp;
+    public int playerXp = 0;
+    public int xpToNextLevel = 3;
     
     [Header("Weapons")]
     public WeaponsConfig weaponsConfig;
-    public float shieldDeflectAngle;
     
     [Header("Combat")]
     public Color damageColor = Color.yellow;

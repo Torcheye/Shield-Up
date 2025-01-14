@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color hostileColor;
     [SerializeField] private Color friendlyColor;
+    [SerializeField] private float shieldDeflectAngle = 15;
     
     private float _size;
     private bool _hostile;
@@ -125,7 +126,7 @@ public class Bullet : MonoBehaviour
             {
                 var direction = (Source.position - transform.position).normalized;
                 // randomize direction a bit
-                var randomAngle = UnityEngine.Random.Range(-DataManager.Instance.shieldDeflectAngle, DataManager.Instance.shieldDeflectAngle);
+                var randomAngle = UnityEngine.Random.Range(-shieldDeflectAngle, shieldDeflectAngle);
                 direction = Quaternion.Euler(0, 0, randomAngle) * direction;
                 Direction = direction;
             }

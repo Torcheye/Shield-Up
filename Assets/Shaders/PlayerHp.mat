@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blind Effect
-  m_Shader: {fileID: -6465566751694194690, guid: 211b817e3fa40f24985f847b56a5301c, type: 3}
+  m_Name: PlayerHp
+  m_Shader: {fileID: -6465566751694194690, guid: f8868f7c834998e419e32a4a15c5a411, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,10 +23,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTexture:
-        m_Texture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -45,10 +41,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BackgroundAlpha: 0
     - _ColorMask: 15
-    - _InnerRadius: 0.05
-    - _OuteRadius: 0.3
-    - _OuterRadius: 0.29998976
+    - _MaxCount: 10
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -56,13 +51,10 @@ Material:
     - _StencilWriteMask: 255
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
-    - _VIsibleRadius: 50
+    - _Value: 2
+    - _Width: 0.25
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.16815314, b: 0.21383637, a: 0}
-    - _NoiseSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
-    - _NoiseTiling: {r: 0.2, g: 0.2, b: 0, a: 0}
-    - _PlayerPosition: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerScreenPos: {r: 0.983276, g: 0.18046412, b: 0, a: 0}
+    - _Color: {r: 0, g: 1, b: 0.00427413, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

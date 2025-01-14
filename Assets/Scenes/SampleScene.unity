@@ -183,9 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a719d85c0228466ea98f50a982d0673a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
   statusEffect: {fileID: 189049710}
   bossType: 0
+  bossAttack: {fileID: 189049714}
 --- !u!114 &189049712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,11 +236,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 189049713}
-  attackInterval: 1.5
+  normalAttackInterval: 1.5
+  enhancedAttackTime: 3
   angle: 15
-  attackTime: 1
-  bulletConfig: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
+  normalBullet: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
+  enhancedBullet: {fileID: 11400000, guid: d4f1a72854b821349bc4058e4ec384de, type: 2}
   target: {fileID: 1912177602}
+  enhancedAttackPreparationTime: 2
 --- !u!1 &217550413
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +831,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,7 +2409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3d543aafdd43b39977a46566a1ea73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 567889901}
   statusEffect: {fileID: 1912177606}
 --- !u!1 &1924741616
 GameObject:
@@ -2830,11 +2831,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 0}
-  attackInterval: 0
+  normalAttackInterval: 0
+  enhancedAttackTime: 0
   angle: 10
-  attackTime: 1
-  bulletConfig: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
+  normalBullet: {fileID: 0}
+  enhancedBullet: {fileID: 0}
   target: {fileID: 1912177602}
+  enhancedAttackPreparationTime: 0
 --- !u!1 &2059031047
 GameObject:
   m_ObjectHideFlags: 0

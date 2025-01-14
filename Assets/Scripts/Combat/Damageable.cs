@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    public int Hp { get; protected set; }
+    
+    //[SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private StatusEffect statusEffect;
     
     protected bool IsPlayer;
-    protected int Hp;
     private Tween _damageColorTween;
     private float _damageCooldown;
     
@@ -44,7 +45,7 @@ public class Damageable : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FlashDamageColor());
+            //StartCoroutine(FlashDamageColor());
             OnTakeDamage(dmg);
         }
 
@@ -58,25 +59,20 @@ public class Damageable : MonoBehaviour
         Destroy(gameObject);
     }
     
-    private IEnumerator FlashDamageColor()
-    {
-        if (_damageColorTween != null)
-        {
-            _damageColorTween.Kill();
-        }
-        
-        if (spriteRenderer == null)
-        {
-            yield break;
-        }
-        
-        spriteRenderer.color = DataManager.Instance.damageColor;
-        yield return new WaitForSeconds(DataManager.Instance.damageColorLastDuration);
-        _damageColorTween = spriteRenderer.DOColor(Color.white, DataManager.Instance.damageColorFadeDuration);
-    }
-    
-    public int GetHp()
-    {
-        return Hp;
-    }
+    // private IEnumerator FlashDamageColor()
+    // {
+    //     if (_damageColorTween != null)
+    //     {
+    //         _damageColorTween.Kill();
+    //     }
+    //     
+    //     if (spriteRenderer == null)
+    //     {
+    //         yield break;
+    //     }
+    //     
+    //     spriteRenderer.color = DataManager.Instance.damageColor;
+    //     yield return new WaitForSeconds(DataManager.Instance.damageColorLastDuration);
+    //     _damageColorTween = spriteRenderer.DOColor(Color.white, DataManager.Instance.damageColorFadeDuration);
+    // }
 }

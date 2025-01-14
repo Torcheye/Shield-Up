@@ -8,15 +8,20 @@ public class BossHpBar : MonoBehaviour
     [SerializeField] private BossDamageable bossDamageable;
     
     private int _maxHp;
+    private int _maxHit;
     
     private void Start()
     {
         _maxHp = DataManager.Instance.bossConfig.GetBossHp(bossDamageable.BossType);
+        _maxHit = DataManager.Instance.bossConfig.GetBossHit(bossDamageable.BossType);
     }
 
     private void Update()
     {
-        var fillAmount = (float) bossDamageable.GetHp() / _maxHp;
-        hp.fillAmount = fillAmount;
+        var fillAmountHp = (float) bossDamageable.Hp / _maxHp;
+        hp.fillAmount = fillAmountHp;
+        
+        var fillAmountHit = (float) bossDamageable.HitCount / _maxHit;
+        hit.fillAmount = fillAmountHit;
     }
 }

@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
     public Effect Effect { get; set; }
     public float EffectDuration { get; set; }
     public bool HasEffect { get; set; }
+    public bool Penetrating { get; set; }
 
     [SerializeField] private Transform col;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -49,6 +50,7 @@ public class Bullet : MonoBehaviour
         Effect = config.effect;
         EffectDuration = config.effectDuration;
         HasEffect = config.hasEffect;
+        Penetrating = config.penetrating;
         
         transform.position = position;
         Direction = direction.normalized;
@@ -77,10 +79,11 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Deflect"))
         {
+            if (Penetrating) 
+                return;
+            
             var deflectCollider = other.gameObject.GetComponent<DeflectCollider>();
             var normal = deflectCollider.normal;
-            
-            //if (Vector2.Dot(Direction, normal) > 0) return;
 
             if (deflectCollider.returnToSource && Source != null)
             {
@@ -115,6 +118,9 @@ public class Bullet : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") && gameObject.activeInHierarchy)
         {
+            if (Penetrating) 
+                return;
+            
             BulletFactory.Instance.DestroyBullet(this);
         }
     }

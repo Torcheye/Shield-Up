@@ -14,20 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHp: 10
   baseMoveSpeed: 1
+  baseHit: 3
   enables: 0100000000
   hpOverrides: 0000000000
   moveSpeedOverrides: 0000000000
+  hitOverrides: 0000000000
   eyeHp: 0
   eyeMoveSpeed: 0
-  eyeBaseBullet: {fileID: 0}
-  eyeBaseShootInterval: 0
+  eyeHit: 0
   brainHp: 0
   brainMoveSpeed: 0
+  brainHit: 0
   mouthHp: 0
   mouthMoveSpeed: 0
+  mouthHit: 0
   handHp: 0
   handMoveSpeed: 0
+  handHit: 0
   footHp: 0
   footMoveSpeed: 0
+  footHit: 0
   heartHp: 0
   heartMoveSpeed: 0
+  heartHit: 0

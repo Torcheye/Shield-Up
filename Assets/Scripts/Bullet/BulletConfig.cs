@@ -10,4 +10,5 @@ public class BulletConfig : ScriptableObject
     public bool hasEffect;
     public Effect effect;
     public float effectDuration;
+    public bool penetrating;
 }

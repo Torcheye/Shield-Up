@@ -1,19 +1,49 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
 {
+    public float EnhancedAttackTime => enhancedAttackTime;
+    
     [SerializeField] protected BossMoveController moveController;
-    [SerializeField] protected float attackInterval;
-    //[SerializeField] protected BossDamageable damageable;
+    [SerializeField] protected float normalAttackInterval;
+    [SerializeField] protected float enhancedAttackTime;
+
+    protected bool loopNormalAttack = true;
 
     private void Start()
     {
-        InvokeRepeating(nameof(Attack), attackInterval, attackInterval);
+        InvokeRepeating(nameof(DoAttack), normalAttackInterval, normalAttackInterval);
+    }
+    
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(DoAttack));
     }
 
-    protected virtual void Attack()
+    private void DoAttack()
     {
-        
+        if (loopNormalAttack)
+        {
+            Attack();
+        }
     }
+    
+    public void StartEnhancedAttack()
+    {
+        StartCoroutine(DoEnhancedAttack());
+    }
+    
+    private IEnumerator DoEnhancedAttack()
+    {
+        loopNormalAttack = false;
+        EnhancedAttack();
+        yield return new WaitForSeconds(enhancedAttackTime);
+        loopNormalAttack = true;
+    }
+
+    protected virtual void Attack() { }
+
+    protected virtual void EnhancedAttack() { }
 }

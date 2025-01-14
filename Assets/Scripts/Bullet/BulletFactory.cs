@@ -15,10 +15,7 @@ public class BulletFactory : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
+        
         for (var i = 0; i < maxBulletCount; i++)
         {
             var bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();

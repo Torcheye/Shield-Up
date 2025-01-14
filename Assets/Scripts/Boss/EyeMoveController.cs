@@ -1,20 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Splines;
 
 public class EyeMoveController : BossMoveController
 {
     [SerializeField] private SplineAnimate splineAnimate;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
-        
+        base.Start();
         splineAnimate.MaxSpeed = moveSpeed;
-    }
-
-    private void Start()
-    {
         splineAnimate.Play();
     }
 }

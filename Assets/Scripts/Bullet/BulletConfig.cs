@@ -6,7 +6,6 @@ public class BulletConfig : ScriptableObject
     public float speed;
     public int damage;
     public float size;
-    public int bounceLeft;
     public float lifeTime;
     public bool hasEffect;
     public Effect effect;

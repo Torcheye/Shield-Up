@@ -235,12 +235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82227485ec9a4645b2e255781646234e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveController: {fileID: 0}
+  moveController: {fileID: 189049713}
   attackInterval: 1.5
   angle: 15
   attackTime: 1
-  bulletConfig: {fileID: 0}
-  target: {fileID: 0}
+  bulletConfig: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
+  target: {fileID: 1912177602}
 --- !u!1 &217550413
 GameObject:
   m_ObjectHideFlags: 0

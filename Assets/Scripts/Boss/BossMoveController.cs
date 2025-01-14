@@ -6,7 +6,7 @@ public class BossMoveController : MonoBehaviour
     
     protected float moveSpeed;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         var bossConfig = DataManager.Instance.bossConfig;
         if (!bossConfig.GetBossEnable(bossType))

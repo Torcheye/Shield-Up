@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
             OnSizeChanged();
         }
     }
-    public int BounceLeft { get; private set; }
     public float LifeLeft { get; set; }
     public bool IsHostile
     {
@@ -23,6 +22,7 @@ public class Bullet : MonoBehaviour
         set
         {
             _hostile = value;
+            spriteRenderer.color = value ? hostileColor : friendlyColor;
         }
     }
     public Transform Source { get; set; }
@@ -31,6 +31,9 @@ public class Bullet : MonoBehaviour
     public bool HasEffect { get; set; }
 
     [SerializeField] private Transform col;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color hostileColor;
+    [SerializeField] private Color friendlyColor;
     
     private float _size;
     private bool _hostile;
@@ -40,7 +43,6 @@ public class Bullet : MonoBehaviour
         Speed = config.speed;
         Damage = config.damage;
         Size = config.size;
-        BounceLeft = config.bounceLeft;
         LifeLeft = config.lifeTime;
         IsHostile = hostile;
         Source = source;
@@ -61,15 +63,6 @@ public class Bullet : MonoBehaviour
     {
         LifeLeft -= Time.deltaTime;
         if (LifeLeft <= 0)
-        {
-            BulletFactory.Instance.DestroyBullet(this);
-        }
-    }
-    
-    private void ReduceBounce()
-    {
-        BounceLeft--;
-        if (BounceLeft <= 0)
         {
             BulletFactory.Instance.DestroyBullet(this);
         }
@@ -106,8 +99,6 @@ public class Bullet : MonoBehaviour
             {
                 IsHostile = false;
             }
-            
-            ReduceBounce();
         }
         
         if (other.CompareTag("Damageable"))

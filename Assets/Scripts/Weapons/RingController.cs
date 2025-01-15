@@ -55,6 +55,8 @@ public class RingController : MonoBehaviour
     
     private void Update()
     {
+        if (ringPivot == null) return;
+        
         transform.position = ringPivot.position;
         for (var i = 0; i < 3; i++)
         {

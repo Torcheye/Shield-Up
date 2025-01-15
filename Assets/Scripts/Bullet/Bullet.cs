@@ -38,12 +38,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float shieldDeflectAngle = 15;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float spawnNoCollisionTime = 0.15f;
     
     private float _size;
     private bool _hostile;
     private bool _doMove;
     private bool _doCollide;
     private Transform _dynamicTarget;
+    private float _spawnNoCollisionTimer;
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -77,6 +79,10 @@ public class Bullet : MonoBehaviour
         {
             StartCoroutine(ChargeSpawn());
         }
+        else
+        {
+            _spawnNoCollisionTimer = spawnNoCollisionTime;
+        }
     }
 
     private IEnumerator ChargeSpawn()
@@ -90,6 +96,7 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(ChargeSpawnTime);
         _doMove = true;
         _doCollide = true;
+        _spawnNoCollisionTimer = spawnNoCollisionTime;
         
         Direction = (_dynamicTarget.position - transform.position).normalized;
     }
@@ -105,6 +112,11 @@ public class Bullet : MonoBehaviour
         if (LifeLeft <= 0)
         {
             BulletFactory.Instance.DestroyBullet(this);
+        }
+        
+        if (_spawnNoCollisionTimer > 0)
+        {
+            _spawnNoCollisionTimer -= Time.deltaTime;
         }
     }
 
@@ -126,7 +138,7 @@ public class Bullet : MonoBehaviour
         
         if (other.CompareTag("Deflect"))
         {
-            if (Penetrating) 
+            if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
             
             var deflectCollider = other.gameObject.GetComponent<DeflectCollider>();
@@ -165,7 +177,7 @@ public class Bullet : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") && gameObject.activeInHierarchy)
         {
-            if (Penetrating) 
+            if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
             
             BulletFactory.Instance.DestroyBullet(this);

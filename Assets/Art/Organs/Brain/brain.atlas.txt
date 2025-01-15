@@ -1,0 +1,6 @@
+brain.png
+size:462,309
+filter:Linear,Linear
+0
+bounds:2,2,458,305
+offsets:77,138,607,546

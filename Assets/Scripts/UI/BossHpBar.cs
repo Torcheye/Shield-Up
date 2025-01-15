@@ -9,6 +9,8 @@ public class BossHpBar : MonoBehaviour
     
     private int _maxHp;
     private int _maxHit;
+    private static readonly int Value = Shader.PropertyToID("_Value");
+    private static readonly int MaxValue = Shader.PropertyToID("_MaxValue");
     
     private void Start()
     {
@@ -18,10 +20,10 @@ public class BossHpBar : MonoBehaviour
 
     private void Update()
     {
-        var fillAmountHp = (float) bossDamageable.Hp / _maxHp;
-        hp.fillAmount = fillAmountHp;
+        hp.material.SetFloat(Value, bossDamageable.Hp);
+        hp.material.SetFloat(MaxValue, _maxHp);
         
-        var fillAmountHit = (float) bossDamageable.HitCount / _maxHit;
-        hit.fillAmount = fillAmountHit;
+        hit.material.SetFloat(Value, bossDamageable.HitCount);
+        hit.material.SetFloat(MaxValue, _maxHit);
     }
 }

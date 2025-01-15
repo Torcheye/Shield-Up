@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
-  size: 0.85
+  size: 0.7
   lifeTime: 5
   color: {r: 0.01027944, g: 0.7264151, b: 0.055346444, a: 1}
   hasEffect: 0

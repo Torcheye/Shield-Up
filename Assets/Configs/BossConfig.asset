@@ -15,7 +15,6 @@ MonoBehaviour:
   baseHp: 50
   baseMoveSpeed: 1
   baseHit: 3
-  enables: 0100000000
   hpOverrides: 0000000000
   moveSpeedOverrides: 0000000000
   hitOverrides: 0000000000

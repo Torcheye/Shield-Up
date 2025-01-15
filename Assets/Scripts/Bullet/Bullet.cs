@@ -24,7 +24,6 @@ public class Bullet : MonoBehaviour
         set
         {
             _hostile = value;
-            spriteRenderer.color = value ? hostileColor : friendlyColor;
         }
     }
     public Transform Source { get; set; }
@@ -33,12 +32,12 @@ public class Bullet : MonoBehaviour
     public bool HasEffect { get; set; }
     public bool Penetrating { get; set; }
     public float ChargeSpawnTime { get; set; }
+    public bool SpawnAcidPool { get; set; }
 
     [SerializeField] private Transform col;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Color hostileColor;
-    [SerializeField] private Color friendlyColor;
     [SerializeField] private float shieldDeflectAngle = 15;
+    [SerializeField] private Rigidbody2D rb;
     
     private float _size;
     private bool _hostile;
@@ -54,11 +53,19 @@ public class Bullet : MonoBehaviour
         LifeLeft = config.lifeTime;
         IsHostile = hostile;
         Source = source;
+        spriteRenderer.color = config.color;
         Effect = config.effect;
         EffectDuration = config.effectDuration;
         HasEffect = config.hasEffect;
         Penetrating = config.penetrating;
         ChargeSpawnTime = config.chargeSpawnTime;
+        SpawnAcidPool = config.spawnAcidPool;
+        
+        rb.gravityScale = config.gravity;
+        if (rb.gravityScale != 0)
+        {
+            rb.AddForce(direction * Speed, ForceMode2D.Impulse);
+        }
         
         transform.position = position;
         Direction = direction.normalized;
@@ -105,7 +112,10 @@ public class Bullet : MonoBehaviour
     {
         if (_doMove)
         {
-            transform.Translate(Speed * Time.fixedDeltaTime * Direction);
+            if (rb.gravityScale == 0)
+            {
+                transform.Translate(Speed * Time.fixedDeltaTime * Direction);
+            }
         }
     }
 
@@ -159,6 +169,12 @@ public class Bullet : MonoBehaviour
                 return;
             
             BulletFactory.Instance.DestroyBullet(this);
+            
+            if (SpawnAcidPool)
+            {
+                var pos = other.ClosestPoint(transform.position);
+                AcidPoolFactory.Instance.SpawnItem(pos);
+            }
         }
     }
 }

@@ -16,8 +16,10 @@ MonoBehaviour:
   damage: 2
   size: 6
   lifeTime: 10
+  color: {r: 0.012014948, g: 0.2830189, b: 0.23077868, a: 1}
   hasEffect: 1
   effect: 1
   effectDuration: 4
   penetrating: 1
   chargeSpawnTime: 2
+  gravity: 0

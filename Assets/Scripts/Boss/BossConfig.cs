@@ -10,7 +10,6 @@ public class BossConfig : ScriptableObject
     public float baseMoveSpeed;
     public int baseHit;
 
-    public List<bool> enables;
     public List<bool> hpOverrides;
     public List<bool> moveSpeedOverrides;
     public List<bool> hitOverrides;
@@ -44,11 +43,6 @@ public class BossConfig : ScriptableObject
     public int heartHp;
     public float heartMoveSpeed;
     public int heartHit;
-
-    public bool GetBossEnable(BossType type)
-    {
-        return enables[(int)type];
-    }
 
     public int GetBossHp(BossType type)
     {

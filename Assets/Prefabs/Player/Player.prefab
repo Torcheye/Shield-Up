@@ -65,6 +65,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6882224545257487362}
+  - {fileID: 875937846536205578}
   - {fileID: 2179198656165918576}
   - {fileID: 8663106841766485254}
   - {fileID: 8399230723491314478}
@@ -148,6 +149,89 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusEffect: {fileID: 2766412645251340437}
+--- !u!1 &2009895103207648189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875937846536205578}
+  - component: {fileID: 2572625555992562032}
+  - component: {fileID: 5453092694944926756}
+  m_Layer: 0
+  m_Name: PlayerFootTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &875937846536205578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009895103207648189}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2127492292207216533}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2572625555992562032
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009895103207648189}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.13
+--- !u!114 &5453092694944926756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009895103207648189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefa52077c164e7883466d0514783442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDamageable: {fileID: 6450813105848954791}
+  playerStatusEffect: {fileID: 2766412645251340437}
 --- !u!1 &2984833176722229307
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6882224545257487362}
   - component: {fileID: 4189885324897526226}
-  - component: {fileID: 4862821718628808983}
+  - component: {fileID: 2293499707310180624}
   m_Layer: 0
   m_Name: Player Sprite
   m_TagString: Damageable
@@ -267,8 +351,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4862821718628808983
-CircleCollider2D:
+--- !u!70 &2293499707310180624
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -302,7 +386,8 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.4
+  m_Size: {x: 0.46, y: 1.1}
+  m_Direction: 0
 --- !u!1 &8614576023055616434
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,3 +471,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpTime: 0.7
   ringController: {fileID: 0}
+  pickupDestination: {fileID: 0}

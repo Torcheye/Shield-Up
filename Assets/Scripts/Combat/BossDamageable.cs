@@ -42,7 +42,7 @@ public class BossDamageable : Damageable
         }
         
         HitCount++;
-        XpPickupFactory.Instance.GetXp(transform.position);
+        XpPickupFactory.Instance.SpawnItem(transform.position);
         
         if (HitCount >= _maxHit)
         {

@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     public int playerHp;
     public int playerXp = 0;
     public int xpToNextLevel = 3;
+    public Transform playerTransform;
     
     [Header("Weapons")]
     public WeaponsConfig weaponsConfig;
@@ -18,6 +19,10 @@ public class DataManager : MonoBehaviour
     public float damageColorLastDuration;
     public float damageColorFadeDuration;
     public float damageCooldown;
+    
+    [Header("Effects")]
+    public float acidHurtInterval;
+    public int acidDamage;
 
     [Header("Boss")]
     public Bounds bossMoveBounds;

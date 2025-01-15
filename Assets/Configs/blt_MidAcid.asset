@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f3a5096cadd460c8608059b352627d1, type: 3}
-  m_Name: blt_Small
+  m_Name: blt_MidAcid
   m_EditorClassIdentifier: 
-  speed: 5.5
+  speed: 1
   damage: 1
-  size: 0.5
+  size: 0.85
   lifeTime: 5
-  color: {r: 0.754717, g: 0.2171591, b: 0.2171591, a: 1}
+  color: {r: 0.01027944, g: 0.7264151, b: 0.055346444, a: 1}
   hasEffect: 0
   effect: 1
   effectDuration: 4
   penetrating: 0
   chargeSpawnTime: 0
-  gravity: 0
+  gravity: 1
+  spawnAcidPool: 1

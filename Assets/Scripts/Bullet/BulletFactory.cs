@@ -14,7 +14,6 @@ public class BulletFactory : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         
         for (var i = 0; i < maxBulletCount; i++)
         {

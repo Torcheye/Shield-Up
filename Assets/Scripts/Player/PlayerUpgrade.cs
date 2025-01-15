@@ -27,7 +27,7 @@ public class PlayerUpgrade : MonoBehaviour
     {
         yield return new WaitForSeconds(pickUpTime);
         
-        XpPickupFactory.DestroyXp(xp);
+        XpPickupFactory.DestroyItem(xp);
         DataManager.Instance.playerXp++;
         UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.xpToNextLevel);
         

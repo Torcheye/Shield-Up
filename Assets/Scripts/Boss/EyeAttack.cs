@@ -6,7 +6,6 @@ public class EyeAttack : BossAttack
     [SerializeField] private float angle;
     [SerializeField] private BulletConfig normalBullet;
     [SerializeField] private BulletConfig enhancedBullet;
-    [SerializeField] private Transform target;
 
     protected override void Attack()
     {
@@ -17,7 +16,7 @@ public class EyeAttack : BossAttack
 
     protected override void EnhancedAttack()
     {
-        BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, GetTargetDirection(), true, transform, target);
+        BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, GetTargetDirection(), true, transform, DataManager.Instance.playerTransform);
     }
 
     private void ShootBullet(Vector2 dir)
@@ -27,6 +26,6 @@ public class EyeAttack : BossAttack
     
     private Vector2 GetTargetDirection()
     {
-        return target.position - transform.position;
+        return DataManager.Instance.playerTransform.position - transform.position;
     }
 }

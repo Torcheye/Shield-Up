@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
+    private static readonly int FillPhase = Shader.PropertyToID("_FillPhase");
+    private static readonly int FillColor = Shader.PropertyToID("_FillColor");
     public int Hp { get; protected set; }
     
-    //[SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private StatusEffect statusEffect;
     
     protected bool IsPlayer;
     private Tween _damageColorTween;
     private float _damageCooldown;
+    private float _damageColorFlashValue;
     
     public void ApplyEffect(Effect effect, float duration)
     {
@@ -45,7 +48,7 @@ public class Damageable : MonoBehaviour
         }
         else
         {
-            //StartCoroutine(FlashDamageColor());
+            StartCoroutine(FlashDamageColor());
             OnTakeDamage(dmg);
         }
 
@@ -59,20 +62,25 @@ public class Damageable : MonoBehaviour
         Destroy(gameObject);
     }
     
-    // private IEnumerator FlashDamageColor()
-    // {
-    //     if (_damageColorTween != null)
-    //     {
-    //         _damageColorTween.Kill();
-    //     }
-    //     
-    //     if (spriteRenderer == null)
-    //     {
-    //         yield break;
-    //     }
-    //     
-    //     spriteRenderer.color = DataManager.Instance.damageColor;
-    //     yield return new WaitForSeconds(DataManager.Instance.damageColorLastDuration);
-    //     _damageColorTween = spriteRenderer.DOColor(Color.white, DataManager.Instance.damageColorFadeDuration);
-    // }
+    private IEnumerator FlashDamageColor()
+    {
+        if (_damageColorTween != null)
+        {
+            _damageColorTween.Kill();
+        }
+        
+        if (meshRenderer == null)
+        {
+            yield break;
+        }
+        
+        meshRenderer.material.SetColor(FillColor, DataManager.Instance.damageColor);
+        _damageColorFlashValue = 1;
+        yield return new WaitForSeconds(DataManager.Instance.damageColorLastDuration);
+        DOTween.To(() => _damageColorFlashValue, x => _damageColorFlashValue = x, 0, DataManager.Instance.damageColorFadeDuration)
+            .SetEase(Ease.OutBounce)
+            .OnUpdate(() => meshRenderer.material.SetFloat(FillPhase, _damageColorFlashValue));
+        yield return new WaitForSeconds(DataManager.Instance.damageColorFadeDuration);
+        meshRenderer.material.SetFloat(FillPhase, 0);
+    }
 }

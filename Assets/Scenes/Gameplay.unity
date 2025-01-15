@@ -1943,6 +1943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouth
       objectReference: {fileID: 0}
+    - target: {fileID: 2722702195535864991, guid: a81eb5ef544abac47a2df794d902afa9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4154527124781119897, guid: a81eb5ef544abac47a2df794d902afa9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.04
@@ -2050,7 +2054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872004824916914999, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4782696734454762385, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: target

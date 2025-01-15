@@ -9,6 +9,8 @@ public class RingController : MonoBehaviour
     [SerializeField] private float[] rotateSpeeds;
     [SerializeField] private float firstRingRadius;
     [SerializeField] private float ringRadiusStep;
+    
+    [SerializeField] private WeaponType startWeaponType;
 
     private List<List<Weapon>> _weapons;
     private int _nextWeaponId;
@@ -24,11 +26,11 @@ public class RingController : MonoBehaviour
 
     private void Start()
     {
-        SpawnWeapon(WeaponType.Shield, 1);
+        SpawnWeapon(startWeaponType, 1);
         UpdateRing(1);
     }
     
-    private int _nextWeaponRingIndex = 0;
+    private int _nextWeaponRingIndex;
     private WeaponType _nextWeaponType = WeaponType.Dagger;
     public void AddWeapon()
     {

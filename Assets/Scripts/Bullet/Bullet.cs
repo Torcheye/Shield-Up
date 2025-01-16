@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float shieldDeflectAngle = 15;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float spawnNoCollisionTime = 0.15f;
+    [SerializeField] private Color friendlyColor;
     
     private float _size;
     private bool _hostile;
@@ -131,22 +132,30 @@ public class Bullet : MonoBehaviour
     {
         if (_doMove && rb.gravityScale == 0)
         {
-            // Update the spiral's angle and radius
-            _spiralAngle += _spiralSpeed * Time.fixedDeltaTime; // Increment the angle
-            _spiralRadius += Speed * Time.fixedDeltaTime; // Increment the radius
-            
-            if (_spiralRadius > 0)
+            if (_spiralSpeed > 0)
             {
-                _spiralAngle += (_spiralSpeed / _spiralRadius) * Time.fixedDeltaTime;
+                // Update the spiral's angle and radius
+                _spiralAngle += _spiralSpeed * Time.fixedDeltaTime; // Increment the angle
+                _spiralRadius += Speed * Time.fixedDeltaTime; // Increment the radius
+            
+                if (_spiralRadius > 0)
+                {
+                    _spiralAngle += (_spiralSpeed / _spiralRadius) * Time.fixedDeltaTime;
+                }
+
+                // Convert polar coordinates to Cartesian coordinates
+                float x = _spiralRadius * Mathf.Cos(_spiralAngle);
+                float y = _spiralRadius * Mathf.Sin(_spiralAngle);
+
+                // Offset the spiral position by the initial direction
+                Vector2 offset = new Vector2(x, y);
+                transform.position += (Vector3)offset * Time.fixedDeltaTime;
             }
-
-            // Convert polar coordinates to Cartesian coordinates
-            float x = _spiralRadius * Mathf.Cos(_spiralAngle);
-            float y = _spiralRadius * Mathf.Sin(_spiralAngle);
-
-            // Offset the spiral position by the initial direction
-            Vector2 offset = new Vector2(x, y);
-            transform.position += (Vector3)offset * Time.fixedDeltaTime;
+            else
+            {
+                var translation = Speed * Time.fixedDeltaTime * Direction;
+                transform.Translate(translation);
+            }
         }
     }
 
@@ -170,6 +179,10 @@ public class Bullet : MonoBehaviour
                 var randomAngle = UnityEngine.Random.Range(-shieldDeflectAngle, shieldDeflectAngle);
                 direction = Quaternion.Euler(0, 0, randomAngle) * direction;
                 Direction = direction;
+
+                rb.gravityScale = 0;
+                _spiralSpeed = 0;
+                _spiralRadius = 0;
             }
             else
             {
@@ -179,6 +192,7 @@ public class Bullet : MonoBehaviour
             if (deflectCollider.isPlayer)
             {
                 IsHostile = false;
+                spriteRenderer.color = friendlyColor;
             }
         }
         

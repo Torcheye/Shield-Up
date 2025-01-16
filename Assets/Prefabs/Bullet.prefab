@@ -51,10 +51,7 @@ MonoBehaviour:
   shieldDeflectAngle: 15
   rb: {fileID: 6855875935535833997}
   spawnNoCollisionTime: 0.15
-  _spiralAngle: 0
-  _spiralRadius: 0
-  _spiralGrowthRate: 0.01
-  _spiralSpeed: 1
+  friendlyColor: {r: 0.36862746, g: 0.5254902, b: 0.8980392, a: 1}
 --- !u!50 &6855875935535833997
 Rigidbody2D:
   serializedVersion: 5

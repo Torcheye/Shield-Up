@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MouthHp
+  m_Name: PlayerHp
   m_Shader: {fileID: -6465566751694194690, guid: f8868f7c834998e419e32a4a15c5a411, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -44,7 +44,7 @@ Material:
     - _BackgroundAlpha: 0
     - _ColorMask: 15
     - _MaxCount: 10
-    - _MaxValue: 30
+    - _MaxValue: 10
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -52,7 +52,7 @@ Material:
     - _StencilWriteMask: 255
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
-    - _Value: 30
+    - _Value: 10
     - _Width: 0.25
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}

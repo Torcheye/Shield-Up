@@ -592,7 +592,7 @@ MonoBehaviour:
   damageColorLastDuration: 0.1
   damageColorFadeDuration: 0.25
   damageCooldown: 0.1
-  acidHurtInterval: 0.65
+  acidHurtInterval: 0.5
   acidDamage: 1
   bossMoveBounds:
     m_Center: {x: 0, y: 0.8, z: 0}

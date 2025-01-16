@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerXp
+  m_Name: MouthHit
   m_Shader: {fileID: -6465566751694194690, guid: f8868f7c834998e419e32a4a15c5a411, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _BackgroundAlpha: 0
     - _ColorMask: 15
-    - _MaxCount: 2
+    - _MaxCount: 10
     - _MaxValue: 3
     - _Stencil: 0
     - _StencilComp: 8
@@ -56,6 +56,6 @@ Material:
     - _Width: 0.25
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.6511247, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

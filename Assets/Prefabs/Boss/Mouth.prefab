@@ -5225,6 +5225,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4154527124781119897}
     m_Modifications:
+    - target: {fileID: 844239664749310349, guid: d0e8667b82a43654392309328be14705, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 74f1fe97b05249d4ba184ea2a8287ff8, type: 2}
     - target: {fileID: 2636551082876210381, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_Name
       value: BossBar
@@ -5309,6 +5313,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5535928070229048998, guid: d0e8667b82a43654392309328be14705, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 0256bb1ffdb6cfd4eb4b61284dfd92ef, type: 2}
     - target: {fileID: 6955256385557785004, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: bossDamageable
       value: 

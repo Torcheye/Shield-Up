@@ -22,7 +22,7 @@ public class MouthAttack : BossAttack
     private bool _isSucking;
     private float _suctionTimer;
 
-    protected override void Attack()
+    public override void Attack()
     {
         var playerPos = DataManager.Instance.playerTransform.position;
         var x = (playerPos.x - transform.position.x) * normalLaunchPower.x;
@@ -31,7 +31,7 @@ public class MouthAttack : BossAttack
         BulletFactory.Instance.SpawnBullet(acidBullet, transform.position, dir, true, transform);
     }
 
-    protected override void EnhancedAttack()
+    public override void EnhancedAttack()
     {
         StartCoroutine(DoSuction());
     }

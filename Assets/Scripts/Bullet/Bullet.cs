@@ -46,6 +46,8 @@ public class Bullet : MonoBehaviour
     private bool _doCollide;
     private Transform _dynamicTarget;
     private float _spawnNoCollisionTimer;
+    private float _swingFrequency;
+    private float _swingAmplitude;
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -62,6 +64,8 @@ public class Bullet : MonoBehaviour
         Penetrating = config.penetrating;
         ChargeSpawnTime = config.chargeSpawnTime;
         SpawnAcidPool = config.spawnAcidPool;
+        _swingFrequency = config.swingFrequency;
+        _swingAmplitude = config.swingAmplitude;
         
         rb.gravityScale = config.gravity;
         if (rb.gravityScale != 0)
@@ -126,7 +130,10 @@ public class Bullet : MonoBehaviour
         {
             if (rb.gravityScale == 0)
             {
-                transform.Translate(Speed * Time.fixedDeltaTime * Direction);
+                var translation = Speed * Time.fixedDeltaTime * Direction;
+                var translationPerp = new Vector2(-translation.y, translation.x);
+                var delta = Mathf.Sin(Time.time * _swingFrequency) * _swingAmplitude;
+                transform.Translate(translation + translationPerp * delta);
             }
         }
     }

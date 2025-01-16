@@ -8,6 +8,10 @@ public class BulletConfig : ScriptableObject
     public float size;
     public float lifeTime;
     public Color color;
+
+    [Header("Movement")] 
+    public float swingFrequency;
+    public float swingAmplitude;
     
     [Header("Effect")]
     public bool hasEffect;

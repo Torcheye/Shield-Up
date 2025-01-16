@@ -8,12 +8,16 @@ public class BossAttack : MonoBehaviour
     [SerializeField] protected BossMoveController moveController;
     [SerializeField] protected float normalAttackInterval;
     [SerializeField] protected float enhancedAttackTime;
+    [SerializeField] protected bool autoAttack = true;
 
     protected bool loopNormalAttack = true;
 
     private void Start()
     {
-        InvokeRepeating(nameof(DoAttack), normalAttackInterval, normalAttackInterval);
+        if (autoAttack)
+        {
+            InvokeRepeating(nameof(DoAttack), normalAttackInterval, normalAttackInterval);
+        }
     }
     
     private void OnDisable()
@@ -44,7 +48,7 @@ public class BossAttack : MonoBehaviour
         moveController.DoMove = true;
     }
 
-    protected virtual void Attack() { }
+    public virtual void Attack() { }
 
-    protected virtual void EnhancedAttack() { }
+    public virtual void EnhancedAttack() { }
 }

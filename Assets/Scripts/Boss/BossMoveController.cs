@@ -15,14 +15,13 @@ public class BossMoveController : MonoBehaviour
     [SerializeField] private BossType bossType;
     
     protected float moveSpeed;
-    protected bool doMove;
+    protected bool doMove = true;
 
     protected virtual void Start()
     {
         var bossConfig = DataManager.Instance.bossConfig;
         
         moveSpeed = bossConfig.GetBossMoveSpeed(bossType);
-        doMove = true;
     }
 
     protected virtual void OnSetMove() { }

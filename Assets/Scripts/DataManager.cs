@@ -25,7 +25,6 @@ public class DataManager : MonoBehaviour
     public int acidDamage;
 
     [Header("Boss")]
-    public Bounds bossMoveBounds;
     public BossConfig bossConfig;
     
     private void Awake()
@@ -39,12 +38,4 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    #if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(bossMoveBounds.center, bossMoveBounds.size);
-    }
-    #endif
 }

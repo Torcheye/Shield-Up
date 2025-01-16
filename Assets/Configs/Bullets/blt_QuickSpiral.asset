@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f3a5096cadd460c8608059b352627d1, type: 3}
-  m_Name: blt_SmallSwing
+  m_Name: blt_QuickSpiral
   m_EditorClassIdentifier: 
-  speed: 2.2
+  speed: 2.6
   damage: 1
-  size: 0.4
+  size: 0.8
   lifeTime: 10
-  color: {r: 0.8584906, g: 0.3523051, b: 0.8289324, a: 1}
-  swingFrequency: 2.8
-  swingAmplitude: 1.6
+  color: {r: 1, g: 0.514151, b: 0.9698698, a: 1}
+  spiralSpeed: 1.5
   hasEffect: 0
   effect: 1
   effectDuration: 4
-  penetrating: 0
+  penetrating: 1
   chargeSpawnTime: 0
   gravity: 0
   spawnAcidPool: 0

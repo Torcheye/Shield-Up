@@ -48,10 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 8782493881370456789}
   spriteRenderer: {fileID: 1854322197059041608}
-  hostileColor: {r: 0.7924528, g: 0.08597367, b: 0.08597367, a: 1}
-  friendlyColor: {r: 0.063412234, g: 0.62030053, b: 0.8962264, a: 1}
   shieldDeflectAngle: 15
   rb: {fileID: 6855875935535833997}
+  spawnNoCollisionTime: 0.15
+  _spiralAngle: 0
+  _spiralRadius: 0
+  _spiralGrowthRate: 0.01
+  _spiralSpeed: 1
 --- !u!50 &6855875935535833997
 Rigidbody2D:
   serializedVersion: 5

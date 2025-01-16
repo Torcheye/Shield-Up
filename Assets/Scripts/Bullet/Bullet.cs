@@ -32,7 +32,6 @@ public class Bullet : MonoBehaviour
     public bool HasEffect { get; set; }
     public bool Penetrating { get; set; }
     public float ChargeSpawnTime { get; set; }
-    public bool SpawnAcidPool { get; set; }
 
     [SerializeField] private Transform col;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -46,8 +45,10 @@ public class Bullet : MonoBehaviour
     private bool _doCollide;
     private Transform _dynamicTarget;
     private float _spawnNoCollisionTimer;
-    private float _swingFrequency;
-    private float _swingAmplitude;
+    private bool _spawnAcidPool;
+    private float _spiralAngle;
+    private float _spiralRadius;
+    private float _spiralSpeed; // Angle increment speed
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -63,9 +64,11 @@ public class Bullet : MonoBehaviour
         HasEffect = config.hasEffect;
         Penetrating = config.penetrating;
         ChargeSpawnTime = config.chargeSpawnTime;
-        SpawnAcidPool = config.spawnAcidPool;
-        _swingFrequency = config.swingFrequency;
-        _swingAmplitude = config.swingAmplitude;
+        _spawnAcidPool = config.spawnAcidPool;
+        _spiralSpeed = config.spiralSpeed;
+        // direction to spiral angle
+        _spiralAngle = Mathf.Atan2(direction.y, direction.x);
+        _spiralRadius = 0;
         
         rb.gravityScale = config.gravity;
         if (rb.gravityScale != 0)
@@ -126,15 +129,24 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_doMove)
+        if (_doMove && rb.gravityScale == 0)
         {
-            if (rb.gravityScale == 0)
+            // Update the spiral's angle and radius
+            _spiralAngle += _spiralSpeed * Time.fixedDeltaTime; // Increment the angle
+            _spiralRadius += Speed * Time.fixedDeltaTime; // Increment the radius
+            
+            if (_spiralRadius > 0)
             {
-                var translation = Speed * Time.fixedDeltaTime * Direction;
-                var translationPerp = new Vector2(-translation.y, translation.x);
-                var delta = Mathf.Sin(Time.time * _swingFrequency) * _swingAmplitude;
-                transform.Translate(translation + translationPerp * delta);
+                _spiralAngle += (_spiralSpeed / _spiralRadius) * Time.fixedDeltaTime;
             }
+
+            // Convert polar coordinates to Cartesian coordinates
+            float x = _spiralRadius * Mathf.Cos(_spiralAngle);
+            float y = _spiralRadius * Mathf.Sin(_spiralAngle);
+
+            // Offset the spiral position by the initial direction
+            Vector2 offset = new Vector2(x, y);
+            transform.position += (Vector3)offset * Time.fixedDeltaTime;
         }
     }
 
@@ -189,7 +201,7 @@ public class Bullet : MonoBehaviour
             
             BulletFactory.Instance.DestroyBullet(this);
             
-            if (SpawnAcidPool)
+            if (_spawnAcidPool)
             {
                 var pos = other.ClosestPoint(transform.position);
                 AcidPoolFactory.Instance.SpawnItem(pos);

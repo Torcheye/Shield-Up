@@ -2,12 +2,14 @@
 
 public class Weapon : MonoBehaviour
 {
-    public int Id { get; set; }
     public int Level { get; set; }
+    public bool IsHostile {get; set; }
+    public WeaponType Type { get; set; }
     
-    public void Initialize(int id)
+    public void Initialize(bool isHostile, WeaponType type)
     {
-        Id = id;
         Level = 1;
+        IsHostile = isHostile;
+        Type = type;
     }
 }

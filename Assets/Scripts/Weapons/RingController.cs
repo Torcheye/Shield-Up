@@ -11,9 +11,9 @@ public class RingController : MonoBehaviour
     [SerializeField] private float ringRadiusStep;
     
     [SerializeField] private WeaponType startWeaponType;
+    [SerializeField] private bool isHostile;
 
     private List<List<Weapon>> _weapons;
-    private int _nextWeaponId;
 
     private void Awake()
     {
@@ -26,6 +26,8 @@ public class RingController : MonoBehaviour
 
     private void Start()
     {
+        if (isHostile)
+            return;
         SpawnWeapon(startWeaponType, 1);
         UpdateRing(1);
     }
@@ -83,7 +85,31 @@ public class RingController : MonoBehaviour
         var w = Instantiate(DataManager.Instance.weaponsConfig.GetWeaponPrefab(type), 
             weaponPivots[ringIndex]).GetComponent<Weapon>();
         _weapons[ringIndex].Add(w);
-        
-        w.Initialize(_nextWeaponId++);
+
+        w.Initialize(isHostile, type);
+    }
+
+    public void CopyOver(RingController other)
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            for (var j = 0; j < _weapons[i].Count; j++)
+            {
+                other.SpawnWeapon(_weapons[i][j].Type, i);
+                other.UpdateRing(i);
+            }
+        }
+    }
+    
+    public void ClearAll()
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            for (var j = 0; j < _weapons[i].Count; j++)
+            {
+                Destroy(_weapons[i][j].gameObject);
+            }
+            _weapons[i].Clear();
+        }
     }
 }

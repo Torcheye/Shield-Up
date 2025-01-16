@@ -5,9 +5,14 @@ using UnityEngine;
 public class StatusEffect : MonoBehaviour
 {
     [SerializeField] private bool isPlayer;
+
+    [Header("Copycat")] 
+    [SerializeField] private RingController copySourceRing;
+    [SerializeField] private RingController copyTargetRing;
     
     private readonly Dictionary<Effect, EffectTimer> _effects = new();
     private Camera _camera;
+    private bool _copyActivated;
 
     private void Awake()
     {
@@ -48,6 +53,20 @@ public class StatusEffect : MonoBehaviour
             var screenPos = _camera.WorldToScreenPoint(transform.position) 
                             / new Vector2(Screen.width, Screen.height);
             UIManager.Instance.UpdateBlindEffect(screenPos, timer.GetProgress());
+        }
+        
+        if (effect == Effect.Copycat)
+        {
+            if (!_copyActivated && timer.IsAlive())
+            {
+                copySourceRing.CopyOver(copyTargetRing);
+                _copyActivated = true;
+            }
+            else if (_copyActivated && !timer.IsAlive())
+            {
+                copyTargetRing.ClearAll();
+                _copyActivated = false;
+            }
         }
     }
 

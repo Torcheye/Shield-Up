@@ -50,6 +50,7 @@ public class Bullet : MonoBehaviour
     private float _spiralAngle;
     private float _spiralRadius;
     private float _spiralSpeed; // Angle increment speed
+    private Color _color;
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -60,6 +61,7 @@ public class Bullet : MonoBehaviour
         IsHostile = hostile;
         Source = source;
         spriteRenderer.color = config.color;
+        _color = config.color;
         Effect = config.effect;
         EffectDuration = config.effectDuration;
         HasEffect = config.hasEffect;
@@ -169,10 +171,12 @@ public class Bullet : MonoBehaviour
             if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
             
-            var deflectCollider = other.gameObject.GetComponent<DeflectCollider>();
-            var normal = deflectCollider.normal;
+            var shield = other.gameObject.GetComponent<Shield>();
+            
+            if (shield.IsHostile == IsHostile)
+                return;
 
-            if (deflectCollider.returnToSource && Source != null)
+            if (Source != null)
             {
                 var direction = (Source.position - transform.position).normalized;
                 // randomize direction a bit
@@ -184,15 +188,17 @@ public class Bullet : MonoBehaviour
                 _spiralSpeed = 0;
                 _spiralRadius = 0;
             }
-            else
-            {
-                Direction = Vector2.Reflect(Direction, normal);
-            }
 
-            if (deflectCollider.isPlayer)
+            if (shield.IsHostile)
+            {
+                IsHostile = true;
+                spriteRenderer.color = _color;
+            }
+            else
             {
                 IsHostile = false;
                 spriteRenderer.color = friendlyColor;
+                Source = DataManager.Instance.playerTransform;
             }
         }
         

@@ -9,7 +9,7 @@ public class Dagger : Weapon
             var damageable = other.GetComponentInParent<Damageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(DataManager.Instance.weaponsConfig.GetDaggerDamage(Level), false);
+                damageable.TakeDamage(DataManager.Instance.weaponsConfig.GetDaggerDamage(Level), IsHostile);
             }
         }
     }

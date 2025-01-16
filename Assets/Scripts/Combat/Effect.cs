@@ -1,5 +1,6 @@
 ﻿public enum Effect
 {
     Invulnerable,
-    Blind
+    Blind,
+    Copycat
 }

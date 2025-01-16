@@ -35,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 4431049919438025483}
   - {fileID: 4474453204022085454}
+  - {fileID: 9183923673960432180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5577207185240576763
@@ -50,6 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  copySourceRing: {fileID: 0}
+  copyTargetRing: {fileID: 0}
 --- !u!114 &8898569602759505762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,10 +110,10 @@ MonoBehaviour:
   autoAttack: 0
   normalBullet: {fileID: 11400000, guid: 7e4607bbe93a08049b113d3076c28d5f, type: 2}
   enhancedBullet: {fileID: 11400000, guid: d231a696096c32647925bf8e9c04ef34, type: 2}
-  normalBulletAmount: 6
-  normalBurstAmount: 6
+  normalBulletAmount: 5
+  normalBurstAmount: 5
   normalBurstInterval: 0.9
-  enhancedShootAmount: 16
+  enhancedShootAmount: 14
 --- !u!1 &7171785404526581852
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 7171785404526581852}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -299,6 +302,37 @@ PolygonCollider2D:
       - {x: 1.8948795, y: -0.5146536}
       - {x: 2.21871, y: -0.07256901}
   m_UseDelaunayMesh: 0
+--- !u!1 &7814083241103232267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9183923673960432180}
+  m_Layer: 0
+  m_Name: BrainRingPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9183923673960432180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814083241103232267}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6648314829069250685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1689517411112836340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.35
+      value: 2.06
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

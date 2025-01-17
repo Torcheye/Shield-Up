@@ -240,13 +240,14 @@ public class Bullet : MonoBehaviour
             
             BulletFactory.Instance.DestroyBullet(this);
 
-            var groundBlockExist = other.GetComponentInParent<GroundBlock>().TakeHit();
+            var groundBlockParent = other.transform.parent;
+            var groundBlock = groundBlockParent.GetComponent<GroundBlock>();
             
-            if (_spawnAcidPool && groundBlockExist)
+            if (_spawnAcidPool && groundBlock.TakeHit())
             {
                 var pos = other.ClosestPoint(transform.position);
                 var acid = AcidPoolFactory.Instance.SpawnItem(pos);
-                acid.transform.SetParent(other.transform);
+                groundBlock.AttachAcidPool(acid.transform);
             }
         }
     }

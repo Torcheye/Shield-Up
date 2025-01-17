@@ -46,14 +46,7 @@ public class RingController : MonoBehaviour
             _nextWeaponRingIndex = 0;
         }
         
-        if (_nextWeaponType == WeaponType.Dagger)
-        {
-            _nextWeaponType = WeaponType.Shield;
-        }
-        else
-        {
-            _nextWeaponType = WeaponType.Dagger;
-        }
+        _nextWeaponType = (WeaponType) (((int) _nextWeaponType + 1) % 3);
     }
 
     public void RemoveWeapon(GameObject weapon)

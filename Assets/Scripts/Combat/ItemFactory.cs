@@ -40,5 +40,6 @@ public class ItemFactory<T> : MonoBehaviour
     public static void DestroyItem(GameObject item)
     {
         item.SetActive(false);
+        item.transform.parent = Instance.itemParent;
     }
 }

@@ -40,6 +40,11 @@ public class GroundBlock : MonoBehaviour
             }
         }
     }
+    
+    public void AttachAcidPool(Transform acidPool)
+    {
+        acidPool.SetParent(mainObject.transform);
+    }
 
     /// returns whether the block still exists
     public bool TakeHit()

@@ -7326,7 +7326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872004824916914999, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4782696734454762385, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: target
@@ -7408,7 +7408,7 @@ PrefabInstance:
       objectReference: {fileID: 1776667318}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: startWeaponType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7676,6 +7676,10 @@ PrefabInstance:
     - target: {fileID: 6586909922362126019, guid: 538b36c83b18b8240a7e82e51ecc59d0, type: 3}
       propertyPath: m_Name
       value: Brain
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586909922362126019, guid: 538b36c83b18b8240a7e82e51ecc59d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6648314829069250685, guid: 538b36c83b18b8240a7e82e51ecc59d0, type: 3}
       propertyPath: m_LocalPosition.x

@@ -173,7 +173,7 @@ public class Bullet : MonoBehaviour
             
             var shield = other.gameObject.GetComponent<Shield>();
             
-            if (shield.IsHostile == IsHostile)
+            if (shield.IsHostile == IsHostile || !shield.Deflect())
                 return;
 
             if (Source != null)
@@ -183,11 +183,16 @@ public class Bullet : MonoBehaviour
                 var randomAngle = UnityEngine.Random.Range(-shieldDeflectAngle, shieldDeflectAngle);
                 direction = Quaternion.Euler(0, 0, randomAngle) * direction;
                 Direction = direction;
-
-                rb.gravityScale = 0;
-                _spiralSpeed = 0;
-                _spiralRadius = 0;
             }
+            else
+            {
+                Direction = -Direction;
+                Debug.LogError("Bullet source is null");
+            }
+            
+            rb.gravityScale = 0;
+            _spiralSpeed = 0;
+            _spiralRadius = 0;
 
             if (shield.IsHostile)
             {

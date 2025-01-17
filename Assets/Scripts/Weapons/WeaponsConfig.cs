@@ -13,6 +13,7 @@ public class WeaponsConfig : ScriptableObject
     
     [Header("Shield")]
     public GameObject shieldPrefab;
+    public float shieldCooldown;
     public int shieldBlockL1;
     public int shieldBlockL2;
     public int shieldBlockL3;

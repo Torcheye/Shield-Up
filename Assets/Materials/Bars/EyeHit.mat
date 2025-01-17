@@ -44,7 +44,7 @@ Material:
     - _BackgroundAlpha: 0
     - _ColorMask: 15
     - _MaxCount: 10
-    - _MaxValue: 1
+    - _MaxValue: 3
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

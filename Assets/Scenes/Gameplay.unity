@@ -1885,7 +1885,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMaxHp: 10
-  playerHp: 10
   playerXp: 0
   xpToNextLevel: 3
   playerTransform: {fileID: 1912177602}
@@ -1894,6 +1893,9 @@ MonoBehaviour:
   damageColorLastDuration: 0.1
   damageColorFadeDuration: 0.25
   damageCooldown: 0.1
+  healColor: {r: 0, g: 1, b: 0, a: 1}
+  healColorLastDuration: 0
+  healColorFadeDuration: 0
   breakableGroundRegenTime: 7
   acidHurtInterval: 0.5
   acidDamage: 1
@@ -6194,6 +6196,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2127492292207216533, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
   m_PrefabInstance: {fileID: 9172312439478900388}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1912177604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6450813105848954791, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
+  m_PrefabInstance: {fileID: 9172312439478900388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3d543aafdd43b39977a46566a1ea73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1924741616
 GameObject:
   m_ObjectHideFlags: 0
@@ -7976,8 +7989,12 @@ PrefabInstance:
       objectReference: {fileID: 1776667318}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: startWeaponType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
+      propertyPath: playerDamageable
+      value: 
+      objectReference: {fileID: 1912177604}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: 'rotateSpeeds.Array.data[0]'
       value: 150

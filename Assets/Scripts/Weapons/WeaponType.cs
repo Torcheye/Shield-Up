@@ -5,5 +5,5 @@ public enum WeaponType
 {
     Dagger,
     Shield,
-    Bomb
+    Potion
 }

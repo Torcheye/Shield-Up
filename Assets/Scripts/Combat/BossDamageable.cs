@@ -14,7 +14,7 @@ public class BossDamageable : Damageable
     
     private void OnEnable()
     {
-        IsPlayer = false;
+        isPlayer = false;
     }
 
     protected override void Start()
@@ -22,6 +22,7 @@ public class BossDamageable : Damageable
         base.Start();
 
         Hp = DataManager.Instance.bossConfig.GetBossHp(bossType);
+        maxHp = Hp;
         HitCount = 0;
         _maxHit = DataManager.Instance.bossConfig.GetBossHit(bossType);
     }

@@ -15,16 +15,11 @@ MonoBehaviour:
   daggerPrefab: {fileID: 7212092133301199805, guid: e978b734d56726947b190b07bf6664b8, type: 3}
   daggerDmgL1: 2
   daggerDmgL2: 2
-  daggerBleedL2: 1
-  daggerDmgL3: 3
-  daggerBleedL3: 3
+  daggerBleed: 0
   shieldPrefab: {fileID: 7212092133301199805, guid: 2aba2b8c4ef5e274fb1072ac894d8623, type: 3}
   shieldCooldown: 3
   shieldBlockL1: 1
   shieldBlockL2: 3
-  shieldBlockL3: 99
-  bombPrefab: {fileID: 0}
-  bombMaxAbsorbL1: 0
-  bombMaxAbsorbL2: 0
-  bombMaxAbsorbL3: 0
-  bombBaseDmg: 0
+  potionPrefab: {fileID: 3464062274857641238, guid: d8e05b8fabcef2a45a6464bd5b6955db, type: 3}
+  potionChargeL1: 2
+  potionChargeL2: 5

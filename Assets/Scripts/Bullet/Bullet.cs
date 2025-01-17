@@ -206,6 +206,20 @@ public class Bullet : MonoBehaviour
                 Source = DataManager.Instance.playerTransform;
             }
         }
+
+        if (other.CompareTag("Potion"))
+        {
+            if (Penetrating || _spawnNoCollisionTimer > 0) 
+                return;
+            
+            var potion = other.GetComponent<Potion>();
+            
+            if (potion.IsHostile == IsHostile)
+                return;
+            
+            potion.Charge();
+            BulletFactory.Instance.DestroyBullet(this);
+        }
         
         if (other.CompareTag("Damageable"))
         {

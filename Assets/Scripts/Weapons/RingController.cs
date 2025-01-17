@@ -12,6 +12,7 @@ public class RingController : MonoBehaviour
     [SerializeField] private WeaponType startWeaponType;
     [SerializeField] private bool isHostile;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private PlayerDamageable playerDamageable;
 
     private List<List<Weapon>> _weapons;
 
@@ -54,6 +55,23 @@ public class RingController : MonoBehaviour
             _nextWeaponType = WeaponType.Dagger;
         }
     }
+
+    public void RemoveWeapon(GameObject weapon)
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            for (var j = 0; j < _weapons[i].Count; j++)
+            {
+                if (_weapons[i][j].gameObject == weapon)
+                {
+                    Destroy(weapon);
+                    _weapons[i].RemoveAt(j);
+                    UpdateRing(i);
+                    return;
+                }
+            }
+        }
+    }
     
     private void Update()
     {
@@ -87,7 +105,7 @@ public class RingController : MonoBehaviour
             weaponPivots[ringIndex]).GetComponent<Weapon>();
         _weapons[ringIndex].Add(w);
 
-        w.Initialize(isHostile, type);
+        w.Initialize(isHostile, type, this, playerDamageable);
     }
 
     public void CopyOver(RingController other)

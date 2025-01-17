@@ -7,23 +7,18 @@ public class WeaponsConfig : ScriptableObject
     public GameObject daggerPrefab;
     public int daggerDmgL1;
     public int daggerDmgL2;
-    public int daggerBleedL2;
-    public int daggerDmgL3;
-    public int daggerBleedL3;
+    public int daggerBleed;
     
     [Header("Shield")]
     public GameObject shieldPrefab;
     public float shieldCooldown;
     public int shieldBlockL1;
     public int shieldBlockL2;
-    public int shieldBlockL3;
     
-    [Header("Bomb")]
-    public GameObject bombPrefab;
-    public int bombMaxAbsorbL1;
-    public int bombMaxAbsorbL2;
-    public int bombMaxAbsorbL3;
-    public int bombBaseDmg;
+    [Header("Potion")]
+    public GameObject potionPrefab;
+    public int potionChargeL1;
+    public int potionChargeL2;
     
     public int GetDaggerDamage(int level)
     {
@@ -33,21 +28,6 @@ public class WeaponsConfig : ScriptableObject
                 return daggerDmgL1;
             case 2:
                 return daggerDmgL2;
-            case 3:
-                return daggerDmgL3;
-            default:
-                return 0;
-        }
-    }
-    
-    public int GetDaggerBleed(int level)
-    {
-        switch (level)
-        {
-            case 2:
-                return daggerBleedL2;
-            case 3:
-                return daggerBleedL3;
             default:
                 return 0;
         }
@@ -61,23 +41,6 @@ public class WeaponsConfig : ScriptableObject
                 return shieldBlockL1;
             case 2:
                 return shieldBlockL2;
-            case 3:
-                return shieldBlockL3;
-            default:
-                return 0;
-        }
-    }
-    
-    public int GetBombMaxAbsorb(int level)
-    {
-        switch (level)
-        {
-            case 1:
-                return bombMaxAbsorbL1;
-            case 2:
-                return bombMaxAbsorbL2;
-            case 3:
-                return bombMaxAbsorbL3;
             default:
                 return 0;
         }
@@ -91,10 +54,23 @@ public class WeaponsConfig : ScriptableObject
                 return daggerPrefab;
             case WeaponType.Shield:
                 return shieldPrefab;
-            case WeaponType.Bomb:
-                return bombPrefab;
+            case WeaponType.Potion:
+                return potionPrefab;
             default:
                 return null;
+        }
+    }
+    
+    public int GetPotionCharge(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                return potionChargeL1;
+            case 2:
+                return potionChargeL2;
+            default:
+                return 0;
         }
     }
 }

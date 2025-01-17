@@ -2,20 +2,24 @@
 {
     private void OnEnable()
     {
-        IsPlayer = true;
+        isPlayer = true;
     }
 
     protected override void Start()
     {
         base.Start();
-        DataManager.Instance.playerHp = DataManager.Instance.playerMaxHp;
-        Hp = DataManager.Instance.playerHp;
-        UIManager.Instance.UpdatePlayerHp(DataManager.Instance.playerHp, DataManager.Instance.playerMaxHp);
+        Hp = DataManager.Instance.playerMaxHp;
+        maxHp = Hp;
+        UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
     }
 
     protected override void OnTakeDamage(int dmg)
     {
-        DataManager.Instance.playerHp = Hp;
-        UIManager.Instance.UpdatePlayerHp(DataManager.Instance.playerHp, DataManager.Instance.playerMaxHp);
+        UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
+    }
+    
+    protected override void OnHeal(int amount)
+    {
+        UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
     }
 }

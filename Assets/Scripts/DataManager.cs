@@ -6,7 +6,6 @@ public class DataManager : MonoBehaviour
     
     [Header("Player")]
     public int playerMaxHp;
-    public int playerHp;
     public int playerXp = 0;
     public int xpToNextLevel = 3;
     public Transform playerTransform;
@@ -19,6 +18,11 @@ public class DataManager : MonoBehaviour
     public float damageColorLastDuration;
     public float damageColorFadeDuration;
     public float damageCooldown;
+    
+    public Color healColor = Color.green;
+    public float healColorLastDuration;
+    public float healColorFadeDuration;
+    
     public float breakableGroundRegenTime;
     
     [Header("Effects")]

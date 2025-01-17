@@ -9,6 +9,7 @@ TagManager:
   - Damageable
   - XpPickup
   - AcidPool
+  - Potion
   layers:
   - Default
   - TransparentFX

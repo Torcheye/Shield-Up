@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponsConfig
   m_EditorClassIdentifier: 
   daggerPrefab: {fileID: 7212092133301199805, guid: e978b734d56726947b190b07bf6664b8, type: 3}
-  daggerDmgL1: 1
+  daggerDmgL1: 2
   daggerDmgL2: 2
   daggerBleedL2: 1
   daggerDmgL3: 3

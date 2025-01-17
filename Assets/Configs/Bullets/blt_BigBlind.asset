@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   damage: 0
-  size: 6
+  size: 10
   lifeTime: 10
   color: {r: 0.012014948, g: 0.2830189, b: 0.23077868, a: 1}
   spiralSpeed: 0
@@ -22,6 +22,6 @@ MonoBehaviour:
   effect: 1
   effectDuration: 4
   penetrating: 1
-  chargeSpawnTime: 2
+  chargeSpawnTime: 3.5
   gravity: 0
   spawnAcidPool: 0

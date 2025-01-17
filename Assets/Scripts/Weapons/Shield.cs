@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Shield : Weapon
 {
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Image cooldownImage;
-    [SerializeField] private Transform cooldownCanvas;
     
     private int _deflectCount;
     private float _cooldownTimer;
@@ -14,32 +14,34 @@ public class Shield : Weapon
     {
         _deflectCount = DataManager.Instance.weaponsConfig.GetShieldBlock(Level);
         _deflectCooldown = DataManager.Instance.weaponsConfig.shieldCooldown;
+        _cooldownTimer = _deflectCooldown;
     }
     
     private void Update()
     {
-        if (_cooldownTimer > 0)
+        if (_cooldownTimer < _deflectCooldown)
         {
-            _cooldownTimer -= Time.deltaTime;
-            cooldownImage.fillAmount = 1 - _cooldownTimer / _deflectCooldown;
+            _cooldownTimer += Time.deltaTime;
+            cooldownImage.fillAmount = _cooldownTimer / _deflectCooldown;
         }
-        else 
+        else
         {
             cooldownImage.fillAmount = 0;
         }
-        cooldownCanvas.rotation = Quaternion.identity;
+        
+        spriteRenderer.enabled = _cooldownTimer >= _deflectCooldown;
     }
 
     public bool Deflect()
     {
-        if (_cooldownTimer > 0)
+        if (_cooldownTimer < _deflectCooldown)
             return false;
         
         _deflectCount--;
         
         if (_deflectCount <= 0)
         {
-            _cooldownTimer = _deflectCooldown;
+            _cooldownTimer = 0;
             _deflectCount = DataManager.Instance.weaponsConfig.GetShieldBlock(Level);
         }
         

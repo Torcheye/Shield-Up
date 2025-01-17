@@ -113,8 +113,8 @@ GameObject:
   - component: {fileID: 5012045931087253865}
   - component: {fileID: 9212369393479220778}
   - component: {fileID: 8424059292448382933}
-  - component: {fileID: 6691695744578698123}
   - component: {fileID: 306378586321687696}
+  - component: {fileID: 3845834943067925470}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Deflect
@@ -182,8 +182,8 @@ SpriteRenderer:
   m_SortingLayerID: 1969321883
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.36862743, g: 0.5243523, b: 0.8980392, a: 1}
+  m_Sprite: {fileID: 2389193319765324094, guid: 5c3a0aef4be863542b98f2ebc5f80649, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -220,8 +220,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6691695744578698123
-BoxCollider2D:
+--- !u!114 &306378586321687696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212092133301199805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271868913ede4ea7a8c486e2c05b16e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 9212369393479220778}
+  cooldownImage: {fileID: 814800696352475908}
+  cooldownCanvas: {fileID: 6767503772638278940}
+--- !u!58 &3845834943067925470
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -255,31 +270,7 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &306378586321687696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7212092133301199805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271868913ede4ea7a8c486e2c05b16e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownImage: {fileID: 814800696352475908}
-  cooldownCanvas: {fileID: 6767503772638278940}
+  m_Radius: 0.41527778
 --- !u!1 &8609907805823750441
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,19 +329,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 2389193319765324094, guid: 5c3a0aef4be863542b98f2ebc5f80649, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0

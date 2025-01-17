@@ -149,5 +149,8 @@ MonoBehaviour:
   - 140
   - 105
   - 75
-  firstRingRadius: 1.4
-  ringRadiusStep: 1
+  firstRingRadius: 1
+  ringRadiusStep: 0.8
+  startWeaponType: 0
+  isHostile: 0
+  moveSpeed: 20

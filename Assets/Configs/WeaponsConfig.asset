@@ -19,9 +19,9 @@ MonoBehaviour:
   daggerDmgL3: 3
   daggerBleedL3: 3
   shieldPrefab: {fileID: 7212092133301199805, guid: 2aba2b8c4ef5e274fb1072ac894d8623, type: 3}
-  shieldCooldown: 2
-  shieldBlockL1: 2
-  shieldBlockL2: 5
+  shieldCooldown: 3
+  shieldBlockL1: 1
+  shieldBlockL2: 3
   shieldBlockL3: 99
   bombPrefab: {fileID: 0}
   bombMaxAbsorbL1: 0

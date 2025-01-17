@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class RingController : MonoBehaviour
 {
-    [Header("Ring")]
     [SerializeField] private Transform ringPivot;
     [SerializeField] private Transform[] weaponPivots;
     [SerializeField] private float[] rotateSpeeds;
@@ -12,6 +11,7 @@ public class RingController : MonoBehaviour
     
     [SerializeField] private WeaponType startWeaponType;
     [SerializeField] private bool isHostile;
+    [SerializeField] private float moveSpeed;
 
     private List<List<Weapon>> _weapons;
 
@@ -59,7 +59,8 @@ public class RingController : MonoBehaviour
     {
         if (ringPivot == null) return;
         
-        transform.position = ringPivot.position;
+        transform.position = Vector2.Lerp(transform.position, ringPivot.position, moveSpeed * Time.deltaTime);
+        
         for (var i = 0; i < 3; i++)
         {
             weaponPivots[i].Rotate(Vector3.back, rotateSpeeds[i] * Time.deltaTime);

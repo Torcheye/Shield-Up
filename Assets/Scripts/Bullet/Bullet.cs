@@ -226,7 +226,7 @@ public class Bullet : MonoBehaviour
             
             BulletFactory.Instance.DestroyBullet(this);
 
-            var groundBlockExist = other.GetComponent<GroundBlock>().TakeHit();
+            var groundBlockExist = other.GetComponentInParent<GroundBlock>().TakeHit();
             
             if (_spawnAcidPool && groundBlockExist)
             {

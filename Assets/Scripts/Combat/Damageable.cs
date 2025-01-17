@@ -59,7 +59,7 @@ public class Damageable : MonoBehaviour
     
     protected virtual void Die()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     
     private IEnumerator FlashDamageColor()

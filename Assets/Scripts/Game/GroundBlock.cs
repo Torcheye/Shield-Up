@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class GroundBlock : MonoBehaviour
@@ -10,13 +11,34 @@ public class GroundBlock : MonoBehaviour
     [SerializeField] private Color damageColor;
     [SerializeField] private Sprite[] damageSprites;
     [SerializeField] private float damageColorFlashDuration;
+    [SerializeField] private GameObject mainObject;
+    [SerializeField] private GameObject regenObject;
     
     private int _currentHp;
     private Tween _damageColorTween;
+    private float _regenTimer;
 
     private void Awake()
     {
         _currentHp = hp;
+    }
+
+    private void Update()
+    {
+        if (!isBreakable)
+            return;
+        
+        if (!mainObject.activeSelf)
+        {
+            _regenTimer -= Time.deltaTime;
+            if (_regenTimer <= 0)
+            {
+                mainObject.SetActive(true);
+                regenObject.SetActive(false);
+                _currentHp = hp;
+                spriteRenderer.sprite = damageSprites[0];
+            }
+        }
     }
 
     /// returns whether the block still exists
@@ -29,13 +51,15 @@ public class GroundBlock : MonoBehaviour
         
         if (_currentHp <= 0)
         {
-            Destroy(gameObject);
+            mainObject.SetActive(false);
+            regenObject.SetActive(true);
+            _regenTimer = DataManager.Instance.breakableGroundRegenTime;
             return false;
         }
         else
         {
             FlashDamageColor();
-            spriteRenderer.sprite = damageSprites[hp - _currentHp - 1];
+            spriteRenderer.sprite = damageSprites[hp - _currentHp];
             return true;
         }
     }

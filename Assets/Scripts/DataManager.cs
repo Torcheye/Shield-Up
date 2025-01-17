@@ -19,6 +19,7 @@ public class DataManager : MonoBehaviour
     public float damageColorLastDuration;
     public float damageColorFadeDuration;
     public float damageCooldown;
+    public float breakableGroundRegenTime;
     
     [Header("Effects")]
     public float acidHurtInterval;

@@ -1,6 +1,4 @@
-﻿using System;
-
-public class PlayerDamageable : Damageable
+﻿public class PlayerDamageable : Damageable
 {
     private void OnEnable()
     {

@@ -128,9 +128,10 @@ public class RingController : MonoBehaviour
 
     public void CopyOver(RingController other)
     {
-        foreach (var weapon in other._weapons)
+        foreach (var weapon in _weapons)
         {
-            AddNewWeapon(weapon.Key, weapon.Value.Type);
+            other.AddNewWeapon(weapon.Key, weapon.Value.Type);
+            Debug.Log("Copied over weapon " + weapon.Value.Type + " at " + weapon.Key);
         }
     }
     

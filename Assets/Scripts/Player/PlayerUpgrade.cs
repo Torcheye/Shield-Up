@@ -33,10 +33,11 @@ public class PlayerUpgrade : MonoBehaviour
         
         if (DataManager.Instance.playerXp >= DataManager.Instance.xpToNextLevel)
         {
-            ringController.AddWeapon();
             DataManager.Instance.playerXp = 0;
             DataManager.Instance.xpToNextLevel++;
             UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.xpToNextLevel);
+            DataManager.Instance.IsGamePaused = true;
+            UIManager.Instance.OpenUpgradeScreen();
         }
     }
 }

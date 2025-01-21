@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +14,24 @@ public class UIManager : MonoBehaviour
     [Header("Effects")] 
     [SerializeField] private Image blindEffect;
     [SerializeField] private Vector2 blindEffectOuterRadius;
-
+    
+    [Header("Upgrade Screen")]
+    [SerializeField] private GameObject upgradeScreen;
+    [SerializeField] private WeaponSlotUI[] weaponSlotUIRing0;
+    [SerializeField] private WeaponSlotUI[] weaponSlotUIRing1;
+    [SerializeField] private WeaponSlotUI[] weaponSlotUIRing2; 
+    [SerializeField] private RingController ringController;
+    [SerializeField] private GameObject[] optionsScreens;
+        
     private static readonly int PlayerScreenPos = Shader.PropertyToID("_PlayerScreenPos");
     private static readonly int OuterRadius = Shader.PropertyToID("_OuterRadius");
     private static readonly int Value = Shader.PropertyToID("_Value");
     private static readonly int MaxValue = Shader.PropertyToID("_MaxValue");
+    
+    private float _shuffleTimer;
+    private List<WeaponSlotUI> _weaponSlotUIs;
+    private WeaponSlotUI _selectedWeaponSlot;
+    private bool _upgradeOptionChosen;
 
     private void Awake()
     {
@@ -30,8 +43,116 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        blindEffect.gameObject.SetActive(false);
+        upgradeScreen.SetActive(false);
+        
+        _weaponSlotUIs = new List<WeaponSlotUI>();
+        for (var i = 0; i < weaponSlotUIRing0.Length; i++)
+        {
+            _weaponSlotUIs.Add(weaponSlotUIRing0[i]);
+            weaponSlotUIRing0[i].SlotIndex = new Vector2Int(0, i);
+        }
+        for (var i = 0; i < weaponSlotUIRing1.Length; i++)
+        {
+            _weaponSlotUIs.Add(weaponSlotUIRing1[i]);
+            weaponSlotUIRing1[i].SlotIndex = new Vector2Int(1, i);
+        }
+        for (var i = 0; i < weaponSlotUIRing2.Length; i++)
+        {
+            _weaponSlotUIs.Add(weaponSlotUIRing2[i]);
+            weaponSlotUIRing2[i].SlotIndex = new Vector2Int(2, i);
+        }
+        _selectedWeaponSlot = null;
     }
 
+    public void UpgradeWeaponOption()
+    {
+        if (_selectedWeaponSlot == null)
+            return;
+
+        Debug.Log("Upgrading weapon option");
+        ringController.SetWeapon(_selectedWeaponSlot.SlotIndex, _selectedWeaponSlot.WeaponType, _selectedWeaponSlot.Level + 1);
+        UpdateWeaponSlotsUI();
+        SetOptionsScreen(4);
+    }
+    
+    public void SelectNewWeaponOption(int type)
+    {
+        if (_selectedWeaponSlot == null)
+            return;
+
+        var weaponType = (WeaponType) type;
+        Debug.Log("Selecting new weapon option: " + weaponType);
+        ringController.SetWeapon(_selectedWeaponSlot.SlotIndex, weaponType, 1);
+        UpdateWeaponSlotsUI();
+        SetOptionsScreen(4);
+    }
+
+    public void SelectWeaponSlot(WeaponSlotUI weaponSlot)
+    {
+        foreach (var slot in _weaponSlotUIs)
+        {
+            if (slot != weaponSlot)
+            {
+                slot.OnDeselect();
+            }
+        }
+        weaponSlot.OnSelect();
+        _selectedWeaponSlot = weaponSlot;
+        Debug.Log("Selected weapon slot: " + weaponSlot.SlotIndex);
+        if (_upgradeOptionChosen)
+        {
+            SetOptionsScreen(4);
+        }
+        else
+        {
+            SetOptionsScreen(weaponSlot.Level + 1);
+        }
+    }
+    
+    // 0 is default, nothing selected
+    private void SetOptionsScreen(int selectedWeaponSlotLevel)
+    {
+        foreach (var optionsScreen in optionsScreens)
+        {
+            optionsScreen.SetActive(false);
+        }
+        optionsScreens[selectedWeaponSlotLevel].SetActive(true);
+
+        if (selectedWeaponSlotLevel == 4)
+        {
+            _upgradeOptionChosen = true;
+        }
+    }
+
+    public void OpenUpgradeScreen()
+    {
+        UpdateWeaponSlotsUI();
+        upgradeScreen.SetActive(true);
+        SetOptionsScreen(0);
+        _upgradeOptionChosen = false;
+    }
+    
+    private void UpdateWeaponSlotsUI()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                ringController.GetWeapon(i, j, out var weaponType, out var level);
+                var weaponSlotIndex = i * 3 + j;
+                _weaponSlotUIs[weaponSlotIndex].SetWeapon(weaponType, level);
+            }
+        }
+    }
+    
+    public void CloseUpgradeScreen()
+    {
+        upgradeScreen.SetActive(false);
+        DataManager.Instance.IsGamePaused = false;
+    }
+    
     public void UpdateBlindEffect(Vector4 screenPos, float progress)
     {
         if (progress <= 0)

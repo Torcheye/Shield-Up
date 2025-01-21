@@ -53,7 +53,6 @@ public class GroundBlock : MonoBehaviour
             return true;
         
         _currentHp--;
-        
         if (_currentHp <= 0)
         {
             mainObject.SetActive(false);
@@ -75,7 +74,7 @@ public class GroundBlock : MonoBehaviour
         {
             _damageColorTween.Kill();
         }
-        
+
         damageFlashRenderer.color = damageColor;
         _damageColorTween = damageFlashRenderer.DOColor(new Color(0,0,0,0), damageColorFlashDuration).SetEase(Ease.OutBounce);
         _damageColorTween.onComplete += () =>

@@ -243,7 +243,7 @@ public class Bullet : MonoBehaviour
             var groundBlockParent = other.transform.parent;
             var groundBlock = groundBlockParent.GetComponent<GroundBlock>();
             
-            if (_spawnAcidPool && groundBlock.TakeHit())
+            if (groundBlock.TakeHit() && _spawnAcidPool)
             {
                 var pos = other.ClosestPoint(transform.position);
                 var acid = AcidPoolFactory.Instance.SpawnItem(pos);

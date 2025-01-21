@@ -4,14 +4,26 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
     
+    public bool IsGamePaused
+    {
+        get => _isGamePaused;
+        set
+        {
+            _isGamePaused = value;
+            Time.timeScale = value ? 0 : 1;
+        }
+    }
+    private bool _isGamePaused;
+    
     [Header("Player")]
     public int playerMaxHp;
     public int playerXp = 0;
     public int xpToNextLevel = 3;
     public Transform playerTransform;
     
-    [Header("Weapons")]
+    [Header("Config")]
     public WeaponsConfig weaponsConfig;
+    public BossConfig bossConfig;
     
     [Header("Combat")]
     public Color damageColor = Color.yellow;
@@ -28,9 +40,6 @@ public class DataManager : MonoBehaviour
     [Header("Effects")]
     public float acidHurtInterval;
     public int acidDamage;
-
-    [Header("Boss")]
-    public BossConfig bossConfig;
     
     private void Awake()
     {

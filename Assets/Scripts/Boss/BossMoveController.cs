@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BossMoveController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class BossMoveController : MonoBehaviour
     
     protected float moveSpeed;
     protected bool doMove = true;
+    private bool _doMovePrev;
 
     protected virtual void Start()
     {

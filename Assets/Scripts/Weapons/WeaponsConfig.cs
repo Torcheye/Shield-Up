@@ -5,18 +5,21 @@ public class WeaponsConfig : ScriptableObject
 {
     [Header("Dagger")]
     public GameObject daggerPrefab;
+    public Sprite daggerSprite;
     public int daggerDmgL1;
     public int daggerDmgL2;
     public int daggerBleed;
     
     [Header("Shield")]
     public GameObject shieldPrefab;
+    public Sprite shieldSprite;
     public float shieldCooldown;
     public int shieldBlockL1;
     public int shieldBlockL2;
     
     [Header("Potion")]
     public GameObject potionPrefab;
+    public Sprite potionSprite;
     public int potionChargeL1;
     public int potionChargeL2;
     
@@ -56,6 +59,21 @@ public class WeaponsConfig : ScriptableObject
                 return shieldPrefab;
             case WeaponType.Potion:
                 return potionPrefab;
+            default:
+                return null;
+        }
+    }
+    
+    public Sprite GetWeaponSprite(WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.Dagger:
+                return daggerSprite;
+            case WeaponType.Shield:
+                return shieldSprite;
+            case WeaponType.Potion:
+                return potionSprite;
             default:
                 return null;
         }

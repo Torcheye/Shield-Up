@@ -1,0 +1,6 @@
+skeletons.png
+size:327,437
+filter:Linear,Linear
+heart
+bounds:2,2,323,433
+offsets:145,113,590,652

@@ -22,7 +22,7 @@ public class Potion : Weapon
         {
             playerDamageable.Heal(1);
             _chargeCount = 0;
-            ringController.RemoveWeapon(gameObject);
+            ringController.RemoveWeapon(_slotIndex);
         }
     }
     

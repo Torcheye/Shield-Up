@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
             return;
 
         Debug.Log("Upgrading weapon option");
-        ringController.SetWeapon(_selectedWeaponSlot.SlotIndex, _selectedWeaponSlot.WeaponType, _selectedWeaponSlot.Level + 1);
+        ringController.UpgradeWeapon(_selectedWeaponSlot.SlotIndex);
         UpdateWeaponSlotsUI();
         SetOptionsScreen(4);
     }
@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
 
         var weaponType = (WeaponType) type;
         Debug.Log("Selecting new weapon option: " + weaponType);
-        ringController.SetWeapon(_selectedWeaponSlot.SlotIndex, weaponType, 1);
+        ringController.AddNewWeapon(_selectedWeaponSlot.SlotIndex, weaponType);
         UpdateWeaponSlotsUI();
         SetOptionsScreen(4);
     }
@@ -140,9 +140,8 @@ public class UIManager : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                ringController.GetWeapon(i, j, out var weaponType, out var level);
-                var weaponSlotIndex = i * 3 + j;
-                _weaponSlotUIs[weaponSlotIndex].SetWeapon(weaponType, level);
+                ringController.GetWeapon(new Vector2Int(i, j), out var weaponType, out var level);
+                _weaponSlotUIs[i * 3 + j].SetWeapon(weaponType, level);
             }
         }
     }

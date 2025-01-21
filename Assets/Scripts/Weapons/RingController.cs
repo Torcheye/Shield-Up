@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -15,47 +16,78 @@ public class RingController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private PlayerDamageable playerDamageable;
 
-    [ShowInInspector] private List<List<Weapon>> _weapons;
+    [ShowInInspector] private Dictionary<Vector2Int, Weapon> _weapons;
     
-    public void GetWeapon(int ringIndex, int weaponIndex, out WeaponType type, out int level)
+    public void GetWeapon(Vector2Int slotIndex, out WeaponType type, out int level)
     {
-        if (ringIndex < 0 || ringIndex >= 3 || weaponIndex < 0 || weaponIndex >= _weapons[ringIndex].Count)
+        if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)
+        {
+            throw new Exception("Invalid ring or weapon index");
+        }
+        
+        if (!_weapons.TryGetValue(slotIndex, out var weapon))
         {
             type = WeaponType.Dagger;
             level = 0;
             return;
         }
 
-        type = _weapons[ringIndex][weaponIndex].Type;
-        level = _weapons[ringIndex][weaponIndex].Level;
+        type = weapon.Type;
+        level = weapon.Level;
     }
     
-    public void SetWeapon(Vector2Int slotIndex, WeaponType type, int level)
+    public void AddNewWeapon(Vector2Int slotIndex, WeaponType type)
     {
-        if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0)
+        if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)
         {
+            throw new Exception("Invalid ring or weapon index");
+        }
+        
+        if (_weapons.ContainsKey(slotIndex))
+        {
+            Debug.LogError("Weapon already exists at " + slotIndex);
             return;
         }
         
-        if (slotIndex.y >= _weapons[slotIndex.x].Count)
+        SpawnWeapon(type, slotIndex);
+    }
+    
+    public void UpgradeWeapon(Vector2Int slotIndex)
+    {
+        if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)
         {
-            Debug.Log("adding " + type + " to " + slotIndex);
-            SpawnWeapon(type, slotIndex);
+            throw new Exception("Invalid ring or weapon index");
+        }
+        
+        if (!_weapons.TryGetValue(slotIndex, out var weapon))
+        {
+            Debug.LogError("No weapon to upgrade at " + slotIndex);
             return;
         }
 
-        Debug.Log("setting " + type + " to " + slotIndex);
-        _weapons[slotIndex.x][slotIndex.y].Level = level;
-        _weapons[slotIndex.x][slotIndex.y].Type = type;
+        weapon.Level++;
+    }
+    
+    public void RemoveWeapon(Vector2Int slotIndex)
+    {
+        if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)
+        {
+            throw new Exception("Invalid ring or weapon index");
+        }
+        
+        if (!_weapons.TryGetValue(slotIndex, out var weapon))
+        {
+            Debug.LogError("No weapon to remove at " + slotIndex);
+            return;
+        }
+        
+        Destroy(weapon.gameObject);
+        _weapons.Remove(slotIndex);
     }
 
     private void Awake()
     {
-        _weapons = new List<List<Weapon>>();
-        for (int i = 0; i < 3; i++)
-        {
-            _weapons.Add(new List<Weapon>());
-        }
+        _weapons = new Dictionary<Vector2Int, Weapon>();
     }
 
     private void Start()
@@ -63,22 +95,6 @@ public class RingController : MonoBehaviour
         if (isHostile)
             return;
         SpawnWeapon(startWeaponType, new Vector2Int(0, 0));
-    }
-
-    public void RemoveWeapon(GameObject weapon)
-    {
-        for (var i = 0; i < 3; i++)
-        {
-            for (var j = 0; j < _weapons[i].Count; j++)
-            {
-                if (_weapons[i][j].gameObject == weapon)
-                {
-                    Destroy(weapon);
-                    _weapons[i].RemoveAt(j);
-                    return;
-                }
-            }
-        }
     }
     
     private void Update()
@@ -97,9 +113,9 @@ public class RingController : MonoBehaviour
     {
         var w = Instantiate(DataManager.Instance.weaponsConfig.GetWeaponPrefab(type), 
             weaponPivots[slotIndex.x]).GetComponent<Weapon>();
-        _weapons[slotIndex.x].Add(w);
+        _weapons[slotIndex] = w;
 
-        w.Initialize(isHostile, type, this, playerDamageable);
+        w.Initialize(isHostile, type, this, playerDamageable, slotIndex);
         
         var ringIndex = slotIndex.x;
         var weaponIndex = slotIndex.y;
@@ -112,24 +128,18 @@ public class RingController : MonoBehaviour
 
     public void CopyOver(RingController other)
     {
-        for (var i = 0; i < 3; i++)
+        foreach (var weapon in other._weapons)
         {
-            for (var j = 0; j < _weapons[i].Count; j++)
-            {
-                other.SpawnWeapon(_weapons[i][j].Type, new Vector2Int(i, j));
-            }
+            AddNewWeapon(weapon.Key, weapon.Value.Type);
         }
     }
     
     public void ClearAll()
     {
-        for (var i = 0; i < 3; i++)
+        foreach (var weapon in _weapons)
         {
-            for (var j = 0; j < _weapons[i].Count; j++)
-            {
-                Destroy(_weapons[i][j].gameObject);
-            }
-            _weapons[i].Clear();
+            Destroy(weapon.Value.gameObject);
         }
+        _weapons.Clear();
     }
 }

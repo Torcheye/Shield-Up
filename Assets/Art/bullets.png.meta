@@ -131,10 +131,10 @@ TextureImporter:
       name: bullets_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 341
-        width: 102
-        height: 102
+        x: 129
+        y: 342
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: bullets_1
       rect:
         serializedVersion: 2
-        x: 302
-        y: 333
-        width: 117
-        height: 116
+        x: 303
+        y: 334
+        width: 115
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: bullets_2
       rect:
         serializedVersion: 2
-        x: 470
-        y: 337
-        width: 117
-        height: 116
+        x: 471
+        y: 338
+        width: 115
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: bullets_3
       rect:
         serializedVersion: 2
-        x: 129
-        y: 169
-        width: 99
-        height: 98
+        x: 130
+        y: 170
+        width: 97
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,10 +219,10 @@ TextureImporter:
       name: bullets_4
       rect:
         serializedVersion: 2
-        x: 306
-        y: 152
-        width: 117
-        height: 116
+        x: 307
+        y: 153
+        width: 115
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: bullets_5
       rect:
         serializedVersion: 2
-        x: 494
-        y: 146
-        width: 130
-        height: 130
+        x: 495
+        y: 147
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 22d9b5ab027db4e499725633c62124e0
     internalID: 0
     vertices: []
     indices: 
@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bullets_0: 8848993070067138329
+      bullets_1: 1115682805434658061
+      bullets_2: 5056628667063805970
+      bullets_3: -7243563388056777162
+      bullets_4: -2014131868727140717
+      bullets_5: -3500076459514152108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   daggerPrefab: {fileID: 7212092133301199805, guid: e978b734d56726947b190b07bf6664b8, type: 3}
   daggerSprite: {fileID: -3753825769889500098, guid: 735c170ceb54bdf4c89e2213df1739aa, type: 3}
-  daggerDmgL1: 2
+  daggerDmgL1: 1
   daggerDmgL2: 2
   daggerBleed: 0
   shieldPrefab: {fileID: 7212092133301199805, guid: 2aba2b8c4ef5e274fb1072ac894d8623, type: 3}

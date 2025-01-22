@@ -12,8 +12,9 @@ public class BossAttack : MonoBehaviour
     [SerializeField] protected bool autoAttack = true;
 
     protected bool loopNormalAttack = true;
+    protected bool isDoingEnhancedAttack;
 
-    private void Start()
+    protected virtual void Start()
     {
         if (autoAttack)
         {
@@ -34,19 +35,26 @@ public class BossAttack : MonoBehaviour
         }
     }
     
-    public void StartEnhancedAttack()
+    public bool StartEnhancedAttack()
     {
+        if (isDoingEnhancedAttack)
+        {
+            return false;
+        }
         StartCoroutine(DoEnhancedAttack());
+        return true;
     }
     
     private IEnumerator DoEnhancedAttack()
     {
         loopNormalAttack = false;
         moveController.DoMove = false;
+        isDoingEnhancedAttack = true;
         EnhancedAttack();
         yield return new WaitForSeconds(enhancedAttackTime);
         loopNormalAttack = true;
         moveController.DoMove = true;
+        isDoingEnhancedAttack = false;
     }
 
     public virtual void Attack() { }

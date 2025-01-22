@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _velocity;
     private int _doubleJumpCount;
     private float _dashCooldownTimer;
+    private float _slowMultiplier;
+    private float _dizzyMultiplier;
     
     private void Awake()
     {
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         var move = _moveAction.ReadValue<Vector2>();
         
-        _velocity.x = move.x * moveSpeed;
+        _velocity.x = move.x * moveSpeed * _slowMultiplier * _dizzyMultiplier;
         
         rb.linearVelocity = new Vector2(_velocity.x, rb.linearVelocity.y);
 
@@ -117,8 +119,6 @@ public class PlayerController : MonoBehaviour
         {
             playerTransform.localScale = new Vector3(move.x > 0 ? 1 : -1, 1, 1);
         }
-
-        //animator.SetFloat(MoveSpeedAnimatorFloat, _currentMoveVelocity.magnitude / maxMoveSpeed);
     }
 
     private void Jump()
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         CheckIsGrounded();
         
         rb.linearVelocityY = 0;
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        rb.AddForce(_slowMultiplier * jumpPower * Vector2.up, ForceMode2D.Impulse);
         
         _jumpBufferTimer = 0;
         _doubleJumpCount++;
@@ -143,11 +143,21 @@ public class PlayerController : MonoBehaviour
         var y = _moveAction.ReadValue<Vector2>().y > 0 ? 1 : 0;
         var x = playerTransform.localScale.x > 0 ? 1 : -1;
         var direction = new Vector2(x, y).normalized;
-        rb.DOMove(rb.position + direction * dashDistance, dashDuration);
+        rb.DOMove(rb.position + _slowMultiplier * dashDistance * direction, dashDuration);
         
         statusEffect.ApplyEffect(Effect.Invulnerable, dashDuration);
         rb.linearVelocityY = 0;
         
         yield return new WaitForSeconds(dashDuration);
+    }
+    
+    public void SetSlowMultiplier(bool on)
+    {
+        _slowMultiplier = on ? DataManager.Instance.slowEffectMultiplier : 1;
+    }
+    
+    public void SetDizzyMultiplier(bool on)
+    {
+        _dizzyMultiplier = on ? -1 : 1;
     }
 }

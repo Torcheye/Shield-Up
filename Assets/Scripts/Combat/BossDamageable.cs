@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossDamageable : Damageable
 {
@@ -47,9 +46,12 @@ public class BossDamageable : Damageable
         
         if (HitCount >= _maxHit)
         {
-            bossAttack.StartEnhancedAttack();
-            HitCount = 0;
-            _enhancedAttackTimer = bossAttack.EnhancedAttackTime;
+            var success = bossAttack.StartEnhancedAttack();
+            if (success)
+            {
+                HitCount = 0;
+                _enhancedAttackTimer = bossAttack.EnhancedAttackTime;
+            }
         }
     }
 }

@@ -2,5 +2,7 @@
 {
     Invulnerable,
     Blind,
-    Copycat
+    Copycat,
+    Slow,
+    Dizzy
 }

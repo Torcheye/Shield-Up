@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
+  playerController: {fileID: 7026836218159246789}
   copySourceRing: {fileID: 0}
   copyTargetRing: {fileID: 0}
 --- !u!114 &7026836218159246789
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2127492292207216533}
   statusEffect: {fileID: 2766412645251340437}
+  slowEffectMultiplier: 0.5
   rb: {fileID: 177348767143489384}
   moveSpeed: 5
   groundCheckDistance: 0.05

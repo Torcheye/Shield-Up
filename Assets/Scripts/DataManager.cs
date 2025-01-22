@@ -40,6 +40,7 @@ public class DataManager : MonoBehaviour
     [Header("Effects")]
     public float acidHurtInterval;
     public int acidDamage;
+    public float slowEffectMultiplier;
     
     private void Awake()
     {

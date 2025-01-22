@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class StatusEffect : MonoBehaviour
 {
     [SerializeField] private bool isPlayer;
+    
+    [Header("Slow"), ShowIf(nameof(isPlayer))]
+    [SerializeField] private PlayerController playerController;
 
-    [Header("Copycat")] 
+    [Header("Copycat"), ShowIf(nameof(isPlayer))] 
     [SerializeField] private RingController copySourceRing;
+    [ShowIf(nameof(isPlayer))]
     [SerializeField] private RingController copyTargetRing;
     
     private readonly Dictionary<Effect, EffectTimer> _effects = new();
@@ -48,25 +53,38 @@ public class StatusEffect : MonoBehaviour
     {
         UIManager.Instance.UpdatePlayerStatusEffects((int) effect, timer.GetProgress());
                 
-        if (effect == Effect.Blind)
+        switch (effect)
         {
-            var screenPos = _camera.WorldToScreenPoint(transform.position) 
-                            / new Vector2(Screen.width, Screen.height);
-            UIManager.Instance.UpdateBlindEffect(screenPos, timer.GetProgress());
-        }
-        
-        if (effect == Effect.Copycat)
-        {
-            if (!_copyActivated && timer.IsAlive())
+            case Effect.Blind:
             {
+                var screenPos = _camera.WorldToScreenPoint(transform.position) / new Vector2(Screen.width, Screen.height);
+                UIManager.Instance.UpdateBlindEffect(screenPos, timer.GetProgress());
+                break;
+            }
+            case Effect.Copycat when !_copyActivated && timer.IsAlive():
                 copySourceRing.CopyOver(copyTargetRing);
                 _copyActivated = true;
-            }
-            else if (_copyActivated && !timer.IsAlive())
+                break;
+            case Effect.Copycat:
             {
-                copyTargetRing.ClearAll();
-                _copyActivated = false;
+                if (_copyActivated && !timer.IsAlive())
+                {
+                    copyTargetRing.ClearAll();
+                    _copyActivated = false;
+                }
+
+                break;
             }
+            case Effect.Slow:
+                playerController.SetSlowMultiplier(timer.GetProgress() > 0);
+                break;
+            case Effect.Invulnerable:
+                break;
+            case Effect.Dizzy:
+                playerController.SetDizzyMultiplier(timer.GetProgress() > 0);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(effect), effect, null);
         }
     }
 

@@ -132,6 +132,11 @@ public class UIManager : MonoBehaviour
         upgradeScreen.SetActive(true);
         SetOptionsScreen(0);
         _upgradeOptionChosen = false;
+        _selectedWeaponSlot = null;
+        foreach (var slot in _weaponSlotUIs)
+        {
+            slot.OnDeselect();
+        }
     }
     
     private void UpdateWeaponSlotsUI()

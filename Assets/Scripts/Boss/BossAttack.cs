@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
@@ -6,7 +7,7 @@ public class BossAttack : MonoBehaviour
     public float EnhancedAttackTime => enhancedAttackTime;
     
     [SerializeField] protected BossMoveController moveController;
-    [SerializeField] protected float normalAttackInterval;
+    [SerializeField, ShowIf(nameof(autoAttack))] protected float normalAttackInterval;
     [SerializeField] protected float enhancedAttackTime;
     [SerializeField] protected bool autoAttack = true;
 

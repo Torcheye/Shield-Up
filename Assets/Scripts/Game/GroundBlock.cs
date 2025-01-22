@@ -13,6 +13,7 @@ public class GroundBlock : MonoBehaviour
     [SerializeField] private float damageColorFlashDuration;
     [SerializeField] private GameObject mainObject;
     [SerializeField] private GameObject regenObject;
+    [SerializeField] private GameObject colliderObject;
     
     private int _currentHp;
     private Tween _damageColorTween;
@@ -34,6 +35,7 @@ public class GroundBlock : MonoBehaviour
             if (_regenTimer <= 0)
             {
                 mainObject.SetActive(true);
+                colliderObject.SetActive(true);
                 regenObject.SetActive(false);
                 _currentHp = hp;
                 spriteRenderer.sprite = damageSprites[0];
@@ -56,6 +58,7 @@ public class GroundBlock : MonoBehaviour
         if (_currentHp <= 0)
         {
             mainObject.SetActive(false);
+            colliderObject.SetActive(false);
             regenObject.SetActive(true);
             _regenTimer = DataManager.Instance.breakableGroundRegenTime;
             return false;

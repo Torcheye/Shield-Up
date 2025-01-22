@@ -312,6 +312,7 @@ MonoBehaviour:
   damageColorFlashDuration: 0.22
   mainObject: {fileID: 7891654814229721764}
   regenObject: {fileID: 5839153348571059856}
+  colliderObject: {fileID: 6180242675740262460}
 --- !u!1 &7891654814229721764
 GameObject:
   m_ObjectHideFlags: 0

@@ -5027,7 +5027,7 @@ PolygonCollider2D:
       - {x: -0.45149377, y: -0.81060183}
       - {x: 1.1548781, y: -0.5975969}
       - {x: 1.3034278, y: 0.51524776}
-  m_UseDelaunayMesh: 0
+  m_UseDelaunayMesh: 1
 --- !u!1 &2722702195535864991
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,6 +5080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  copySourceRing: {fileID: 0}
+  copyTargetRing: {fileID: 0}
 --- !u!114 &9115236185375587363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,6 +5126,7 @@ MonoBehaviour:
   moveController: {fileID: 2145974988356769631}
   normalAttackInterval: 3
   enhancedAttackTime: 9
+  autoAttack: 1
   acidBullet: {fileID: 11400000, guid: 62b5e67fabcc9244899a9e841f23b396, type: 2}
   normalLaunchPower: {x: 0.65, y: 0.5}
   burstAmount: 15

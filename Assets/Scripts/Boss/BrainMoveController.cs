@@ -58,7 +58,7 @@ public class BrainMoveController : BossMoveController
     }
     
     #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(bounds.center, bounds.size);

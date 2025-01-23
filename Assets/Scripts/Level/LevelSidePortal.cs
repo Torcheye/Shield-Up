@@ -22,7 +22,7 @@ public class LevelSidePortal : MonoBehaviour
     }
     
     #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(new Vector3(destinationX, -1000), new Vector3(destinationX, 1000));

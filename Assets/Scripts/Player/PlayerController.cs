@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     
     public void Teleport(Vector2 position)
     {
-        rb.position = position;
+        transform.position = position;
         ringController.transform.position = position;
         if (_dashTween != null && _dashTween.IsActive())
         {

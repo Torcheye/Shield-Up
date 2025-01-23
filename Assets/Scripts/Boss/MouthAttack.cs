@@ -16,7 +16,7 @@ public class MouthAttack : BossAttack
     [SerializeField] private float suctionPower;
     [SerializeField] private float suctionDuration;
     [SerializeField] private float suctionRampUpTime;
-    [SerializeField] private MouthSuctionTrigger suctionTrigger;
+    [SerializeField] private ObjectRangeTrigger suctionTrigger;
     [SerializeField] private ParticleSystem suctionParticles;
 
     private bool _isSucking;
@@ -75,7 +75,7 @@ public class MouthAttack : BossAttack
     {
         if (_isSucking)
         {
-            foreach (var rb in suctionTrigger.ObjectsInTrigger)
+            foreach (var rb in suctionTrigger.objectsInTriggerStay)
             {
                 var suctionDir = ((Vector2)transform.position - rb.position).normalized;
                 var rampUp = Mathf.Clamp01(_suctionTimer / suctionRampUpTime);

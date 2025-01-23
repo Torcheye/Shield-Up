@@ -4962,7 +4962,7 @@ MonoBehaviour:
   physicsRotationInheritanceFactor: 1
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
-  unscaledTime: 0
+  unscaledTime: 1
   _animationName: idle
   loop: 1
   timeScale: 1
@@ -5185,6 +5185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a6735ed98c4299be9609dcafe6be6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPlayer: 1
+  tagsToCheck:
+  - XpPickup
 --- !u!58 &2454786613578759650
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ TagManager:
   - XpPickup
   - AcidPool
   - Potion
+  - LevelSidePortal
   layers:
   - Default
   - TransparentFX

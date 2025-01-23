@@ -20,8 +20,7 @@ public class BossHpBar : MonoBehaviour
 
     private void Update()
     {
-        hp.material.SetFloat(Value, bossDamageable.Hp);
-        hp.material.SetFloat(MaxValue, _maxHp);
+        hp.fillAmount = (float) bossDamageable.Hp / _maxHp;
         
         hit.material.SetFloat(Value, bossDamageable.HitCount);
         hit.material.SetFloat(MaxValue, _maxHit);

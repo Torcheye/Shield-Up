@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EyeAttack : BossAttack
 {
@@ -9,9 +8,11 @@ public class EyeAttack : BossAttack
 
     public override void Attack()
     {
-        ShootBullet(GetTargetDirection());
-        ShootBullet(Quaternion.Euler(0, 0, angle) * GetTargetDirection());
-        ShootBullet(Quaternion.Euler(0, 0, -angle) * GetTargetDirection());
+        for (int i = 0; i < 3; i++)
+        {
+            var dir = Quaternion.Euler(0, 0, Random.Range(-angle, angle)) * GetTargetDirection();
+            ShootBullet(dir);
+        }
     }
 
     public override void EnhancedAttack()

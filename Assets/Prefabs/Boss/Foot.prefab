@@ -552,10 +552,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5535928070229048998, guid: d0e8667b82a43654392309328be14705, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 80b7e15717493394d8f34131abda3f7c, type: 2}
     - target: {fileID: 6955256385557785004, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: bossDamageable
       value: 

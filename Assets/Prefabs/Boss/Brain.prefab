@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  playerController: {fileID: 0}
   copySourceRing: {fileID: 0}
   copyTargetRing: {fileID: 0}
 --- !u!114 &8898569602759505762
@@ -144,7 +145,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.42, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6648314829069250685}
@@ -301,7 +302,7 @@ PolygonCollider2D:
       - {x: -0.07885, y: -0.67079246}
       - {x: 1.8948795, y: -0.5146536}
       - {x: 2.21871, y: -0.07256901}
-  m_UseDelaunayMesh: 0
+  m_UseDelaunayMesh: 1
 --- !u!1 &7814083241103232267
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +346,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: f43761e7d2685024fbc7f098905c0d05, type: 2}
+    - target: {fileID: 2305398581284324757, guid: d0e8667b82a43654392309328be14705, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 2636551082876210381, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_Name
       value: BossBar
@@ -415,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.06
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -429,10 +434,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5535928070229048998, guid: d0e8667b82a43654392309328be14705, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: a81b39e5bbfbb03458b2e02392a6d512, type: 2}
     - target: {fileID: 6955256385557785004, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: bossDamageable
       value: 

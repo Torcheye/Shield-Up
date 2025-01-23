@@ -150,7 +150,7 @@ public class FootAttack : BossAttack
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(normalAttackBounds.center, normalAttackBounds.size);

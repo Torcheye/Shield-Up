@@ -97,7 +97,7 @@ public class RingController : MonoBehaviour
         SpawnWeapon(startWeaponType, new Vector2Int(0, 0));
     }
     
-    private void Update()
+    private void LateUpdate()
     {
         if (ringPivot == null) return;
         

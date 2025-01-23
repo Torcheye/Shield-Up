@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2127492292207216533}
   statusEffect: {fileID: 2766412645251340437}
-  slowEffectMultiplier: 0.5
+  ringController: {fileID: 0}
   rb: {fileID: 177348767143489384}
   moveSpeed: 5
   groundCheckDistance: 0.05
@@ -546,7 +546,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.5
+  m_Radius: 0.4
 --- !u!114 &4111161618495077873
 MonoBehaviour:
   m_ObjectHideFlags: 0

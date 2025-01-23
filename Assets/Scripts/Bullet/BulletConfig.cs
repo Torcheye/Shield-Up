@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "BulletConfig", menuName = "Bullet Config")]
 public class BulletConfig : ScriptableObject
@@ -7,7 +8,7 @@ public class BulletConfig : ScriptableObject
     public int damage;
     public float size;
     public float lifeTime;
-    public Color color;
+    [PreviewField] public Sprite sprite;
 
     [Header("Movement")] 
     public float spiralSpeed;

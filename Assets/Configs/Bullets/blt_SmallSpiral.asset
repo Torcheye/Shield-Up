@@ -16,7 +16,7 @@ MonoBehaviour:
   damage: 1
   size: 0.4
   lifeTime: 10
-  color: {r: 0.7529412, g: 0.21568628, b: 0.21568628, a: 1}
+  sprite: {fileID: 8848993070067138329, guid: fc6927963641349418e91ef1b1eb9643, type: 3}
   spiralSpeed: 0.5
   hasEffect: 0
   effect: 1

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Transform playerTransform;
     [SerializeField] private StatusEffect statusEffect;
+    [SerializeField] private RingController ringController;
     
     [Header("Move")] 
     [SerializeField] private Rigidbody2D rb;
@@ -37,6 +38,19 @@ public class PlayerController : MonoBehaviour
     private float _dashCooldownTimer;
     private float _slowMultiplier;
     private float _dizzyMultiplier;
+    private Tween _dashTween;
+    
+    public void Teleport(Vector2 position)
+    {
+        transform.position = position;
+        ringController.transform.position = position;
+        if (_dashTween != null && _dashTween.IsActive())
+        {
+            _dashTween.Kill();
+        }
+    }
+    
+    public float GetVelocityX() => _velocity.x;
     
     private void Awake()
     {
@@ -143,7 +157,7 @@ public class PlayerController : MonoBehaviour
         var y = _moveAction.ReadValue<Vector2>().y > 0 ? 1 : 0;
         var x = playerTransform.localScale.x > 0 ? 1 : -1;
         var direction = new Vector2(x, y).normalized;
-        rb.DOMove(rb.position + _slowMultiplier * dashDistance * direction, dashDuration);
+        _dashTween = rb.DOMove(rb.position + _slowMultiplier * dashDistance * direction, dashDuration);
         
         statusEffect.ApplyEffect(Effect.Invulnerable, dashDuration);
         rb.linearVelocityY = 0;

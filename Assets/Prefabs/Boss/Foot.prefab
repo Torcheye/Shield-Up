@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7181566584578017612}
@@ -292,7 +292,7 @@ MonoBehaviour:
   normalAttackBulletConfig: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
   enhancedAttackPrepTime: 3
   enhancedAttackPerDuration: 2
-  enhancedAttackWidth: 5
+  enhancedAttackWidth: 4
   enhancedAttackStartPositions:
   - {x: 12, y: -4.5}
   - {x: -12, y: 0}
@@ -538,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.49
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

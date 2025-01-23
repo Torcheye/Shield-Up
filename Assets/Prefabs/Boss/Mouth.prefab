@@ -4873,7 +4873,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4154527124781119897}
@@ -5080,6 +5080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  playerController: {fileID: 0}
   copySourceRing: {fileID: 0}
   copyTargetRing: {fileID: 0}
 --- !u!114 &9115236185375587363
@@ -5232,6 +5233,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 74f1fe97b05249d4ba184ea2a8287ff8, type: 2}
+    - target: {fileID: 2305398581284324757, guid: d0e8667b82a43654392309328be14705, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 2636551082876210381, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_Name
       value: BossBar
@@ -5302,7 +5307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.95
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float shieldDeflectAngle = 15;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float spawnNoCollisionTime = 0.15f;
-    [SerializeField] private Color friendlyColor;
+    [SerializeField] private Sprite friendlySprite;
     
     private float _size;
     private bool _hostile;
@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
     private float _spiralAngle;
     private float _spiralRadius;
     private float _spiralSpeed; // Angle increment speed
-    private Color _color;
+    private Sprite _sprite;
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -60,8 +60,8 @@ public class Bullet : MonoBehaviour
         LifeLeft = config.lifeTime;
         IsHostile = hostile;
         Source = source;
-        spriteRenderer.color = config.color;
-        _color = config.color;
+        spriteRenderer.sprite = config.sprite;
+        _sprite = config.sprite;
         Effect = config.effect;
         EffectDuration = config.effectDuration;
         HasEffect = config.hasEffect;
@@ -197,12 +197,12 @@ public class Bullet : MonoBehaviour
             if (shield.IsHostile)
             {
                 IsHostile = true;
-                spriteRenderer.color = _color;
+                spriteRenderer.sprite = _sprite;
             }
             else
             {
                 IsHostile = false;
-                spriteRenderer.color = friendlyColor;
+                spriteRenderer.sprite = friendlySprite;
                 Source = DataManager.Instance.playerTransform;
             }
         }

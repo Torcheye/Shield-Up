@@ -1,50 +1,67 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Shield : Weapon
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Image cooldownImage;
+    [SerializeField] private float deflectScale;
+    [SerializeField] private float deflectScaleDuration;
+    [SerializeField] private Collider2D deflectTrigger;
     
     private int _deflectCount;
-    private float _cooldownTimer;
-    private float _deflectCooldown;
+    private float _shieldCooldownTimer;
+    private float _shieldCooldown;
 
     private void Start()
     {
         _deflectCount = DataManager.Instance.weaponsConfig.GetShieldBlock(Level);
-        _deflectCooldown = DataManager.Instance.weaponsConfig.shieldCooldown;
-        _cooldownTimer = _deflectCooldown;
+        _shieldCooldown = DataManager.Instance.weaponsConfig.shieldCooldown;
+        _shieldCooldownTimer = _shieldCooldown;
     }
     
     private void Update()
     {
-        if (_cooldownTimer < _deflectCooldown)
+        if (_shieldCooldownTimer < _shieldCooldown)
         {
-            _cooldownTimer += Time.deltaTime;
-            cooldownImage.fillAmount = _cooldownTimer / _deflectCooldown;
+            _shieldCooldownTimer += Time.deltaTime;
+            cooldownImage.fillAmount = _shieldCooldownTimer / _shieldCooldown;
         }
         else
         {
             cooldownImage.fillAmount = 0;
         }
         
-        spriteRenderer.enabled = _cooldownTimer >= _deflectCooldown;
+        spriteRenderer.enabled = _shieldCooldownTimer >= _shieldCooldown;
+        
+        spriteRenderer.flipX = ringController.transform.position.x < transform.position.x;
     }
 
     public bool Deflect()
     {
-        if (_cooldownTimer < _deflectCooldown)
+        if (_shieldCooldownTimer < _shieldCooldown)
             return false;
         
         _deflectCount--;
+        StartCoroutine(DoScaleAnimation());
+        
+        return true;
+    }
+    
+    private IEnumerator DoScaleAnimation()
+    {
+        deflectTrigger.enabled = false;
+        transform.DOPunchScale(Vector3.one * deflectScale, deflectScaleDuration, 3, 0);
+        yield return new WaitForSeconds(deflectScaleDuration);
+        transform.localScale = Vector3.one;
+        deflectTrigger.enabled = true;
         
         if (_deflectCount <= 0)
         {
-            _cooldownTimer = 0;
+            _shieldCooldownTimer = 0;
             _deflectCount = DataManager.Instance.weaponsConfig.GetShieldBlock(Level);
         }
-        
-        return true;
     }
 }

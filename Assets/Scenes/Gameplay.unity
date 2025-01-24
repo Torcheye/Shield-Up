@@ -20777,7 +20777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872004824916914999, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4782696734454762385, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: target
@@ -20880,7 +20880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5161094734009804464
 Transform:
   m_ObjectHideFlags: 0
@@ -20955,7 +20955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: ringPivot

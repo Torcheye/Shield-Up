@@ -171,7 +171,7 @@ public class Bullet : MonoBehaviour
             if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
             
-            var shield = other.gameObject.GetComponent<Shield>();
+            var shield = other.attachedRigidbody.GetComponent<Shield>();
             
             if (shield.IsHostile == IsHostile || !shield.Deflect())
                 return;

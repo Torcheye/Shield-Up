@@ -1,23 +1,20 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class GroundBlock : MonoBehaviour
 {
     [SerializeField] private bool isBreakable;
     [SerializeField] private int hp;
-    [SerializeField] private SpriteRenderer damageFlashRenderer;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Color damageColor;
-    [SerializeField] private Sprite[] damageSprites;
+    [SerializeField] private Color[] damageColors;
     [SerializeField] private float damageColorFlashDuration;
-    [SerializeField] private GameObject mainObject;
-    [SerializeField] private GameObject regenObject;
     [SerializeField] private GameObject colliderObject;
     
     private int _currentHp;
     private Tween _damageColorTween;
     private float _regenTimer;
+    private Transform _acidPool;
+    private static readonly int HitEffectBlend = Shader.PropertyToID("_HitEffectBlend");
 
     private void Awake()
     {
@@ -29,23 +26,23 @@ public class GroundBlock : MonoBehaviour
         if (!isBreakable)
             return;
         
-        if (!mainObject.activeSelf)
+        if (_regenTimer > 0)
         {
             _regenTimer -= Time.deltaTime;
             if (_regenTimer <= 0)
             {
-                mainObject.SetActive(true);
                 colliderObject.SetActive(true);
-                regenObject.SetActive(false);
+                spriteRenderer.material.DisableKeyword("OUTBASE_ON");
                 _currentHp = hp;
-                spriteRenderer.sprite = damageSprites[0];
+                //spriteRenderer.sprite = damageSprites[0];
             }
         }
     }
     
     public void AttachAcidPool(Transform acidPool)
     {
-        acidPool.SetParent(mainObject.transform);
+        acidPool.SetParent(transform);
+        _acidPool = acidPool;
     }
 
     /// returns whether the block still exists
@@ -57,16 +54,21 @@ public class GroundBlock : MonoBehaviour
         _currentHp--;
         if (_currentHp <= 0)
         {
-            mainObject.SetActive(false);
             colliderObject.SetActive(false);
-            regenObject.SetActive(true);
+            spriteRenderer.material.EnableKeyword("OUTBASE_ON");
             _regenTimer = DataManager.Instance.breakableGroundRegenTime;
+            
+            if (_acidPool != null)
+            {
+                AcidPoolFactory.DestroyItem(_acidPool.gameObject);
+                _acidPool = null;
+            }
             return false;
         }
         else
         {
             FlashDamageColor();
-            spriteRenderer.sprite = damageSprites[hp - _currentHp];
+            //spriteRenderer.sprite = damageSprites[hp - _currentHp];
             return true;
         }
     }
@@ -78,11 +80,11 @@ public class GroundBlock : MonoBehaviour
             _damageColorTween.Kill();
         }
 
-        damageFlashRenderer.color = damageColor;
-        _damageColorTween = damageFlashRenderer.DOColor(new Color(0,0,0,0), damageColorFlashDuration).SetEase(Ease.OutBounce);
+        spriteRenderer.material.SetFloat(HitEffectBlend, 1);
+        _damageColorTween = DOTween.To(value => spriteRenderer.material.SetFloat(HitEffectBlend, value), 1, 0, damageColorFlashDuration).SetEase(Ease.OutBounce); 
         _damageColorTween.onComplete += () =>
         {
-            damageFlashRenderer.color = new Color(0,0,0,0);
+            spriteRenderer.material.SetFloat(HitEffectBlend, 0);
         };
     }
 }

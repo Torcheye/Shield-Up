@@ -234,7 +234,7 @@ MonoBehaviour:
   physicsRotationInheritanceFactor: 1
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
-  unscaledTime: 1
+  unscaledTime: 0
   _animationName: idle
   loop: 1
   timeScale: 1

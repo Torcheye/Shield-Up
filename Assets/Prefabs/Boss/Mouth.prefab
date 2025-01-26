@@ -4962,7 +4962,7 @@ MonoBehaviour:
   physicsRotationInheritanceFactor: 1
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
-  unscaledTime: 1
+  unscaledTime: 0
   _animationName: idle
   loop: 1
   timeScale: 1
@@ -5188,6 +5188,9 @@ MonoBehaviour:
   checkPlayer: 1
   tagsToCheck:
   - XpPickup
+  - Player
+  objectsInTriggerStay: []
+  objectsInTriggerEnter: []
 --- !u!58 &2454786613578759650
 CircleCollider2D:
   m_ObjectHideFlags: 0

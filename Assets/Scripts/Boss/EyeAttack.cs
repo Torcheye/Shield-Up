@@ -3,16 +3,15 @@
 public class EyeAttack : BossAttack
 {
     [SerializeField] private float angle;
+    [SerializeField] private float delta;
     [SerializeField] private BulletConfig normalBullet;
     [SerializeField] private BulletConfig enhancedBullet;
 
     public override void Attack()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            var dir = Quaternion.Euler(0, 0, Random.Range(-angle, angle)) * GetTargetDirection();
-            ShootBullet(dir);
-        }
+        ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta)) * GetTargetDirection());
+        ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta) - angle) * GetTargetDirection());
+        ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta) + angle) * GetTargetDirection());
     }
 
     public override void EnhancedAttack()

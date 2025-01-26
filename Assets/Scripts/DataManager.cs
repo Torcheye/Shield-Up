@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Cinemachine;
+using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class DataManager : MonoBehaviour
     public float acidHurtInterval;
     public int acidDamage;
     public float slowEffectMultiplier;
+    public float hitStopDuration;
+    public float hitStopTimeScale;
     
     private void Awake()
     {

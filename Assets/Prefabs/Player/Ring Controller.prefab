@@ -153,4 +153,5 @@ MonoBehaviour:
   ringRadiusStep: 0.8
   startWeaponType: 0
   isHostile: 0
-  moveSpeed: 20
+  moveSpeed: 35
+  playerDamageable: {fileID: 0}

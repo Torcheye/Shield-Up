@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,6 +29,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashCooldown;
     private InputAction _dashAction;
     
+    [Header("Rendering")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private TrailRenderer trail;
+    [SerializeField] private Color trailColor;
+    [SerializeField] private Color jumpTrailColor;
+    [SerializeField] private Color dashTrailColor;
+    [SerializeField] private float jumpTrailTime;
+    
     private float _jumpBufferTimer;
     private bool _isGrounded;
     private bool _isInvincible;
@@ -40,10 +47,14 @@ public class PlayerController : MonoBehaviour
     private float _dizzyMultiplier;
     private Tween _dashTween;
     
+    private static readonly int JumpTrigger = Animator.StringToHash("Trigger Jump");
+    private static readonly int DashTrigger = Animator.StringToHash("Trigger Dash");
+    
     public void Teleport(Vector2 position)
     {
         transform.position = position;
         ringController.transform.position = position;
+        trail.Clear();
         if (_dashTween != null && _dashTween.IsActive())
         {
             _dashTween.Kill();
@@ -64,6 +75,10 @@ public class PlayerController : MonoBehaviour
         _jumpBufferTimer = 0;
         _doubleJumpCount = 0;
         _velocity = Vector2.zero;
+        _dashCooldownTimer = 0;
+        _slowMultiplier = 1;
+        _dizzyMultiplier = 1;
+        trail.startColor = trailColor;
     }
 
     private void Update()
@@ -99,6 +114,15 @@ public class PlayerController : MonoBehaviour
             _doubleJumpCount = 0;
         }    
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(groundCheckPosition.position, groundCheckPosition.position + Vector3.down * groundCheckDistance);
+    }
+    
+#endif
     
     private void HandleTimers()
     {
@@ -139,14 +163,21 @@ public class PlayerController : MonoBehaviour
     {
         CheckIsGrounded();
 
-        Animator playerAnimator = transform.Find("Player Sprite").GetComponent<Animator>();
-        playerAnimator.SetTrigger("Trigger Jump");
+        animator.SetTrigger(JumpTrigger);
 
         rb.linearVelocityY = 0;
         rb.AddForce(_slowMultiplier * jumpPower * Vector2.up, ForceMode2D.Impulse);
         
         _jumpBufferTimer = 0;
         _doubleJumpCount++;
+        StartCoroutine(JumpTrail());
+    }
+    
+    private IEnumerator JumpTrail()
+    {
+        trail.startColor = jumpTrailColor;
+        yield return new WaitForSeconds(jumpTrailTime);
+        trail.startColor = trailColor;
     }
 
     private IEnumerator Dash()
@@ -158,8 +189,10 @@ public class PlayerController : MonoBehaviour
         _dashCooldownTimer = dashCooldown;
 
 
-        Animator playerAnimator = transform.Find("Player Sprite").GetComponent<Animator>();
-        playerAnimator.SetTrigger("Trigger Dash");
+        animator.SetTrigger(DashTrigger);
+        spriteRenderer.material.EnableKeyword("HSV_ON");
+        spriteRenderer.material.EnableKeyword("CHROMABERR_ON");
+        trail.startColor = dashTrailColor;
 
         var y = _moveAction.ReadValue<Vector2>().y > 0 ? 1 : 0;
         var x = playerTransform.localScale.x > 0 ? 1 : -1;
@@ -170,6 +203,10 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocityY = 0;
         
         yield return new WaitForSeconds(dashDuration);
+        
+        spriteRenderer.material.DisableKeyword("HSV_ON");
+        spriteRenderer.material.DisableKeyword("CHROMABERR_ON");
+        trail.startColor = trailColor;
     }
     
     public void SetSlowMultiplier(bool on)

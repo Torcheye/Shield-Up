@@ -11,12 +11,6 @@ TextureImporter:
   - first:
       213: -5781249605911193829
     second: jump0-sheet_2
-  - first:
-      213: 5063682345026582183
-    second: jump0-sheet_3
-  - first:
-      213: -4643899965189772162
-    second: jump0-sheet_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -130,8 +124,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 181
-        height: 304
+        width: 196
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 618fa8e1a75913141915c1493df77826
-      internalID: 2056441490
+      spriteID: 8c7fa5de8b9c1154099490008213f3d1
+      internalID: 571174632
       vertices: []
       indices: 
       edges: []
@@ -150,10 +144,10 @@ TextureImporter:
       name: jump0-sheet_1
       rect:
         serializedVersion: 2
-        x: 181
+        x: 196
         y: 0
-        width: 181
-        height: 304
+        width: 196
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,30 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8daa0045e7b1e84b9f6823d9876b5d3
-      internalID: -855938158
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jump0-sheet_2
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 0
-        width: 181
-        height: 304
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 863dca01867b39a46bc55fe6142b032c
-      internalID: 1194408031
+      spriteID: 38da5e963f2415f418e49fa297811de4
+      internalID: 1379478392
       vertices: []
       indices: 
       edges: []
@@ -194,7 +166,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0705f2660bfb9284baa6f8a38affd003
+    spriteID: 02a25470f019f3243802938c91249232
     internalID: 0
     vertices: []
     indices: 
@@ -204,9 +176,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      jump0-sheet_0: 2056441490
-      jump0-sheet_1: -855938158
-      jump0-sheet_2: 1194408031
+      jump0-sheet_0: 571174632
+      jump0-sheet_1: 1379478392
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

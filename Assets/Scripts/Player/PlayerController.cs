@@ -138,7 +138,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         CheckIsGrounded();
-        
+
+        Animator playerAnimator = transform.Find("Player Sprite").GetComponent<Animator>();
+        playerAnimator.SetTrigger("Trigger Jump");
+
         rb.linearVelocityY = 0;
         rb.AddForce(_slowMultiplier * jumpPower * Vector2.up, ForceMode2D.Impulse);
         
@@ -153,6 +156,10 @@ public class PlayerController : MonoBehaviour
             yield break;
         }
         _dashCooldownTimer = dashCooldown;
+
+
+        Animator playerAnimator = transform.Find("Player Sprite").GetComponent<Animator>();
+        playerAnimator.SetTrigger("Trigger Dash");
 
         var y = _moveAction.ReadValue<Vector2>().y > 0 ? 1 : 0;
         var x = playerTransform.localScale.x > 0 ? 1 : -1;

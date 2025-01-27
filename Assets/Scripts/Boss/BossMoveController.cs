@@ -1,21 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BossMoveController : MonoBehaviour
 {
-    public bool DoMove
+    public bool DoMove { get; set; } = true;
+
+    public bool IsActive
     {
-        get => doMove;
+        get => _isActive;
         set
         {
-            doMove = value;
-            OnSetMove();
+            _isActive = value;
+            OnSetIsActive();
         }
     }
-    
+
     [SerializeField] private BossType bossType;
+    public BossType Type => bossType;
+    [SerializeField] private Renderer rend;
+    [SerializeField] private BossHpBar bossHpBar;
     
     protected float moveSpeed;
-    protected bool doMove = true;
+    private bool _isActive;
+    
+    private static readonly int FillPhase = Shader.PropertyToID("_FillPhase");
+    private static readonly int FillColor = Shader.PropertyToID("_FillColor");
 
     protected virtual void Start()
     {
@@ -24,5 +33,17 @@ public class BossMoveController : MonoBehaviour
         moveSpeed = bossConfig.GetBossMoveSpeed(bossType);
     }
 
-    protected virtual void OnSetMove() { }
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
+    protected void OnSetIsActive()
+    {
+        rend.material.SetColor(FillColor, IsActive ? Color.white : DataManager.Instance.bossInactiveColor);
+        rend.material.SetFloat(FillPhase, IsActive ? 0 : DataManager.Instance.bossInactiveFillAmount);
+        rend.sortingLayerName = IsActive ? "Enemy" : "Background";
+        DoMove = IsActive;
+        bossHpBar.gameObject.SetActive(IsActive);
+    }
 }

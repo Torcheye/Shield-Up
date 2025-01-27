@@ -1,5 +1,4 @@
-﻿using Unity.Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
@@ -31,11 +30,13 @@ public class DataManager : MonoBehaviour
     public float damageColorLastDuration;
     public float damageColorFadeDuration;
     public float damageCooldown;
-    
     public Color healColor = Color.green;
     public float healColorLastDuration;
     public float healColorFadeDuration;
+    public Color bossInactiveColor = Color.black;
+    public float bossInactiveFillAmount;
     
+    [Header("Environment")]
     public float breakableGroundRegenTime;
     
     [Header("Effects")]

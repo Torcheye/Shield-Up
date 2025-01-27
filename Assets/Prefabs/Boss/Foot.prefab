@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2198485043413662075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.601, y: -0.036, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 3686532079087321764}
   - component: {fileID: 6689278359055738466}
   - component: {fileID: 1288320249470007498}
+  - component: {fileID: 8422690791932603898}
   m_Layer: 0
   m_Name: Foot
   m_TagString: Untagged
@@ -258,6 +259,7 @@ MonoBehaviour:
   statusEffect: {fileID: 9083259343840145840}
   bossType: 4
   bossAttack: {fileID: 6689278359055738466}
+  bossMoveController: {fileID: 1288320249470007498}
 --- !u!114 &6689278359055738466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +292,7 @@ MonoBehaviour:
   normalAttackEffect: 3
   normalAttackEffectDuration: 3
   normalAttackBulletConfig: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
+  normalAttackImpulseSource: {fileID: 8422690791932603898}
   enhancedAttackPrepTime: 3
   enhancedAttackPerDuration: 2
   enhancedAttackWidth: 4
@@ -314,7 +317,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9748afe77d9142b88e17a7baaa727e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossType: 0
+  bossType: 4
+  rend: {fileID: 1173583842156871386}
+  bossHpBar: {fileID: 3754041050302419127}
+--- !u!114 &8422690791932603898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4682980451640873006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1.5, z: 0}
 --- !u!1 &6100816995348829334
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +401,7 @@ Transform:
   m_GameObject: {fileID: 6100816995348829334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.074, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -534,11 +592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.196
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.97
+      value: 1.985
       objectReference: {fileID: 0}
     - target: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -565,6 +623,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0e8667b82a43654392309328be14705, type: 3}
+--- !u!114 &3754041050302419127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6955256385557785004, guid: d0e8667b82a43654392309328be14705, type: 3}
+  m_PrefabInstance: {fileID: 6097593137968118043}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcc0e6d223417f8bee7489e51ea42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9076210094468588193 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}

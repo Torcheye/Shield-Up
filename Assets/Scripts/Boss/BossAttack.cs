@@ -29,7 +29,7 @@ public class BossAttack : MonoBehaviour
 
     private void DoAttack()
     {
-        if (loopNormalAttack)
+        if (loopNormalAttack && moveController.IsActive)
         {
             Attack();
         }
@@ -37,7 +37,7 @@ public class BossAttack : MonoBehaviour
     
     public bool StartEnhancedAttack()
     {
-        if (isDoingEnhancedAttack)
+        if (isDoingEnhancedAttack || !moveController.IsActive)
         {
             return false;
         }

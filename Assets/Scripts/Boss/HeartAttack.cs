@@ -16,6 +16,7 @@ public class HeartAttack : BossAttack
     private void Awake()
     {
         _propulsionSpriteStartAlpha = propulsionSprite.color.a;
+        propulsionTrigger.gameObject.SetActive(false);
     }
 
     public override void Attack()
@@ -25,12 +26,14 @@ public class HeartAttack : BossAttack
 
     private IEnumerator DoPropel()
     {
+        propulsionTrigger.gameObject.SetActive(true);
         propulsionSprite.DOFade(_propulsionSpriteStartAlpha, 0);
         propulsionTrigger.transform.localScale = Vector3.zero;
         propulsionTrigger.transform.DOScale(Vector3.one * propelRadius, propelDuration);
         propulsionSprite.DOFade(0, propelDuration);
         yield return new WaitForSeconds(propelDuration);
         propulsionTrigger.transform.localScale = Vector3.zero;
+        propulsionTrigger.gameObject.SetActive(false);
     }
     
     private void FixedUpdate()

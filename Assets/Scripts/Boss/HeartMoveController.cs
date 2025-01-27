@@ -6,7 +6,7 @@ public class HeartMoveController : BossMoveController
     
     private void Update()
     {
-        if (doMove)
+        if (DoMove)
         {
             var playerPos = DataManager.Instance.playerTransform.position;
             Vector2 target = transform.position;

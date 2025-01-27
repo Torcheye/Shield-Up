@@ -25,7 +25,7 @@ public class BrainMoveController : BossMoveController
     
     private IEnumerator DoLoopMove()
     {
-        while (doMove)
+        while (DoMove)
         {
             yield return MoveToRandomPosition();
             yield return new WaitForSeconds(normalAttackPrepTime);

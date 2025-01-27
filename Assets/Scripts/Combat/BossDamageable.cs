@@ -7,6 +7,7 @@ public class BossDamageable : Damageable
     
     [SerializeField] private BossType bossType;
     [SerializeField] private BossAttack bossAttack;
+    [SerializeField] private BossMoveController bossMoveController;
 
     private int _maxHit;
     private float _enhancedAttackTimer;
@@ -34,9 +35,14 @@ public class BossDamageable : Damageable
         }
     }
 
+    protected override bool TryTakeDamage()
+    {
+        return bossMoveController.IsActive;
+    }
+
     protected override void OnTakeDamage(int dmg)
     {
-        if (_enhancedAttackTimer > 0)
+        if (_enhancedAttackTimer > 0 || !bossMoveController.IsActive)
         {
             return;
         }

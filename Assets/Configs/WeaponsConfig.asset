@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: WeaponsConfig
   m_EditorClassIdentifier: 
   daggerPrefab: {fileID: 7212092133301199805, guid: e978b734d56726947b190b07bf6664b8, type: 3}
-  daggerSprite: {fileID: -3753825769889500098, guid: 735c170ceb54bdf4c89e2213df1739aa, type: 3}
+  daggerSprite: {fileID: 1729840402284382006, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
   daggerDmgL1: 1
   daggerDmgL2: 2
   daggerBleed: 0
   shieldPrefab: {fileID: 7212092133301199805, guid: 2aba2b8c4ef5e274fb1072ac894d8623, type: 3}
-  shieldSprite: {fileID: 2389193319765324094, guid: 5c3a0aef4be863542b98f2ebc5f80649, type: 3}
+  shieldSprite: {fileID: 6240419937970178579, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
   shieldCooldown: 3
   shieldBlockL1: 2
   shieldBlockL2: 3
   potionPrefab: {fileID: 3464062274857641238, guid: d8e05b8fabcef2a45a6464bd5b6955db, type: 3}
-  potionSprite: {fileID: -1248187164165603951, guid: 23d80c0f1f621634dbf58bb4c8535446, type: 3}
+  potionSprite: {fileID: 6334439168542168994, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
   potionChargeL1: 2
   potionChargeL2: 5

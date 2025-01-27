@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class FootAttack : BossAttack
@@ -23,6 +24,7 @@ public class FootAttack : BossAttack
     [SerializeField, ShowIf(nameof(normalAttackHasEffect))] private Effect normalAttackEffect;
     [SerializeField, ShowIf(nameof(normalAttackHasEffect))] private float normalAttackEffectDuration;
     [SerializeField] private BulletConfig normalAttackBulletConfig;
+    [SerializeField] private CinemachineImpulseSource normalAttackImpulseSource;
 
     [Header("Enhanced Attack")] 
     [SerializeField] private float enhancedAttackPrepTime;
@@ -42,6 +44,7 @@ public class FootAttack : BossAttack
 
     protected override void Start()
     {
+        enhancedAttackTrigger.enabled = false;
         enhancedAttackTime = enhancedAttackPrepTime + enhancedAttackPerDuration * 3;
         _loopAttackCoroutine = LoopAttack();
         StartCoroutine(_loopAttackCoroutine);
@@ -94,7 +97,7 @@ public class FootAttack : BossAttack
 
     private IEnumerator LoopAttack()
     {
-        while (gameObject.activeInHierarchy)
+        while (moveController.DoMove)
         {
             _normalAttackCoroutine = DoAttack();
             yield return _normalAttackCoroutine;
@@ -145,6 +148,8 @@ public class FootAttack : BossAttack
             // shoot in normal of direction
             BulletFactory.Instance.SpawnBullet(normalAttackBulletConfig, transform.position, new Vector2(direction.y, -direction.x), true, transform);
             BulletFactory.Instance.SpawnBullet(normalAttackBulletConfig, transform.position, new Vector2(-direction.y, direction.x), true, transform);
+            
+            normalAttackImpulseSource.GenerateImpulse();
         }
         moveController.DoMove = true;
     }

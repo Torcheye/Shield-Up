@@ -5099,6 +5099,7 @@ MonoBehaviour:
   statusEffect: {fileID: 7547613870309515463}
   bossType: 2
   bossAttack: {fileID: 2614982726083483986}
+  bossMoveController: {fileID: 2145974988356769631}
 --- !u!114 &2145974988356769631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5112,6 +5113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossType: 2
+  rend: {fileID: 5119854587752807225}
+  bossHpBar: {fileID: 3710070144009522998}
 --- !u!114 &2614982726083483986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5340,6 +5343,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0e8667b82a43654392309328be14705, type: 3}
+--- !u!114 &3710070144009522998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6955256385557785004, guid: d0e8667b82a43654392309328be14705, type: 3}
+  m_PrefabInstance: {fileID: 6051388702721582746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcc0e6d223417f8bee7489e51ea42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8831829003681119520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2984246464771759034, guid: d0e8667b82a43654392309328be14705, type: 3}

@@ -48,7 +48,7 @@ Material:
     - _ColorMask: 15
     - _InnerRadius: 0.05
     - _OuteRadius: 0.3
-    - _OuterRadius: 0.29942617
+    - _OuterRadius: 0.2998214
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -63,6 +63,6 @@ Material:
     - _NoiseSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _NoiseTiling: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _PlayerPosition: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerScreenPos: {r: 0.58309484, g: 0.058677346, b: 0, a: 0}
+    - _PlayerScreenPos: {r: 0.8291751, g: 0.1610513, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

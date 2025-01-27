@@ -49,7 +49,7 @@ public class Damageable : MonoBehaviour
 
     public bool TakeDamage(int dmg, bool isHostile)
     {
-        if (_damageCooldown > 0 || isHostile != isPlayer || statusEffect.HasEffect(Effect.Invulnerable))
+        if (_damageCooldown > 0 || isHostile != isPlayer || statusEffect.HasEffect(Effect.Invulnerable) || !TryTakeDamage())
         {
             return false;
         }
@@ -71,6 +71,8 @@ public class Damageable : MonoBehaviour
 
         return true;
     }
+
+    protected virtual bool TryTakeDamage() { return true; }
 
     protected virtual void OnTakeDamage(int dmg) { }
     

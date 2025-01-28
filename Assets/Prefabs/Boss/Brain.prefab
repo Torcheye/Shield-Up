@@ -112,12 +112,17 @@ MonoBehaviour:
   normalAttackInterval: 1
   enhancedAttackTime: 1
   autoAttack: 0
+  skeletonAnimation: {fileID: 2356302226026582869}
   normalBullet: {fileID: 11400000, guid: 7e4607bbe93a08049b113d3076c28d5f, type: 2}
   enhancedBullet: {fileID: 11400000, guid: d231a696096c32647925bf8e9c04ef34, type: 2}
   normalBulletAmount: 5
   normalBurstAmount: 5
   normalBurstInterval: 0.9
   enhancedShootAmount: 14
+  enhancedShootPrepTime: 0.5
+  attackAnimation: attack
+  idleAnimation: idle
+  enhancedAnimation: enhanced
 --- !u!1 &7171785404526581852
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Sirenix.OdinInspector;
+using Spine.Unity;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
@@ -10,9 +11,10 @@ public class BossAttack : MonoBehaviour
     [SerializeField, ShowIf(nameof(autoAttack))] protected float normalAttackInterval;
     [SerializeField] protected float enhancedAttackTime;
     [SerializeField] protected bool autoAttack = true;
+    [SerializeField] protected SkeletonAnimation skeletonAnimation;
 
-    protected bool loopNormalAttack = true;
-    protected bool isDoingEnhancedAttack;
+    private bool _loopNormalAttack = true;
+    private bool _isDoingEnhancedAttack;
 
     protected virtual void Start()
     {
@@ -35,7 +37,7 @@ public class BossAttack : MonoBehaviour
 
     private void DoAttack()
     {
-        if (loopNormalAttack && moveController.IsActive)
+        if (_loopNormalAttack && moveController.IsActive)
         {
             Attack();
         }
@@ -43,7 +45,7 @@ public class BossAttack : MonoBehaviour
     
     public bool StartEnhancedAttack()
     {
-        if (isDoingEnhancedAttack || !moveController.IsActive)
+        if (_isDoingEnhancedAttack || !moveController.IsActive)
         {
             return false;
         }
@@ -53,14 +55,14 @@ public class BossAttack : MonoBehaviour
     
     private IEnumerator DoEnhancedAttack()
     {
-        loopNormalAttack = false;
+        _loopNormalAttack = false;
         moveController.DoMove = false;
-        isDoingEnhancedAttack = true;
+        _isDoingEnhancedAttack = true;
         EnhancedAttack();
         yield return new WaitForSeconds(enhancedAttackTime);
-        loopNormalAttack = true;
+        _loopNormalAttack = true;
         moveController.DoMove = true;
-        isDoingEnhancedAttack = false;
+        _isDoingEnhancedAttack = false;
     }
 
     public virtual void Attack() { }

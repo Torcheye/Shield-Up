@@ -3484,7 +3484,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.156107, y: -0.6149998, z: -10}
+  m_LocalPosition: {x: 0.50999117, y: -0.615, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12984,7 +12984,7 @@ Transform:
   m_GameObject: {fileID: 1752997580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.58, y: -5.54, z: -10}
+  m_LocalPosition: {x: 0.51, y: -4.61, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13633,7 +13633,7 @@ MonoBehaviour:
   - {fileID: 6585365270697935479}
   - {fileID: 3826871743393701304}
   - {fileID: 6916952236666780316}
-  startBoss: 0
+  startBoss: 3
   surroundingTarget: {fileID: 6916952236666780316}
   surroundingPivot: {fileID: 6713409262260790138}
   surroundingMoveSpeed: 8
@@ -16520,6 +16520,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3765271623478448755, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
+      propertyPath: _animationName
+      value: idle
+      objectReference: {fileID: 0}
     - target: {fileID: 4782696734454762385, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: target
       value: 
@@ -16532,6 +16536,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1912177602}
+    - target: {fileID: 8181074127829086781, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
+      propertyPath: normalAttackInterval
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17274,11 +17282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2127492292207216533, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.58
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 2127492292207216533, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.54
+      value: -4.61
       objectReference: {fileID: 0}
     - target: {fileID: 2127492292207216533, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
       propertyPath: m_LocalPosition.z

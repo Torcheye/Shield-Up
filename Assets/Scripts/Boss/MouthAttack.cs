@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Spine.Unity;
 using UnityEngine;
 
 public class MouthAttack : BossAttack
@@ -18,6 +18,11 @@ public class MouthAttack : BossAttack
     [SerializeField] private float suctionRampUpTime;
     [SerializeField] private ObjectRangeTrigger suctionTrigger;
     [SerializeField] private ParticleSystem suctionParticles;
+    
+    [Header("Animation")]
+    [SerializeField, SpineAnimation] private string attackAnimation;
+    [SerializeField, SpineAnimation] private string idleAnimation;
+    [SerializeField, SpineAnimation] private string enhancedAnimation;
 
     private bool _isSucking;
     private float _suctionTimer;
@@ -29,6 +34,9 @@ public class MouthAttack : BossAttack
         var y = (playerPos.y - transform.position.y) * normalLaunchPower.y;
         var dir = new Vector2(x, y);
         BulletFactory.Instance.SpawnBullet(acidBullet, transform.position, dir, true, transform);
+        
+        skeletonAnimation.AnimationState.SetAnimation(0, attackAnimation, false);
+        skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
     }
 
     public override void EnhancedAttack()
@@ -40,9 +48,12 @@ public class MouthAttack : BossAttack
     {
         _isSucking = true;
         suctionParticles.Play();
+        skeletonAnimation.AnimationState.SetAnimation(0, enhancedAnimation, true);
+        
         yield return new WaitForSeconds(suctionDuration);
         _isSucking = false;
         suctionParticles.Stop();
+        skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
         
         StartCoroutine(ShootBulletBurst());
     }

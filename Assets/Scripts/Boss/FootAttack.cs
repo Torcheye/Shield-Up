@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Spine.Unity;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -36,6 +37,10 @@ public class FootAttack : BossAttack
     [SerializeField, ShowIf(nameof(enhancedAttackHasEffect))] private Effect enhancedAttackEffect;
     [SerializeField, ShowIf(nameof(enhancedAttackHasEffect))] private float enhancedAttackEffectDuration;
     [SerializeField] private DamageSourceTrigger enhancedAttackTrigger;
+    
+    [Header("Animation")]
+    [SerializeField, SpineAnimation] private string attackAnimation;
+    [SerializeField, SpineAnimation] private string idleAnimation;
 
     private readonly List<Vector2> _normalAttackPositions = new();
     private IEnumerator _normalAttackCoroutine;
@@ -173,6 +178,9 @@ public class FootAttack : BossAttack
             BulletFactory.Instance.SpawnBullet(normalAttackBulletConfig, transform.position, new Vector2(-direction.y, direction.x), true, transform);
             
             normalAttackImpulseSource.GenerateImpulse();
+            
+            skeletonAnimation.AnimationState.SetAnimation(0, attackAnimation, false);
+            skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
         }
         moveController.DoMove = true;
     }

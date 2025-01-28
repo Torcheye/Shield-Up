@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 3693596558799042327}
   statusEffect: {fileID: 6920105105989142738}
-  bossType: 5
+  bossType: 4
   bossAttack: {fileID: 5173642242872964870}
   bossMoveController: {fileID: 3355925106484657640}
 --- !u!114 &5173642242872964870
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ea13b0f4a349f0a62eec7a20ece12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossType: 5
+  bossType: 4
   rend: {fileID: 3693596558799042327}
   bossHpBar: {fileID: 5520698530308053636}
   normalMoveBounds:

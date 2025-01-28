@@ -5131,6 +5131,7 @@ MonoBehaviour:
   normalAttackInterval: 3
   enhancedAttackTime: 9
   autoAttack: 1
+  skeletonAnimation: {fileID: 9091657685744046548}
   acidBullet: {fileID: 11400000, guid: 62b5e67fabcc9244899a9e841f23b396, type: 2}
   normalLaunchPower: {x: 0.65, y: 0.5}
   burstAmount: 15
@@ -5143,6 +5144,9 @@ MonoBehaviour:
   suctionRampUpTime: 5
   suctionTrigger: {fileID: 1121849545311287463}
   suctionParticles: {fileID: 3428996935638337307}
+  attackAnimation: attack
+  idleAnimation: idle
+  enhancedAnimation: enhanced
 --- !u!1 &4916235853575325310
 GameObject:
   m_ObjectHideFlags: 0

@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1173583842156871386}
   statusEffect: {fileID: 9083259343840145840}
-  bossType: 4
+  bossType: 3
   bossAttack: {fileID: 6689278359055738466}
   bossMoveController: {fileID: 1288320249470007498}
 --- !u!114 &6689278359055738466
@@ -276,6 +276,7 @@ MonoBehaviour:
   normalAttackInterval: 10
   enhancedAttackTime: 1
   autoAttack: 0
+  skeletonAnimation: {fileID: 5827078219018583261}
   normalAttackPrepTime: 1
   normalAttackPostTime: 2
   normalAttackPerDuration: 1
@@ -305,6 +306,8 @@ MonoBehaviour:
   enhancedAttackEffect: 4
   enhancedAttackEffectDuration: 4.5
   enhancedAttackTrigger: {fileID: 4828712023671480439}
+  attackAnimation: attack
+  idleAnimation: idle
 --- !u!114 &1288320249470007498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9748afe77d9142b88e17a7baaa727e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossType: 4
+  bossType: 3
   rend: {fileID: 1173583842156871386}
   bossHpBar: {fileID: 3754041050302419127}
   attack: {fileID: 6689278359055738466}

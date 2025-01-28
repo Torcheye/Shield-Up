@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Spine.Unity;
+using UnityEngine;
 
 public class EyeAttack : BossAttack
 {
@@ -6,12 +7,19 @@ public class EyeAttack : BossAttack
     [SerializeField] private float delta;
     [SerializeField] private BulletConfig normalBullet;
     [SerializeField] private BulletConfig enhancedBullet;
+    
+    [Header("Animation")]
+    [SerializeField, SpineAnimation] private string attackAnimation;
+    [SerializeField, SpineAnimation] private string idleAnimation;
 
     public override void Attack()
     {
         ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta)) * GetTargetDirection());
         ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta) - angle) * GetTargetDirection());
         ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta) + angle) * GetTargetDirection());
+        
+        skeletonAnimation.AnimationState.SetAnimation(0, attackAnimation, false);
+        skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
     }
 
     public override void EnhancedAttack()

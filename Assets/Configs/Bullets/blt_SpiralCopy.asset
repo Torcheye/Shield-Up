@@ -22,6 +22,6 @@ MonoBehaviour:
   effect: 2
   effectDuration: 5
   penetrating: 1
-  chargeSpawnTime: 0
+  chargeSpawnTime: 1
   gravity: 0
   spawnAcidPool: 0

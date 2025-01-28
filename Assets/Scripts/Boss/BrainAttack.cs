@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Spine.Unity;
 using UnityEngine;
 
 public class BrainAttack : BossAttack
@@ -9,6 +10,12 @@ public class BrainAttack : BossAttack
     [SerializeField] private int normalBurstAmount;
     [SerializeField] private float normalBurstInterval;
     [SerializeField] private int enhancedShootAmount;
+    [SerializeField] private float enhancedShootPrepTime;
+    
+    [Header("Animation")]
+    [SerializeField, SpineAnimation] private string attackAnimation;
+    [SerializeField, SpineAnimation] private string idleAnimation;
+    [SerializeField, SpineAnimation] private string enhancedAnimation;
 
     public override void Attack()
     {
@@ -23,23 +30,37 @@ public class BrainAttack : BossAttack
             {
                 yield break;
             }
-            BurstAttack(normalBulletAmount, normalBullet);
+
+            StartCoroutine(BurstAttack(normalBulletAmount, normalBullet));
+            
+            skeletonAnimation.AnimationState.SetAnimation(0, attackAnimation, false);
+            if (i == normalBurstAmount - 1)
+            {
+                skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
+            }
+            
             yield return new WaitForSeconds(normalBurstInterval);
         }
     }
     
-    private void BurstAttack(int amount, BulletConfig config)
+    private IEnumerator BurstAttack(int amount, BulletConfig config, bool enhanced = false)
     {
+        if (enhanced)
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, enhancedAnimation, false);
+            skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
+        }
+        yield return new WaitForSeconds(enhanced ? enhancedShootPrepTime : 0);
         for (int i = 0; i < amount; i++)
         {
             var angle = 360f / amount * i;
             var dir = Quaternion.Euler(0, 0, angle) * Vector3.up;
-            BulletFactory.Instance.SpawnBullet(config, transform.position, dir, true, transform);
+            BulletFactory.Instance.SpawnBullet(config, transform.position, dir, true, transform, DataManager.Instance.playerTransform);
         }
     }
 
     public override void EnhancedAttack()
     {
-        BurstAttack(enhancedShootAmount, enhancedBullet);
+        StartCoroutine(BurstAttack(enhancedShootAmount, enhancedBullet, true));
     }
 }

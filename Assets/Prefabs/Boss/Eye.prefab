@@ -322,10 +322,13 @@ MonoBehaviour:
   normalAttackInterval: 1.5
   enhancedAttackTime: 5
   autoAttack: 1
+  skeletonAnimation: {fileID: 3765271623478448755}
   angle: 15
   delta: 5
   normalBullet: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
   enhancedBullet: {fileID: 11400000, guid: d4f1a72854b821349bc4058e4ec384de, type: 2}
+  attackAnimation: attack
+  idleAnimation: idle
 --- !u!1001 &1527481872122828198
 PrefabInstance:
   m_ObjectHideFlags: 0

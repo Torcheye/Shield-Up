@@ -94,7 +94,7 @@ public class RingController : MonoBehaviour
     {
         if (isHostile)
             return;
-        SpawnWeapon(startWeaponType, new Vector2Int(0, 0));
+        SpawnWeapon(startWeaponType, new Vector2Int(1, 0));
     }
     
     private void LateUpdate()

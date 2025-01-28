@@ -13633,8 +13633,7 @@ MonoBehaviour:
   - {fileID: 6585365270697935479}
   - {fileID: 3826871743393701304}
   - {fileID: 6916952236666780316}
-  startBoss: 4
-  enableStartBoss: 1
+  startBoss: 0
   surroundingTarget: {fileID: 6916952236666780316}
   surroundingPivot: {fileID: 6713409262260790138}
   surroundingMoveSpeed: 8

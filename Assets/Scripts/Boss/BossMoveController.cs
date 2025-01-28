@@ -38,7 +38,7 @@ public class BossMoveController : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 
-    protected void OnSetIsActive()
+    protected virtual void OnSetIsActive()
     {
         rend.material.SetColor(FillColor, IsActive ? Color.white : DataManager.Instance.bossInactiveColor);
         rend.material.SetFloat(FillPhase, IsActive ? 0 : DataManager.Instance.bossInactiveFillAmount);

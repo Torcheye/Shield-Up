@@ -19,6 +19,10 @@ public class BrainAttack : BossAttack
     {
         for (int i = 0; i < normalBurstAmount; i++)
         {
+            if (!moveController.IsActive)
+            {
+                yield break;
+            }
             BurstAttack(normalBulletAmount, normalBullet);
             yield return new WaitForSeconds(normalBurstInterval);
         }

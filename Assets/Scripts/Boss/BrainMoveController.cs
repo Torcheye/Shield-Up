@@ -19,21 +19,35 @@ public class BrainMoveController : BossMoveController
     {
         base.Start();
         _moveTime = 1 / moveSpeed;
-        
-        StartCoroutine(DoLoopMove());
     }
-    
+
+    protected override void OnSetIsActive()
+    {
+        base.OnSetIsActive();
+        
+        if (IsActive)
+        {
+            StartCoroutine(DoLoopMove());
+            attack.ResetAutoAttack();
+        }
+    }
+
     private IEnumerator DoLoopMove()
     {
-        while (DoMove)
+        while (gameObject.activeInHierarchy)
         {
+            if (!DoMove)
+            {
+                yield return null;
+                continue;
+            }
+            
             yield return MoveToRandomPosition();
             yield return new WaitForSeconds(normalAttackPrepTime);
             
             attack.Attack();
             sprite.DOShakePosition(normalAttackPostTime, shakeStrength, shakeVibrato, 40, false, true, ShakeRandomnessMode.Harmonic);
             yield return new WaitForSeconds(normalAttackPostTime);
-            
         }
     }
 

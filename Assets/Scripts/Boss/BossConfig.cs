@@ -28,11 +28,6 @@ public class BossConfig : ScriptableObject
     public float mouthMoveSpeed;
     public int mouthHit;
     
-    [Header("Hand")] 
-    public int handHp;
-    public float handMoveSpeed;
-    public int handHit;
-    
     [Header("Foot")] 
     public int footHp;
     public float footMoveSpeed;
@@ -52,7 +47,6 @@ public class BossConfig : ScriptableObject
                 BossType.Eye => eyeHp,
                 BossType.Brain => brainHp,
                 BossType.Mouth => mouthHp,
-                BossType.Hand => handHp,
                 BossType.Foot => footHp,
                 BossType.Heart => heartHp,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
@@ -70,7 +64,6 @@ public class BossConfig : ScriptableObject
                 BossType.Eye => eyeMoveSpeed,
                 BossType.Brain => brainMoveSpeed,
                 BossType.Mouth => mouthMoveSpeed,
-                BossType.Hand => handMoveSpeed,
                 BossType.Foot => footMoveSpeed,
                 BossType.Heart => heartMoveSpeed,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
@@ -88,7 +81,6 @@ public class BossConfig : ScriptableObject
                 BossType.Eye => eyeHit,
                 BossType.Brain => brainHit,
                 BossType.Mouth => mouthHit,
-                BossType.Hand => handHit,
                 BossType.Foot => footHit,
                 BossType.Heart => heartHit,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)

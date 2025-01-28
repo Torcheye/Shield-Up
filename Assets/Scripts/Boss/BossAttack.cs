@@ -26,6 +26,12 @@ public class BossAttack : MonoBehaviour
     {
         CancelInvoke(nameof(DoAttack));
     }
+    
+    public void ResetAutoAttack()
+    {
+        CancelInvoke(nameof(DoAttack));
+        InvokeRepeating(nameof(DoAttack), normalAttackInterval, normalAttackInterval);
+    }
 
     private void DoAttack()
     {

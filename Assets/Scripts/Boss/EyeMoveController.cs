@@ -9,9 +9,6 @@ public class EyeMoveController : BossMoveController
     {
         base.Start();
         splineAnimate.MaxSpeed = moveSpeed;
-        
-        if (DoMove)
-            splineAnimate.Play();
     }
 
     private void Update()

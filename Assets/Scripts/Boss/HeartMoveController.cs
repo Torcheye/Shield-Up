@@ -6,16 +6,13 @@ public class HeartMoveController : BossMoveController
     
     private void Update()
     {
-        if (DoMove)
-        {
-            var playerPos = DataManager.Instance.playerTransform.position;
-            Vector2 target = transform.position;
-            target.y = playerPos.y > normalMoveBounds.center.y ? normalMoveBounds.min.y : normalMoveBounds.max.y;
-            target.x = playerPos.x > normalMoveBounds.center.x ? normalMoveBounds.min.x : normalMoveBounds.max.x;
-            if (!normalMoveBounds.Contains(transform.position))
-                target = normalMoveBounds.center;
-            transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-        }
+        var playerPos = DataManager.Instance.playerTransform.position;
+        Vector2 target = transform.position;
+        target.y = playerPos.y > normalMoveBounds.center.y ? normalMoveBounds.min.y : normalMoveBounds.max.y;
+        target.x = playerPos.x > normalMoveBounds.center.x ? normalMoveBounds.min.x : normalMoveBounds.max.x;
+        if (!normalMoveBounds.Contains(transform.position))
+            target = normalMoveBounds.center;
+        transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
     }
 
 #if UNITY_EDITOR

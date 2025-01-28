@@ -3,7 +3,6 @@
     Eye,
     Brain,
     Mouth,
-    Hand,
     Foot,
     Heart
 }

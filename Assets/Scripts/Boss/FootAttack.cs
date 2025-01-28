@@ -46,8 +46,26 @@ public class FootAttack : BossAttack
     {
         enhancedAttackTrigger.enabled = false;
         enhancedAttackTime = enhancedAttackPrepTime + enhancedAttackPerDuration * 3;
-        _loopAttackCoroutine = LoopAttack();
-        StartCoroutine(_loopAttackCoroutine);
+    }
+    
+    public void OnSetIsActive(bool isActive)
+    {
+        if (isActive)
+        {
+            if (_loopAttackCoroutine != null)
+                StopCoroutine(_loopAttackCoroutine);
+            _loopAttackCoroutine = LoopAttack();
+            StartCoroutine(_loopAttackCoroutine);
+        }
+        else
+        {
+            if (_loopAttackCoroutine != null)
+                StopCoroutine(_loopAttackCoroutine);
+            if (_normalAttackCoroutine != null)
+                StopCoroutine(_normalAttackCoroutine);
+            _generatedIndicators.ForEach(indicator => indicator.gameObject.SetActive(false));
+            _generatedIndicators.Clear();
+        }
     }
 
     public override void EnhancedAttack()
@@ -97,8 +115,13 @@ public class FootAttack : BossAttack
 
     private IEnumerator LoopAttack()
     {
-        while (moveController.DoMove)
+        while (gameObject.activeInHierarchy)
         {
+            if (!moveController.IsActive)
+            {
+                yield return null;
+                continue;
+            }
             _normalAttackCoroutine = DoAttack();
             yield return _normalAttackCoroutine;
             yield return new WaitForSeconds(normalAttackPostTime);

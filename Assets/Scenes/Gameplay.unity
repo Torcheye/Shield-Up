@@ -4381,6 +4381,8 @@ MonoBehaviour:
   healColorFadeDuration: 0.8
   bossInactiveColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   bossInactiveFillAmount: 0.85
+  bossRotationTime: 25
+  bossRotationOrderFTUE: 0000000002000000010000000300000004000000
   breakableGroundRegenTime: 10
   acidHurtInterval: 0.5
   acidDamage: 1
@@ -13633,7 +13635,6 @@ MonoBehaviour:
   - {fileID: 6585365270697935479}
   - {fileID: 3826871743393701304}
   - {fileID: 6916952236666780316}
-  startBoss: 3
   surroundingTarget: {fileID: 6916952236666780316}
   surroundingPivot: {fileID: 6713409262260790138}
   surroundingMoveSpeed: 8
@@ -16524,10 +16525,6 @@ PrefabInstance:
       propertyPath: _animationName
       value: idle
       objectReference: {fileID: 0}
-    - target: {fileID: 4782696734454762385, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1912177602}
     - target: {fileID: 6737299760182726091, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
       propertyPath: m_Target
       value: 
@@ -16536,10 +16533,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1912177602}
-    - target: {fileID: 8181074127829086781, guid: 2a3e72e1bf385dc4d8942950af83c481, type: 3}
-      propertyPath: normalAttackInterval
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16634,6 +16627,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1874683223}
     m_Modifications:
+    - target: {fileID: 3355925106484657640, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
+      propertyPath: switchYLine
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7269025714521206043, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -16644,11 +16641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339564842962991087, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8339564842962991087, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.94
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8339564842962991087, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
       propertyPath: m_LocalPosition.z

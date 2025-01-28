@@ -480,6 +480,7 @@ MonoBehaviour:
   normalAttackInterval: 2.5
   enhancedAttackTime: 1
   autoAttack: 1
+  skeletonAnimation: {fileID: 0}
   propelDuration: 1
   propelPower: 70
   propelRadius: 10
@@ -503,6 +504,7 @@ MonoBehaviour:
   normalMoveBounds:
     m_Center: {x: 0, y: 0.48, z: 0}
     m_Extent: {x: 11.78, y: 6, z: 0}
+  switchYLine: -2
 --- !u!1001 &3178273347653350184
 PrefabInstance:
   m_ObjectHideFlags: 0

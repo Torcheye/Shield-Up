@@ -46,6 +46,7 @@ public class MouthAttack : BossAttack
     
     private IEnumerator DoSuction()
     {
+        moveController.CanSetInactive = false;
         _isSucking = true;
         suctionParticles.Play();
         skeletonAnimation.AnimationState.SetAnimation(0, enhancedAnimation, true);
@@ -68,6 +69,7 @@ public class MouthAttack : BossAttack
             BulletFactory.Instance.SpawnBullet(acidBullet, transform.position, randomDir, true, transform);
             yield return new WaitForSeconds(burstInterval);
         }
+        moveController.CanSetInactive = true;
     }
 
     private void Update()

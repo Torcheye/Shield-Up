@@ -1,4 +1,5 @@
-﻿using Spine.Unity;
+﻿using System.Collections;
+using Spine.Unity;
 using UnityEngine;
 
 public class EyeAttack : BossAttack
@@ -24,7 +25,16 @@ public class EyeAttack : BossAttack
 
     public override void EnhancedAttack()
     {
+        StartCoroutine(DoEnhancedAttack());
+    }
+    
+    private IEnumerator DoEnhancedAttack()
+    {
+        moveController.CanSetInactive = true;
         BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, GetTargetDirection(), true, transform, DataManager.Instance.playerTransform);
+
+        yield return new WaitForSeconds(enhancedBullet.chargeSpawnTime);
+        moveController.CanSetInactive = true;
     }
 
     private void ShootBullet(Vector2 dir)

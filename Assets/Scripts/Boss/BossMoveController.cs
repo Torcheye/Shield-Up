@@ -14,6 +14,8 @@ public class BossMoveController : MonoBehaviour
         }
     }
 
+    public bool CanSetInactive { get; set; } = true;
+
     [SerializeField] private BossType bossType;
     public BossType Type => bossType;
     [SerializeField] private Renderer rend;

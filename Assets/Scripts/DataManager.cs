@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
@@ -35,6 +36,10 @@ public class DataManager : MonoBehaviour
     public float healColorFadeDuration;
     public Color bossInactiveColor = Color.black;
     public float bossInactiveFillAmount;
+
+    [Header("Boss Rotation")] 
+    public float bossRotationTime;
+    public List<BossType> bossRotationOrderFTUE;
     
     [Header("Environment")]
     public float breakableGroundRegenTime;

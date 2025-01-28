@@ -24,6 +24,8 @@ public class BrainAttack : BossAttack
     
     private IEnumerator DoAttack()
     {
+        moveController.CanSetInactive = false;
+
         for (int i = 0; i < normalBurstAmount; i++)
         {
             if (!moveController.IsActive)
@@ -41,6 +43,7 @@ public class BrainAttack : BossAttack
             
             yield return new WaitForSeconds(normalBurstInterval);
         }
+        moveController.CanSetInactive = true;
     }
     
     private IEnumerator BurstAttack(int amount, BulletConfig config, bool enhanced = false)
@@ -49,6 +52,7 @@ public class BrainAttack : BossAttack
         {
             skeletonAnimation.AnimationState.SetAnimation(0, enhancedAnimation, false);
             skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
+            moveController.CanSetInactive = false;
         }
         yield return new WaitForSeconds(enhanced ? enhancedShootPrepTime : 0);
         for (int i = 0; i < amount; i++)
@@ -57,6 +61,7 @@ public class BrainAttack : BossAttack
             var dir = Quaternion.Euler(0, 0, angle) * Vector3.up;
             BulletFactory.Instance.SpawnBullet(config, transform.position, dir, true, transform, DataManager.Instance.playerTransform);
         }
+        moveController.CanSetInactive = true;
     }
 
     public override void EnhancedAttack()

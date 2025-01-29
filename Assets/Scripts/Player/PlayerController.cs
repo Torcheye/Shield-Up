@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     
     private static readonly int JumpTrigger = Animator.StringToHash("Trigger Jump");
     private static readonly int DashTrigger = Animator.StringToHash("Trigger Dash");
+    private static readonly int IsRunningParam = Animator.StringToHash("Running");
     
     public void Teleport(Vector2 position)
     {
@@ -153,10 +154,14 @@ public class PlayerController : MonoBehaviour
         
         rb.linearVelocity = new Vector2(_velocity.x, rb.linearVelocity.y);
 
-        if (move.magnitude > 0)
+        bool isMoving = move.magnitude > 0;
+
+        if (isMoving)
         {
             playerTransform.localScale = new Vector3(move.x > 0 ? 1 : -1, 1, 1);
         }
+
+        animator.SetBool(IsRunningParam, isMoving);
     }
 
     private void Jump()

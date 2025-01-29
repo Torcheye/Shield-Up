@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 1614788e3e883804bb3904180881143d
+guid: af85095831bad774a8e805185910977b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 731806605160617493
-    second: potion_0
-  - first:
-      213: 8840016672301374354
-    second: potion_1
+      213: -8431940600483100144
+    second: platform30_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: potion_0
+      name: platform30_0
       rect:
         serializedVersion: 2
-        x: 156
-        y: 172
-        width: 240
-        height: 337
+        x: 0
+        y: 21
+        width: 50
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 51612e8ea36e72a00800000000000000
-      internalID: 731806605160617493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: potion_1
-      rect:
-        serializedVersion: 2
-        x: 474
-        y: 174
-        width: 240
-        height: 337
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 29bdd09b35c0eaa70800000000000000
-      internalID: 8840016672301374354
+      spriteID: 01ac20db2babbfa80800000000000000
+      internalID: -8431940600483100144
       vertices: []
       indices: 
       edges: []

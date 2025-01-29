@@ -41,16 +41,31 @@ public class FootAttack : BossAttack
     [Header("Animation")]
     [SerializeField, SpineAnimation] private string attackAnimation;
     [SerializeField, SpineAnimation] private string idleAnimation;
+    
+    [Header("Boost")]
+    [SerializeField] private float normalAttackBoostMultiplier = 0.5f;
 
     private readonly List<Vector2> _normalAttackPositions = new();
     private IEnumerator _normalAttackCoroutine;
     private IEnumerator _loopAttackCoroutine;
     private readonly List<DamageIndicator> _generatedIndicators = new();
+    private float _normalAttackBoostMultiplier;
 
     protected override void Start()
     {
         enhancedAttackTrigger.enabled = false;
         enhancedAttackTime = enhancedAttackPrepTime + enhancedAttackPerDuration * 3;
+        
+        _normalAttackBoostMultiplier = 1;
+        DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
+        {
+            _normalAttackBoostMultiplier = normalAttackBoostMultiplier;
+        });
+        
+        DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
+        {
+            _normalAttackBoostMultiplier = 1;
+        });
     }
     
     public void OnSetIsActive(bool isActive)
@@ -92,13 +107,13 @@ public class FootAttack : BossAttack
         {
             var flip = enhancedAttackStartPositions[i].x > 0 ? 1 : -1;
             var direction = new Vector2(flip, 0);
-            var warningTime = enhancedAttackPrepTime + enhancedAttackPerDuration * i;
+            var warningTime = (enhancedAttackPrepTime + enhancedAttackPerDuration * i) * _normalAttackBoostMultiplier;
             var pos = new Vector2(0, enhancedAttackStartPositions[i].y);
             var indicator = DamageIndicatorFactory.Instance.SpawnItem(pos).GetComponent<DamageIndicator>();
             indicator.InitializeLineNoDamage(warningTime, 0, direction, Mathf.Abs(enhancedAttackStartPositions[i].x * 2), enhancedAttackWidth);
         }
         
-        yield return new WaitForSeconds(enhancedAttackPrepTime);
+        yield return new WaitForSeconds(enhancedAttackPrepTime * _normalAttackBoostMultiplier);
 
         enhancedAttackTrigger.Initialize(enhancedAttackDamage, enhancedAttackHasEffect, enhancedAttackEffect, enhancedAttackEffectDuration, enhancedAttackWidth / 2);
         enhancedAttackTrigger.enabled = true;
@@ -109,8 +124,8 @@ public class FootAttack : BossAttack
             spriteTransform.localScale = new Vector3(flip, 1, 1);
             spriteTransform.localRotation = Quaternion.Euler(0, 0, -flip * 90);
             transform.position = enhancedAttackStartPositions[i];
-            transform.DOMoveX(-enhancedAttackStartPositions[i].x, enhancedAttackPerDuration);
-            yield return new WaitForSeconds(enhancedAttackPerDuration);
+            transform.DOMoveX(-enhancedAttackStartPositions[i].x, enhancedAttackPerDuration * _normalAttackBoostMultiplier);
+            yield return new WaitForSeconds(enhancedAttackPerDuration * _normalAttackBoostMultiplier);
         }
         
         _loopAttackCoroutine = LoopAttack();
@@ -131,7 +146,7 @@ public class FootAttack : BossAttack
             }
             _normalAttackCoroutine = DoAttack();
             yield return _normalAttackCoroutine;
-            yield return new WaitForSeconds(normalAttackPostTime);
+            yield return new WaitForSeconds(normalAttackPostTime * _normalAttackBoostMultiplier);
         }
     }
 
@@ -161,19 +176,19 @@ public class FootAttack : BossAttack
         for (var i = 0; i < _normalAttackPositions.Count; i++)
         {
             var pos = _normalAttackPositions[i];
-            var warningTime = normalAttackPerDuration * (i + 1) + normalAttackPrepTime;
+            var warningTime = (normalAttackPerDuration * (i + 1) + normalAttackPrepTime) * _normalAttackBoostMultiplier;
             var indicator = DamageIndicatorFactory.Instance.SpawnItem(pos).GetComponent<DamageIndicator>();
             _generatedIndicators.Add(indicator);
             indicator.InitializeCircle(true, warningTime, normalAttackDamageDuration, normalAttackRadius, normalAttackDamage, normalAttackHasEffect, normalAttackEffect, normalAttackEffectDuration);
         }
 
-        yield return new WaitForSeconds(normalAttackPrepTime);
+        yield return new WaitForSeconds(normalAttackPrepTime * _normalAttackBoostMultiplier);
         
         // move
         for (var i = 0; i < _normalAttackPositions.Count; i++)
         {
-            transform.DOJump(_normalAttackPositions[i], normalAttackJumpPower, 1, normalAttackPerDuration).SetEase(Ease.InExpo);
-            yield return new WaitForSeconds(normalAttackPerDuration);
+            transform.DOJump(_normalAttackPositions[i], normalAttackJumpPower, 1, normalAttackPerDuration* _normalAttackBoostMultiplier).SetEase(Ease.InExpo);
+            yield return new WaitForSeconds(normalAttackPerDuration * _normalAttackBoostMultiplier);
             
             // shoot in normal of direction
             BulletFactory.Instance.SpawnBullet(normalAttackBulletConfig, transform.position, new Vector2(direction.y, -direction.x), true, transform);

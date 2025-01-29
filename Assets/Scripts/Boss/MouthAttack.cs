@@ -23,9 +23,39 @@ public class MouthAttack : BossAttack
     [SerializeField, SpineAnimation] private string attackAnimation;
     [SerializeField, SpineAnimation] private string idleAnimation;
     [SerializeField, SpineAnimation] private string enhancedAnimation;
+    
+    [Header("Boost")]
+    [SerializeField] private float normalAttackBoostIntervalMultiplier;
+    [SerializeField] private int burstAmountBoost;
+    [SerializeField] private float burstIntervalBoostMult;
 
     private bool _isSucking;
     private float _suctionTimer;
+    private int _burstAmount;
+    private float _burstInterval;
+
+    protected override void Start()
+    {
+        base.Start();
+        
+        _burstAmount = burstAmount;
+        _burstInterval = burstInterval;
+        
+        DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
+        {
+            _normalAttackInterval = normalAttackInterval * normalAttackBoostIntervalMultiplier;
+            _burstAmount = burstAmount + burstAmountBoost;
+            _burstInterval = burstInterval * burstIntervalBoostMult;
+            ResetAutoAttack();
+        });
+        
+        DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
+        {
+            _normalAttackInterval = normalAttackInterval;
+            _burstAmount = burstAmount;
+            _burstInterval = burstInterval;
+        });
+    }
 
     public override void Attack()
     {
@@ -61,13 +91,13 @@ public class MouthAttack : BossAttack
     
     private IEnumerator ShootBulletBurst()
     {
-        for (int i = 0; i < burstAmount; i++)
+        for (int i = 0; i < _burstAmount; i++)
         {
-            var randomAngle = UnityEngine.Random.Range(-burstRandomAngle, burstRandomAngle);
+            var randomAngle = Random.Range(-burstRandomAngle, burstRandomAngle);
             Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector3.up * burstUpPower;
-            randomDir += new Vector2(UnityEngine.Random.Range(-burstRandomPower, burstRandomPower), UnityEngine.Random.Range(-burstRandomPower, burstRandomPower));
+            randomDir += new Vector2(Random.Range(-burstRandomPower, burstRandomPower), Random.Range(-burstRandomPower, burstRandomPower));
             BulletFactory.Instance.SpawnBullet(acidBullet, transform.position, randomDir, true, transform);
-            yield return new WaitForSeconds(burstInterval);
+            yield return new WaitForSeconds(_burstInterval);
         }
         moveController.CanSetInactive = true;
     }

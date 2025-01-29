@@ -15,31 +15,46 @@ public class BossAttack : MonoBehaviour
 
     private bool _loopNormalAttack = true;
     private bool _isDoingEnhancedAttack;
+    protected IEnumerator _doAttackCoroutine;
+    protected float _normalAttackInterval;
 
     protected virtual void Start()
     {
+        _normalAttackInterval = normalAttackInterval;
         if (autoAttack)
         {
-            InvokeRepeating(nameof(DoAttack), normalAttackInterval, normalAttackInterval);
+            _doAttackCoroutine = DoAttack();
+            StartCoroutine(_doAttackCoroutine);
         }
     }
     
     private void OnDisable()
     {
-        CancelInvoke(nameof(DoAttack));
+        StopAllCoroutines();
     }
     
     public void ResetAutoAttack()
     {
-        CancelInvoke(nameof(DoAttack));
-        InvokeRepeating(nameof(DoAttack), normalAttackInterval, normalAttackInterval);
+        if (_doAttackCoroutine != null)
+        {
+            StopCoroutine(_doAttackCoroutine);
+        }
+        if (autoAttack)
+        {
+            _doAttackCoroutine = DoAttack();
+            StartCoroutine(_doAttackCoroutine);
+        }
     }
 
-    private void DoAttack()
+    private IEnumerator DoAttack()
     {
-        if (_loopNormalAttack && moveController.IsActive)
+        while (gameObject.activeInHierarchy)
         {
-            Attack();
+            yield return new WaitForSeconds(_normalAttackInterval);
+            if (_loopNormalAttack && moveController.IsActive)
+            {
+                Attack();
+            }
         }
     }
     

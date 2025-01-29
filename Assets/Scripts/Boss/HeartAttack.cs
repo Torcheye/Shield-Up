@@ -21,8 +21,9 @@ public class HeartAttack : BossAttack
 
     public override void EnhancedAttack()
     {
+        DataManager.Instance.EnableBossAttackBoost();
     }
-
+    
     public override void Attack()
     {
         StartCoroutine(DoPropel());

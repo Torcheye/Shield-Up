@@ -21,4 +21,22 @@ public class BulletConfig : ScriptableObject
     public float chargeSpawnTime;
     public float gravity;
     public bool spawnAcidPool;
+    
+    // copy constructor
+    public BulletConfig(BulletConfig config)
+    {
+        speed = config.speed;
+        damage = config.damage;
+        size = config.size;
+        lifeTime = config.lifeTime;
+        sprite = config.sprite;
+        spiralSpeed = config.spiralSpeed;
+        hasEffect = config.hasEffect;
+        effect = config.effect;
+        effectDuration = config.effectDuration;
+        penetrating = config.penetrating;
+        chargeSpawnTime = config.chargeSpawnTime;
+        gravity = config.gravity;
+        spawnAcidPool = config.spawnAcidPool;
+    }
 }

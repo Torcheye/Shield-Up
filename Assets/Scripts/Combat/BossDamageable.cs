@@ -25,6 +25,21 @@ public class BossDamageable : Damageable
         maxHp = Hp;
         HitCount = 0;
         _maxHit = DataManager.Instance.bossConfig.GetBossHit(bossType);
+        
+        DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
+        {
+            if (!bossMoveController.IsActive)
+            {
+                meshRenderer.material.EnableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
+                meshRenderer.material.EnableKeyword("COLORRAMP_ON");
+            }
+        });
+        
+        DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
+        {
+            meshRenderer.material.DisableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
+            meshRenderer.material.DisableKeyword("COLORRAMP_ON");
+        });
     }
 
     private void LateUpdate()

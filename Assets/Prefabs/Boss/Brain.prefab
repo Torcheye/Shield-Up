@@ -123,6 +123,9 @@ MonoBehaviour:
   attackAnimation: attack
   idleAnimation: idle
   enhancedAnimation: enhanced
+  normalBurstIntervalBoostMult: 0.5
+  normalBulletAmountBoost: 5
+  normalBurstAmountBoost: 1
 --- !u!1 &7171785404526581852
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    private static readonly int FillPhase = Shader.PropertyToID("_FillPhase");
-    private static readonly int FillColor = Shader.PropertyToID("_FillColor");
+    private static readonly int HitEffectBlend = Shader.PropertyToID("_HitEffectBlend");
+    private static readonly int HitEffectColor = Shader.PropertyToID("_HitEffectColor");
     public int Hp { get; protected set; }
     
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] protected MeshRenderer meshRenderer;
     [SerializeField] private StatusEffect statusEffect;
     
     protected bool isPlayer;
@@ -95,14 +95,12 @@ public class Damageable : MonoBehaviour
             yield break;
         }
         
-        meshRenderer.material.SetColor(FillColor, color);
-        meshRenderer.material.SetFloat(FillPhase, 1);
-        _damageColorFlashValue = 1;
+        meshRenderer.material.SetColor(HitEffectColor, color);
+        meshRenderer.material.SetFloat(HitEffectBlend, 1);
         yield return new WaitForSeconds(lastDuration);
-        DOTween.To(() => _damageColorFlashValue, x => _damageColorFlashValue = x, 0, fadeDuration)
-            .SetEase(Ease.OutBounce)
-            .OnUpdate(() => meshRenderer.material.SetFloat(FillPhase, _damageColorFlashValue));
-        yield return new WaitForSeconds(fadeDuration);
-        meshRenderer.material.SetFloat(FillPhase, 0);
+        
+        _damageColorTween = DOTween.To(value => meshRenderer.material.SetFloat(HitEffectBlend, value), 
+            1, 0, fadeDuration).SetEase(Ease.OutBounce);
+        meshRenderer.material.SetFloat(HitEffectBlend, 0);
     }
 }

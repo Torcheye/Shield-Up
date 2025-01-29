@@ -17,7 +17,42 @@ public class BrainAttack : BossAttack
     [SerializeField, SpineAnimation] private string idleAnimation;
     [SerializeField, SpineAnimation] private string enhancedAnimation;
 
-    public override void Attack()
+    [Header("Boost")] 
+    [SerializeField] private float normalBurstIntervalBoostMult;
+    [SerializeField] private int normalBulletAmountBoost;
+    [SerializeField] private int normalBurstAmountBoost;
+    
+    private float _normalBurstInterval;
+    private int _normalBulletAmount;
+    private int _normalBurstAmount;
+
+    protected override void Start()
+    {
+        base.Start();
+        
+        _normalBurstInterval = normalBurstInterval;
+        _normalBulletAmount = normalBulletAmount;
+        _normalBurstAmount = normalBurstAmount;
+        
+        DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
+        {
+            _normalBurstInterval = normalBurstInterval * normalBurstIntervalBoostMult;
+            _normalBulletAmount = normalBulletAmount + normalBulletAmountBoost;
+            _normalBurstAmount = normalBurstAmount + normalBurstAmountBoost;
+            
+            StopAllCoroutines();
+            StartCoroutine(DoAttack());
+        });
+        
+        DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
+        {
+            _normalBurstInterval = normalBurstInterval;
+            _normalBulletAmount = normalBulletAmount;
+            _normalBurstAmount = normalBurstAmount;
+        });
+    }
+
+    public override void Attack()        
     {
         StartCoroutine(DoAttack());
     }
@@ -26,22 +61,22 @@ public class BrainAttack : BossAttack
     {
         moveController.CanSetInactive = false;
 
-        for (int i = 0; i < normalBurstAmount; i++)
+        for (int i = 0; i < _normalBurstAmount; i++)
         {
             if (!moveController.IsActive)
             {
                 yield break;
             }
 
-            StartCoroutine(BurstAttack(normalBulletAmount, normalBullet));
+            StartCoroutine(BurstAttack(_normalBulletAmount, normalBullet));
             
             skeletonAnimation.AnimationState.SetAnimation(0, attackAnimation, false);
-            if (i == normalBurstAmount - 1)
+            if (i == _normalBurstAmount - 1)
             {
                 skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
             }
             
-            yield return new WaitForSeconds(normalBurstInterval);
+            yield return new WaitForSeconds(_normalBurstInterval);
         }
         moveController.CanSetInactive = true;
     }

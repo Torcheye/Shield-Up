@@ -23,9 +23,6 @@ public class BossMoveController : MonoBehaviour
     
     protected float moveSpeed;
     private bool _isActive;
-    
-    private static readonly int FillPhase = Shader.PropertyToID("_FillPhase");
-    private static readonly int FillColor = Shader.PropertyToID("_FillColor");
 
     protected virtual void Start()
     {
@@ -41,8 +38,14 @@ public class BossMoveController : MonoBehaviour
 
     protected virtual void OnSetIsActive()
     {
-        rend.material.SetColor(FillColor, IsActive ? Color.white : DataManager.Instance.bossInactiveColor);
-        rend.material.SetFloat(FillPhase, IsActive ? 0 : DataManager.Instance.bossInactiveFillAmount);
+        if (!IsActive)
+        {
+            rend.material.EnableKeyword("GHOST_ON");
+        }
+        else
+        {
+            rend.material.DisableKeyword("GHOST_ON");
+        }
         rend.sortingLayerName = IsActive ? "Enemy" : "Background";
         DoMove = IsActive;
         bossHpBar.gameObject.SetActive(IsActive);

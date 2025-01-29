@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 197598924683689743}
-  normalAttackInterval: 1.5
+  normalAttackInterval: 1.7
   enhancedAttackTime: 5
   autoAttack: 1
   skeletonAnimation: {fileID: 3765271623478448755}
@@ -329,6 +329,7 @@ MonoBehaviour:
   enhancedBullet: {fileID: 11400000, guid: d4f1a72854b821349bc4058e4ec384de, type: 2}
   attackAnimation: attack
   idleAnimation: idle
+  normalAttackBoostIntervalMultiplier: 0.5
 --- !u!1001 &1527481872122828198
 PrefabInstance:
   m_ObjectHideFlags: 0

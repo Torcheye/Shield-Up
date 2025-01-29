@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DataManager : MonoBehaviour
 {
@@ -50,6 +53,7 @@ public class DataManager : MonoBehaviour
     public float slowEffectMultiplier;
     public float hitStopDuration;
     public float hitStopTimeScale;
+    public float bossAttackBoostTime;
     
     private void Awake()
     {
@@ -61,5 +65,32 @@ public class DataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    
+    public UnityEvent OnBossAttackBoostEnable { get; private set; }
+    public UnityEvent OnBossAttackBoostDisable { get; private set; }
+
+    private void OnEnable()
+    {
+        OnBossAttackBoostEnable = new UnityEvent();
+        OnBossAttackBoostDisable = new UnityEvent();
+    }
+
+    private void OnDisable()
+    {
+        OnBossAttackBoostEnable.RemoveAllListeners();
+        OnBossAttackBoostDisable.RemoveAllListeners();
+    }
+
+    public void EnableBossAttackBoost()
+    {
+        StartCoroutine(DoDisableBossAttackBoost());
+    }
+
+    private IEnumerator DoDisableBossAttackBoost()
+    {
+        OnBossAttackBoostEnable.Invoke();
+        yield return new WaitForSeconds(bossAttackBoostTime);
+        OnBossAttackBoostDisable.Invoke();
     }
 }

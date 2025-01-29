@@ -308,6 +308,7 @@ MonoBehaviour:
   enhancedAttackTrigger: {fileID: 4828712023671480439}
   attackAnimation: attack
   idleAnimation: idle
+  normalAttackBoostMultiplier: 0.65
 --- !u!114 &1288320249470007498
 MonoBehaviour:
   m_ObjectHideFlags: 0

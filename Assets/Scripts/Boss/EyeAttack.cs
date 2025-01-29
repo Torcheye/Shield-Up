@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Spine.Unity;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EyeAttack : BossAttack
 {
@@ -12,6 +13,25 @@ public class EyeAttack : BossAttack
     [Header("Animation")]
     [SerializeField, SpineAnimation] private string attackAnimation;
     [SerializeField, SpineAnimation] private string idleAnimation;
+    
+    [Header("Boost")]
+    [SerializeField] private float normalAttackBoostIntervalMultiplier;
+
+    protected override void Start()
+    {
+        base.Start();
+        
+        DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
+        {
+            _normalAttackInterval = normalAttackInterval * normalAttackBoostIntervalMultiplier;
+            ResetAutoAttack();
+        });
+        
+        DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
+        {
+            _normalAttackInterval = normalAttackInterval;
+        });
+    }
 
     public override void Attack()
     {
@@ -27,7 +47,7 @@ public class EyeAttack : BossAttack
     {
         StartCoroutine(DoEnhancedAttack());
     }
-    
+
     private IEnumerator DoEnhancedAttack()
     {
         moveController.CanSetInactive = true;

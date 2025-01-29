@@ -96,6 +96,7 @@ public class Damageable : MonoBehaviour
         }
         
         meshRenderer.material.SetColor(FillColor, color);
+        meshRenderer.material.SetFloat(FillPhase, 1);
         _damageColorFlashValue = 1;
         yield return new WaitForSeconds(lastDuration);
         DOTween.To(() => _damageColorFlashValue, x => _damageColorFlashValue = x, 0, fadeDuration)

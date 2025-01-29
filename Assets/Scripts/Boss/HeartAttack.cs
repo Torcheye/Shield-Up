@@ -9,6 +9,7 @@ public class HeartAttack : BossAttack
     [SerializeField] private float propelRadius;
     [SerializeField] private ObjectRangeTrigger propulsionTrigger;
     [SerializeField] private SpriteRenderer propulsionSprite;
+    [SerializeField] private BossStateManager bossStateManager;
     
     private float _propulsionSpriteStartAlpha;
 
@@ -18,6 +19,10 @@ public class HeartAttack : BossAttack
         propulsionTrigger.gameObject.SetActive(false);
     }
 
+    public override void EnhancedAttack()
+    {
+    }
+
     public override void Attack()
     {
         StartCoroutine(DoPropel());
@@ -25,12 +30,17 @@ public class HeartAttack : BossAttack
 
     private IEnumerator DoPropel()
     {
-        propulsionTrigger.gameObject.SetActive(true);
-        propulsionSprite.DOFade(_propulsionSpriteStartAlpha, 0);
-        propulsionTrigger.transform.localScale = Vector3.zero;
-        propulsionTrigger.transform.DOScale(Vector3.one * propelRadius, propelDuration);
-        propulsionSprite.DOFade(0, propelDuration);
+        if (moveController.DoMove)
+        {
+            propulsionTrigger.gameObject.SetActive(true);
+            propulsionSprite.DOFade(_propulsionSpriteStartAlpha, 0);
+            propulsionTrigger.transform.localScale = Vector3.zero;
+            propulsionTrigger.transform.DOScale(Vector3.one * propelRadius, propelDuration);
+            propulsionSprite.DOFade(0, propelDuration);
+        }
+        
         yield return new WaitForSeconds(propelDuration);
+        
         propulsionTrigger.transform.localScale = Vector3.zero;
         propulsionTrigger.gameObject.SetActive(false);
     }

@@ -37,6 +37,11 @@ public class BossDamageable : Damageable
 
     protected override bool TryTakeDamage()
     {
+        if (bossType == BossType.Heart)
+        {
+            var heartMoveController = bossMoveController as HeartMoveController;
+            return heartMoveController != null && heartMoveController.CanTakeDamage();
+        }
         return bossMoveController.IsActive;
     }
 
@@ -58,6 +63,21 @@ public class BossDamageable : Damageable
                 HitCount = 0;
                 _enhancedAttackTimer = bossAttack.EnhancedAttackTime;
             }
+        }
+    }
+
+    protected override void Die()
+    {
+        if (BossType == BossType.Heart)
+        {
+            var heartMoveController = bossMoveController as HeartMoveController;
+            if (heartMoveController != null) 
+                heartMoveController.OnHpIsZero();
+        }
+        else
+        {
+            bossMoveController.IsActive = false;
+            gameObject.SetActive(false);
         }
     }
 }

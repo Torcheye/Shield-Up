@@ -106,9 +106,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1883250403
   m_SortingLayer: 1
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -477,15 +477,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 3355925106484657640}
-  normalAttackInterval: 2.5
+  normalAttackInterval: 3.5
   enhancedAttackTime: 1
   autoAttack: 1
   skeletonAnimation: {fileID: 0}
-  propelDuration: 1
-  propelPower: 70
-  propelRadius: 10
+  propelDuration: 1.5
+  propelPower: 60
+  propelRadius: 9
   propulsionTrigger: {fileID: 7883473449539714718}
   propulsionSprite: {fileID: 1245540049456338562}
+  bossStateManager: {fileID: 0}
 --- !u!114 &3355925106484657640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +506,11 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0.48, z: 0}
     m_Extent: {x: 11.78, y: 6, z: 0}
   switchYLine: -2
+  regenCount: 0
+  regenInterval: 0.7
+  postRegenTime: 1
+  bossDamageable: {fileID: 7585994462390322509}
+  bossStateManager: {fileID: 0}
 --- !u!1001 &3178273347653350184
 PrefabInstance:
   m_ObjectHideFlags: 0

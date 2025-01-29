@@ -15,9 +15,9 @@ MonoBehaviour:
   baseHp: 50
   baseMoveSpeed: 1
   baseHit: 3
-  hpOverrides: 000000000000
-  moveSpeedOverrides: 000000000001
-  hitOverrides: 000000000000
+  hpOverrides: 0000000001
+  moveSpeedOverrides: 0000000001
+  hitOverrides: 0000000000
   eyeHp: 0
   eyeMoveSpeed: 0
   eyeHit: 0
@@ -27,12 +27,9 @@ MonoBehaviour:
   mouthHp: 0
   mouthMoveSpeed: 0
   mouthHit: 0
-  handHp: 0
-  handMoveSpeed: 0
-  handHit: 0
   footHp: 0
   footMoveSpeed: 0
   footHit: 0
-  heartHp: 0
+  heartHp: 5
   heartMoveSpeed: 0.65
   heartHit: 0

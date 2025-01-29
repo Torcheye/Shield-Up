@@ -4373,17 +4373,17 @@ MonoBehaviour:
   weaponsConfig: {fileID: 11400000, guid: adc6f4a23a8f4214dbcbbc5d1313f3b1, type: 2}
   bossConfig: {fileID: 11400000, guid: 1d6a6a9b141d5354ab08acffa2afba01, type: 2}
   damageColor: {r: 1, g: 0.9532509, b: 0, a: 1}
-  damageColorLastDuration: 0.15
-  damageColorFadeDuration: 0.25
-  damageCooldown: 0.15
+  damageColorLastDuration: 0.1
+  damageColorFadeDuration: 0.3
+  damageCooldown: 0.2
   healColor: {r: 0, g: 1, b: 0, a: 1}
-  healColorLastDuration: 0.3
-  healColorFadeDuration: 0.8
+  healColorLastDuration: 0.1
+  healColorFadeDuration: 0.5
   bossInactiveColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   bossInactiveFillAmount: 0.85
-  bossRotationTime: 25
-  bossRotationOrderFTUE: 0000000002000000010000000300000004000000
-  breakableGroundRegenTime: 10
+  bossRotationTime: 10
+  bossRotationOrderFTUE: 00000000020000000100000003000000
+  breakableGroundRegenTime: 25
   acidHurtInterval: 0.5
   acidDamage: 1
   slowEffectMultiplier: 0.5
@@ -11458,7 +11458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1342466996372133429, guid: f857f716454773d408e591f0aacb34e9, type: 3}
   bulletParent: {fileID: 1548053510}
-  maxBulletCount: 100
+  maxBulletCount: 200
 --- !u!4 &1548053510
 Transform:
   m_ObjectHideFlags: 0
@@ -13629,13 +13629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f187597d2d4e1da7cdcce87d4e1c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bosses:
+  aliveBosses:
   - {fileID: 654397738}
   - {fileID: 9056380594928375198}
   - {fileID: 6585365270697935479}
   - {fileID: 3826871743393701304}
-  - {fileID: 6916952236666780316}
-  surroundingTarget: {fileID: 6916952236666780316}
+  heart: {fileID: 6916952236666780316}
   surroundingPivot: {fileID: 6713409262260790138}
   surroundingMoveSpeed: 8
   surroundingRadius: 2.5
@@ -16558,6 +16557,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6689278359055738466, guid: 9a76f7ac405048b45b09c12d10c2f463, type: 3}
+      propertyPath: normalAttackBounds.m_Extent.x
+      value: 11.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689278359055738466, guid: 9a76f7ac405048b45b09c12d10c2f463, type: 3}
+      propertyPath: normalAttackBounds.m_Extent.y
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7181566584578017612, guid: 9a76f7ac405048b45b09c12d10c2f463, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.13
@@ -16628,9 +16635,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1874683223}
     m_Modifications:
     - target: {fileID: 3355925106484657640, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
+      propertyPath: regenCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355925106484657640, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
       propertyPath: switchYLine
       value: -2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3355925106484657640, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
+      propertyPath: bossStateManager
+      value: 
+      objectReference: {fileID: 1874683224}
     - target: {fileID: 7269025714521206043, guid: 31a98808f0f04fa46a285b267d0cc69a, type: 3}
       propertyPath: m_Mesh
       value: 

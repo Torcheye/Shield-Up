@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Sirenix.OdinInspector;
+using System.Linq;
 using UnityEngine;
 
 public class BossStateManager : MonoBehaviour
 {
-    public List<BossMoveController> bosses;
+    public List<BossMoveController> aliveBosses;
     
     [Header("Surrounding Movement")]
-    [SerializeField] private BossMoveController surroundingTarget;
+    [SerializeField] private BossMoveController heart;
     [SerializeField] private Transform surroundingPivot;
     [SerializeField] private float surroundingMoveSpeed;
     [SerializeField] private float surroundingRadius;
@@ -15,21 +15,36 @@ public class BossStateManager : MonoBehaviour
 
     private float _bossRotationTimer = 0;
     private int _nextBossRotationIndex = 0;
+    private int _nextBossActiveCount = 1;
+    private bool _enableRotationTimer = true;
     
     private void Start()
     {
         _surroundingBosses.Clear();
-        SetBossActive(DataManager.Instance.bossRotationOrderFTUE[_nextBossRotationIndex]);
+        SetBossActive(new List<BossType>() { DataManager.Instance.bossRotationOrderFTUE[0] });
         _nextBossRotationIndex++;
     }
     
-    [Button]
-    public void SetBossActive(BossType activeBoss)
+    public void IncreaseNextBossActiveCountAndResetTimer()
     {
-        Debug.Log($"Set boss active: {activeBoss}");
-        foreach (var boss in bosses)
+        if (_nextBossActiveCount < aliveBosses.Count)
+            _nextBossActiveCount++;
+        _enableRotationTimer = false;
+        _bossRotationTimer = 0;
+        SetBossActive(new List<BossType>());
+    }
+
+    public void ResumeBossRotation()
+    {
+        _enableRotationTimer = true;
+        _bossRotationTimer = DataManager.Instance.bossRotationTime;
+    }
+    
+    private void SetBossActive(IList<BossType> activeBosses)
+    {
+        foreach (var boss in aliveBosses)
         {
-            if (boss.Type == activeBoss)
+            if (activeBosses.Contains(boss.Type))
             {
                 boss.IsActive = true;
                 RemoveFromSurroundingBosses(boss);
@@ -37,18 +52,43 @@ public class BossStateManager : MonoBehaviour
             else
             {
                 boss.IsActive = false;
-                if (boss != surroundingTarget)
-                {
-                    AddToSurroundingBosses(boss);
-                }
+                AddToSurroundingBosses(boss);
             }
         }
+    }
+
+    private IList<BossType> GetNextRotationBosses()
+    {
+        var activeBosses = aliveBosses.FindAll(boss => boss.IsActive).Select(boss => boss.Type).ToList();
+        var inactiveBosses = aliveBosses.FindAll(boss => !boss.IsActive).Select(boss => boss.Type).ToList();
+        var nextBosses = new List<BossType>();
+
+        for (int i = 0; i < _nextBossActiveCount; i++)
+        {
+            if (inactiveBosses.Count > 0)
+            {
+                var nextBoss = inactiveBosses[Random.Range(0, inactiveBosses.Count)];
+                nextBosses.Add(nextBoss);
+                inactiveBosses.Remove(nextBoss);
+            }
+            else
+            {
+                var nextBoss = activeBosses[Random.Range(0, activeBosses.Count)];
+                nextBosses.Add(nextBoss);
+                activeBosses.Remove(nextBoss);
+            }
+        }
+        
+        return nextBosses;
     }
 
     private void Update()
     {
         surroundingPivot.Rotate(0, 0, surroundingMoveSpeed * Time.deltaTime);
         UpdateSurroundingBossPositions();
+
+        if (!_enableRotationTimer)
+            return;
         
         if (_bossRotationTimer < DataManager.Instance.bossRotationTime)
         {
@@ -56,35 +96,33 @@ public class BossStateManager : MonoBehaviour
         }
         else
         {
-            var currentActiveBoss = bosses.Find(boss => boss.IsActive);
-            var canSetInactive = currentActiveBoss.CanSetInactive;
-            var nextBossType = DataManager.Instance.bossRotationOrderFTUE[_nextBossRotationIndex];
-            if (canSetInactive)
+            if (_nextBossActiveCount == 1)
             {
-                SetBossActive(nextBossType);
-                _bossRotationTimer = 0;
+                var nextBossType = DataManager.Instance.bossRotationOrderFTUE[_nextBossRotationIndex];
+                SetBossActive(new List<BossType> { nextBossType });
                 _nextBossRotationIndex = (_nextBossRotationIndex + 1) % DataManager.Instance.bossRotationOrderFTUE.Count;
             }
+            else
+            {
+                SetBossActive(GetNextRotationBosses());
+            }
+            _bossRotationTimer = 0;
         }
     }
 
     private void AddToSurroundingBosses(BossMoveController boss)
     {
         if (_surroundingBosses.Contains(boss))
-        {
-            Debug.Log($"{boss} is already in surrounding bosses");
             return;
-        }
+        
         _surroundingBosses.Add(boss);
     }
     
     private void RemoveFromSurroundingBosses(BossMoveController boss)
     {
         if (!_surroundingBosses.Contains(boss))
-        {
-            Debug.Log($"{boss} is not in surrounding bosses");
             return;
-        }
+        
         _surroundingBosses.Remove(boss);
         boss.transform.SetParent(null);
     }

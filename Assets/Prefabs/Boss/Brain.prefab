@@ -118,7 +118,7 @@ MonoBehaviour:
   normalBulletAmount: 5
   normalBurstAmount: 5
   normalBurstInterval: 0.9
-  enhancedShootAmount: 14
+  enhancedShootAmount: 16
   enhancedShootPrepTime: 0.5
   attackAnimation: attack
   idleAnimation: idle

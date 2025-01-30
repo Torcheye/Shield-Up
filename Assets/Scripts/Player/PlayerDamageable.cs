@@ -27,10 +27,10 @@ public class PlayerDamageable : Damageable
     protected override void OnTakeDamage(int dmg)
     {
         UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
-        StartCoroutine(FlashDamageColorPlayer());
+        StartCoroutine(FlashDamageColorPlayer(dmg > 0));
     }
     
-    private IEnumerator FlashDamageColorPlayer()
+    private IEnumerator FlashDamageColorPlayer(bool hasDamage)
     {
         if (_damageColorTween != null && _damageColorTween.IsActive())
         {
@@ -42,10 +42,13 @@ public class PlayerDamageable : Damageable
             1, 0, damageColorFlashDuration).SetEase(Ease.OutBounce);
 
         // hit stop
-        Time.timeScale = DataManager.Instance.hitStopTimeScale;
-        impulseSource.GenerateImpulse();
-        yield return new WaitForSecondsRealtime(DataManager.Instance.hitStopDuration);
-        Time.timeScale = 1;
+        if (hasDamage)
+        {
+            Time.timeScale = DataManager.Instance.hitStopTimeScale;
+            impulseSource.GenerateImpulse();
+            yield return new WaitForSecondsRealtime(DataManager.Instance.hitStopDuration);
+            Time.timeScale = 1;
+        }
         
         yield return new WaitForSeconds(damageColorFlashDuration);
         spriteRenderer.material.SetFloat(HitEffectBlend, 0);

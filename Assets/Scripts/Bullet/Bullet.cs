@@ -182,29 +182,22 @@ public class Bullet : MonoBehaviour
                 // randomize direction a bit
                 var randomAngle = UnityEngine.Random.Range(-shieldDeflectAngle, shieldDeflectAngle);
                 direction = Quaternion.Euler(0, 0, randomAngle) * direction;
-                Direction = direction;
+
+                if (!shield.IsHostile)
+                {
+                    BulletFactory.Instance.SpawnBullet(DataManager.Instance.deflectBullet, transform.position, direction, !IsHostile, DataManager.Instance.playerTransform);
+                }
+                else
+                {
+                    BulletFactory.Instance.SpawnBullet(DataManager.Instance.normalBullet, transform.position, direction, IsHostile, Source);
+                }
             }
             else
             {
-                Direction = -Direction;
                 Debug.LogError("Bullet source is null");
             }
             
-            rb.gravityScale = 0;
-            _spiralSpeed = 0;
-            _spiralRadius = 0;
-
-            if (shield.IsHostile)
-            {
-                IsHostile = true;
-                spriteRenderer.sprite = _sprite;
-            }
-            else
-            {
-                IsHostile = false;
-                spriteRenderer.sprite = friendlySprite;
-                Source = DataManager.Instance.playerTransform;
-            }
+            BulletFactory.Instance.DestroyBullet(this);
         }
 
         if (other.CompareTag("Potion"))

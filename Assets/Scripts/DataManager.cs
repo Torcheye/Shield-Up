@@ -28,6 +28,8 @@ public class DataManager : MonoBehaviour
     [Header("Config")]
     public WeaponsConfig weaponsConfig;
     public BossConfig bossConfig;
+    public BulletConfig deflectBullet;
+    public BulletConfig normalBullet;
     
     [Header("Combat")]
     public Color damageColor = Color.yellow;

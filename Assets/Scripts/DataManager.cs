@@ -24,6 +24,8 @@ public class DataManager : MonoBehaviour
     public int playerXp = 0;
     public int xpToNextLevel = 3;
     public Transform playerTransform;
+    public Color playerHitColor = Color.red;
+    public float playerVignetteLastDuration;
     
     [Header("Config")]
     public WeaponsConfig weaponsConfig;
@@ -39,8 +41,6 @@ public class DataManager : MonoBehaviour
     public Color healColor = Color.green;
     public float healColorLastDuration;
     public float healColorFadeDuration;
-    public Color bossInactiveColor = Color.black;
-    public float bossInactiveFillAmount;
 
     [Header("Boss Rotation")] 
     public float bossRotationTime;

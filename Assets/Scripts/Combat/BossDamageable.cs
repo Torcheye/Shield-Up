@@ -30,15 +30,15 @@ public class BossDamageable : Damageable
         {
             if (!bossMoveController.IsActive)
             {
-                meshRenderer.material.EnableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
-                meshRenderer.material.EnableKeyword("COLORRAMP_ON");
+                rend.material.EnableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
+                rend.material.EnableKeyword("COLORRAMP_ON");
             }
         });
         
         DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
         {
-            meshRenderer.material.DisableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
-            meshRenderer.material.DisableKeyword("COLORRAMP_ON");
+            rend.material.DisableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
+            rend.material.DisableKeyword("COLORRAMP_ON");
         });
     }
 

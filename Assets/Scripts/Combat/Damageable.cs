@@ -8,7 +8,7 @@ public class Damageable : MonoBehaviour
     private static readonly int HitEffectColor = Shader.PropertyToID("_HitEffectColor");
     public int Hp { get; protected set; }
     
-    [SerializeField] protected MeshRenderer meshRenderer;
+    [SerializeField] protected Renderer rend;
     [SerializeField] private StatusEffect statusEffect;
     
     protected bool isPlayer;
@@ -90,17 +90,17 @@ public class Damageable : MonoBehaviour
             _damageColorTween.Kill();
         }
         
-        if (meshRenderer == null)
+        if (rend == null)
         {
             yield break;
         }
         
-        meshRenderer.material.SetColor(HitEffectColor, color);
-        meshRenderer.material.SetFloat(HitEffectBlend, 1);
+        rend.material.SetColor(HitEffectColor, color);
+        rend.material.SetFloat(HitEffectBlend, 1);
         yield return new WaitForSeconds(lastDuration);
         
-        _damageColorTween = DOTween.To(value => meshRenderer.material.SetFloat(HitEffectBlend, value), 
+        _damageColorTween = DOTween.To(value => rend.material.SetFloat(HitEffectBlend, value), 
             1, 0, fadeDuration).SetEase(Ease.OutBounce);
-        meshRenderer.material.SetFloat(HitEffectBlend, 0);
+        rend.material.SetFloat(HitEffectBlend, 0);
     }
 }

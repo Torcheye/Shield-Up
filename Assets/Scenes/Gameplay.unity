@@ -4436,6 +4436,8 @@ MonoBehaviour:
   playerXp: 0
   xpToNextLevel: 3
   playerTransform: {fileID: 1912177602}
+  playerHitColor: {r: 1, g: 0, b: 0, a: 1}
+  playerVignetteLastDuration: 0.8
   weaponsConfig: {fileID: 11400000, guid: adc6f4a23a8f4214dbcbbc5d1313f3b1, type: 2}
   bossConfig: {fileID: 11400000, guid: 1d6a6a9b141d5354ab08acffa2afba01, type: 2}
   deflectBullet: {fileID: 11400000, guid: 2ed931121c082b747b7c5fa2e4107542, type: 2}
@@ -4447,8 +4449,6 @@ MonoBehaviour:
   healColor: {r: 0, g: 1, b: 0, a: 1}
   healColorLastDuration: 0.1
   healColorFadeDuration: 0.5
-  bossInactiveColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
-  bossInactiveFillAmount: 0.85
   bossRotationTime: 45
   bossRotationOrderFTUE: 00000000010000000200000003000000
   breakableGroundRegenTime: 10
@@ -17514,7 +17514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: startWeaponType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: playerDamageable
@@ -18092,6 +18092,10 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6450813105848954791, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
+      propertyPath: hitVolume
+      value: 
+      objectReference: {fileID: 1898244731}
     - target: {fileID: 7026836218159246789, guid: e868d5ece21985d43ba0228907bfc060, type: 3}
       propertyPath: ringController
       value: 

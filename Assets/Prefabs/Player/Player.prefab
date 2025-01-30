@@ -161,11 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3d543aafdd43b39977a46566a1ea73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
+  rend: {fileID: 4189885324897526226}
   statusEffect: {fileID: 2766412645251340437}
   spriteRenderer: {fileID: 4189885324897526226}
   damageColorFlashDuration: 0.5
   impulseSource: {fileID: 737443334347756222}
+  hitVolume: {fileID: 0}
 --- !u!58 &8836077323209592249
 CircleCollider2D:
   m_ObjectHideFlags: 0

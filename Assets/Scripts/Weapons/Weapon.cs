@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     protected PlayerDamageable playerDamageable;
     protected Vector2Int slotIndex;
     
+    [SerializeField] private TrailRenderer trailRenderer;
+    
     public void Initialize(bool isHostile, WeaponType type, RingController rc, PlayerDamageable pd, Vector2Int slotIndex)
     {
         ringController = rc;
@@ -24,5 +26,10 @@ public class Weapon : MonoBehaviour
     private void LateUpdate()
     {
         transform.rotation = Quaternion.identity;
+    }
+    
+    public void ClearTrail()
+    {
+        trailRenderer.Clear();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HeartMoveController : BossMoveController
@@ -18,7 +17,6 @@ public class HeartMoveController : BossMoveController
     [SerializeField] private int regenCount;
     [SerializeField] private float regenInterval;
     [SerializeField] private float postRegenTime;
-    [SerializeField] private Damageable bossDamageable;
     [SerializeField] private BossStateManager bossStateManager;
 
     private Vector2 _target;

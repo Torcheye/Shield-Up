@@ -18,6 +18,14 @@ public class RingController : MonoBehaviour
 
     [ShowInInspector] private Dictionary<Vector2Int, Weapon> _weapons;
     
+    public void DisableAllWeaponTrails()
+    {
+        foreach (var weapon in _weapons)
+        {
+            weapon.Value.ClearTrail();
+        }
+    }
+    
     public void GetWeapon(Vector2Int slotIndex, out WeaponType type, out int level)
     {
         if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)

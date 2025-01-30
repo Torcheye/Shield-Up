@@ -13590,8 +13590,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoundingShape2D: {fileID: 93323921}
-  Damping: 5
-  SlowingDistance: 5
+  Damping: 2.39
+  SlowingDistance: 2
   OversizeWindow:
     Enabled: 0
     MaxWindowSize: 0
@@ -17514,7 +17514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: startWeaponType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: playerDamageable

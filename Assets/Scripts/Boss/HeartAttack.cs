@@ -11,12 +11,31 @@ public class HeartAttack : BossAttack
     [SerializeField] private SpriteRenderer propulsionSprite;
     [SerializeField] private BossStateManager bossStateManager;
     
+    [Header("Boost")]
+    [SerializeField] private float normalAttackBoostIntervalMultiplier;
+    
     private float _propulsionSpriteStartAlpha;
 
     private void Awake()
     {
         _propulsionSpriteStartAlpha = propulsionSprite.color.a;
         propulsionTrigger.gameObject.SetActive(false);
+    }
+    
+    protected override void Start()
+    {
+        base.Start();
+        
+        DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
+        {
+            _normalAttackInterval = normalAttackInterval * normalAttackBoostIntervalMultiplier;
+            ResetAutoAttack();
+        });
+        
+        DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
+        {
+            _normalAttackInterval = normalAttackInterval;
+        });
     }
 
     public override void EnhancedAttack()

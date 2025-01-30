@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a719d85c0228466ea98f50a982d0673a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1700214173801190623}
+  rend: {fileID: 1700214173801190623}
   statusEffect: {fileID: 5577207185240576763}
   bossType: 1
   bossAttack: {fileID: 6030766794193699265}
@@ -86,6 +86,7 @@ MonoBehaviour:
   bossType: 1
   rend: {fileID: 1700214173801190623}
   bossHpBar: {fileID: 8643630304504296792}
+  bossDamageable: {fileID: 8898569602759505762}
   attack: {fileID: 6030766794193699265}
   normalAttackPrepTime: 2.5
   normalAttackPostTime: 6.5

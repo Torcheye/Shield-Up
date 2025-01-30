@@ -20,6 +20,7 @@ public class BossMoveController : MonoBehaviour
     public BossType Type => bossType;
     [SerializeField] private Renderer rend;
     [SerializeField] private BossHpBar bossHpBar;
+    [SerializeField] protected BossDamageable bossDamageable;
     
     protected float moveSpeed;
     private bool _isActive;
@@ -41,10 +42,12 @@ public class BossMoveController : MonoBehaviour
         if (!IsActive)
         {
             rend.material.EnableKeyword("GHOST_ON");
+            bossDamageable.ToggleBoostMaterial(false);
         }
         else
         {
             rend.material.DisableKeyword("GHOST_ON");
+            bossDamageable.ToggleBoostMaterial(DataManager.Instance.IsBossAttackBoostEnabled);
         }
         rend.sortingLayerName = IsActive ? "Enemy" : "Background";
         DoMove = IsActive;

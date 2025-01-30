@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a719d85c0228466ea98f50a982d0673a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3693596558799042327}
+  rend: {fileID: 3693596558799042327}
   statusEffect: {fileID: 6920105105989142738}
   bossType: 4
   bossAttack: {fileID: 5173642242872964870}
@@ -477,16 +477,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 3355925106484657640}
-  normalAttackInterval: 3.5
+  normalAttackInterval: 3.8
   enhancedAttackTime: 1
   autoAttack: 1
-  skeletonAnimation: {fileID: 0}
-  propelDuration: 1.5
-  propelPower: 60
+  skeletonAnimation: {fileID: 5075349802449342511}
+  propelDuration: 1.4
+  propelPower: 55
   propelRadius: 9
   propulsionTrigger: {fileID: 7883473449539714718}
   propulsionSprite: {fileID: 1245540049456338562}
   bossStateManager: {fileID: 0}
+  normalAttackBoostIntervalMultiplier: 0.5
 --- !u!114 &3355925106484657640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +503,7 @@ MonoBehaviour:
   bossType: 4
   rend: {fileID: 3693596558799042327}
   bossHpBar: {fileID: 5520698530308053636}
+  bossDamageable: {fileID: 7585994462390322509}
   normalMoveBounds:
     m_Center: {x: 0, y: 0.48, z: 0}
     m_Extent: {x: 11.78, y: 6, z: 0}
@@ -509,7 +511,6 @@ MonoBehaviour:
   regenCount: 0
   regenInterval: 0.7
   postRegenTime: 1
-  bossDamageable: {fileID: 7585994462390322509}
   bossStateManager: {fileID: 0}
 --- !u!1001 &3178273347653350184
 PrefabInstance:

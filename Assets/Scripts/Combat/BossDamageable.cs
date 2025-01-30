@@ -28,18 +28,30 @@ public class BossDamageable : Damageable
         
         DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
         {
-            if (!bossMoveController.IsActive)
+            if (bossMoveController.IsActive)
             {
-                rend.material.EnableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
-                rend.material.EnableKeyword("COLORRAMP_ON");
+                ToggleBoostMaterial(true);
             }
         });
         
         DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>
         {
+            ToggleBoostMaterial(false);
+        });
+    }
+    
+    public void ToggleBoostMaterial(bool enable)
+    {
+        if (enable)
+        {
+            rend.material.EnableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
+            rend.material.EnableKeyword("COLORRAMP_ON");
+        }
+        else
+        {
             rend.material.DisableKeyword(BossType == BossType.Foot ? "ALPHAOUTLINE_ON" : "OUTBASE_ON");
             rend.material.DisableKeyword("COLORRAMP_ON");
-        });
+        }
     }
 
     private void LateUpdate()

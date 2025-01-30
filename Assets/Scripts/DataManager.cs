@@ -56,7 +56,7 @@ public class DataManager : MonoBehaviour
     public float hitStopDuration;
     public float hitStopTimeScale;
     public float bossAttackBoostTime;
-    
+    public bool IsBossAttackBoostEnabled { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -91,8 +91,10 @@ public class DataManager : MonoBehaviour
 
     private IEnumerator DoDisableBossAttackBoost()
     {
+        IsBossAttackBoostEnabled = true;
         OnBossAttackBoostEnable.Invoke();
         yield return new WaitForSeconds(bossAttackBoostTime);
         OnBossAttackBoostDisable.Invoke();
+        IsBossAttackBoostEnabled = false;
     }
 }

@@ -5095,7 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a719d85c0228466ea98f50a982d0673a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 5119854587752807225}
+  rend: {fileID: 5119854587752807225}
   statusEffect: {fileID: 7547613870309515463}
   bossType: 2
   bossAttack: {fileID: 2614982726083483986}
@@ -5115,6 +5115,7 @@ MonoBehaviour:
   bossType: 2
   rend: {fileID: 5119854587752807225}
   bossHpBar: {fileID: 3710070144009522998}
+  bossDamageable: {fileID: 9115236185375587363}
 --- !u!114 &2614982726083483986
 MonoBehaviour:
   m_ObjectHideFlags: 0

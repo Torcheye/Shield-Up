@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -55,7 +56,10 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = position;
         ringController.transform.position = position;
+        
         trail.Clear();
+        ringController.DisableAllWeaponTrails();
+        
         if (_dashTween != null && _dashTween.IsActive())
         {
             _dashTween.Kill();

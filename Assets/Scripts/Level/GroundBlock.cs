@@ -6,7 +6,7 @@ public class GroundBlock : MonoBehaviour
     [SerializeField] private bool isBreakable;
     [SerializeField] private int hp;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Color[] damageColors;
+    [SerializeField] private Sprite[] damageSprites;
     [SerializeField] private float damageColorFlashDuration;
     [SerializeField] private GameObject colliderObject;
     
@@ -34,7 +34,7 @@ public class GroundBlock : MonoBehaviour
                 colliderObject.SetActive(true);
                 spriteRenderer.material.DisableKeyword("OUTBASE_ON");
                 _currentHp = hp;
-                //spriteRenderer.sprite = damageSprites[0];
+                spriteRenderer.sprite = damageSprites[0];
             }
         }
     }
@@ -68,7 +68,7 @@ public class GroundBlock : MonoBehaviour
         else
         {
             FlashDamageColor();
-            //spriteRenderer.sprite = damageSprites[hp - _currentHp];
+            spriteRenderer.sprite = damageSprites[hp - _currentHp];
             return true;
         }
     }

@@ -127,7 +127,10 @@ MonoBehaviour:
   isBreakable: 1
   hp: 3
   spriteRenderer: {fileID: 2082147483297917936}
-  damageColors: []
+  damageSprites:
+  - {fileID: -5113850848988359095, guid: f5e2aaaffba2cce4d920aa770347156b, type: 3}
+  - {fileID: -351481008079038612, guid: 00a41ce0f894a264ca6bda5e5a4c7eab, type: 3}
+  - {fileID: -8431940600483100144, guid: af85095831bad774a8e805185910977b, type: 3}
   damageColorFlashDuration: 0.25
   colliderObject: {fileID: 6180242675740262460}
 --- !u!1 &7891654814229721764

@@ -12351,7 +12351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMaxHp: 10
   playerXp: 0
-  xpToNextLevel: 1
+  xpToNextLevel: 3
   playerTransform: {fileID: 1912177602}
   playerHitColor: {r: 1, g: 0, b: 0, a: 1}
   playerVignetteLastDuration: 0.8

@@ -331,6 +331,8 @@ MonoBehaviour:
   delta: 5
   normalBullet: {fileID: 11400000, guid: f5a001d6354f95d489b63658138b1348, type: 2}
   enhancedBullet: {fileID: 11400000, guid: d4f1a72854b821349bc4058e4ec384de, type: 2}
+  enhancedAttackInterval: 0.35
+  enhancedAttackCount: 8
   attackAnimation: attack
   idleAnimation: idle
   normalAttackBoostIntervalMultiplier: 0.5

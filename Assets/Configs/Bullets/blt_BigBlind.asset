@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3a5096cadd460c8608059b352627d1, type: 3}
   m_Name: blt_BigBlind
   m_EditorClassIdentifier: 
-  speed: 3.5
+  speed: 4.8
   damage: 0
-  size: 10
-  lifeTime: 10
-  sprite: {fileID: 5056628667063805970, guid: fc6927963641349418e91ef1b1eb9643, type: 3}
+  size: 3.3
+  lifeTime: 5
+  sprite: {fileID: 1115682805434658061, guid: fc6927963641349418e91ef1b1eb9643, type: 3}
   spiralSpeed: 0
   hasEffect: 1
   effect: 1
-  effectDuration: 4
+  effectDuration: 5
   penetrating: 1
-  chargeSpawnTime: 3.5
+  chargeSpawnTime: 0.6
   gravity: 0
   spawnAcidPool: 0

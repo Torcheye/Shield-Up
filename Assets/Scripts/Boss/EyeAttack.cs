@@ -9,6 +9,8 @@ public class EyeAttack : BossAttack
     [SerializeField] private float delta;
     [SerializeField] private BulletConfig normalBullet;
     [SerializeField] private BulletConfig enhancedBullet;
+    [SerializeField] private float enhancedAttackInterval;
+    [SerializeField] private int enhancedAttackCount;
     
     [Header("Animation")]
     [SerializeField, SpineAnimation] private string attackAnimation;
@@ -51,9 +53,12 @@ public class EyeAttack : BossAttack
     private IEnumerator DoEnhancedAttack()
     {
         moveController.CanSetInactive = true;
-        BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, GetTargetDirection(), true, transform, DataManager.Instance.playerTransform);
-
-        yield return new WaitForSeconds(enhancedBullet.chargeSpawnTime);
+        for (int i = 0; i < enhancedAttackCount; i++)
+        {
+            var dir = Quaternion.Euler(0, 0, Random.Range(-delta, delta)) * GetTargetDirection();
+            BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, dir, true, transform, DataManager.Instance.playerTransform);
+            yield return new WaitForSeconds(enhancedAttackInterval);
+        }
         moveController.CanSetInactive = true;
     }
 

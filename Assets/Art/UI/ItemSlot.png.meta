@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 1c0da8c3a2943ff45b95d51d23badf68
+guid: 20c7f399b3a39934188085265fba63b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5812391061734151773
-    second: Upgrade Screen Rings_0
+      213: -3169798932818741779
+    second: ItemSlot_0
+  - first:
+      213: 500398316704021874
+    second: ItemSlot_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Upgrade Screen Rings_0
+      name: ItemSlot_0
       rect:
         serializedVersion: 2
-        x: 72
-        y: 72
-        width: 883
-        height: 920
+        x: 105
+        y: 66
+        width: 288
+        height: 504
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a92eadef1d365fa0800000000000000
-      internalID: -5812391061734151773
+      spriteID: de53de73aac9204d0800000000000000
+      internalID: -3169798932818741779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemSlot_1
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 63
+        width: 257
+        height: 509
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27db8592e95c1f600800000000000000
+      internalID: 500398316704021874
       vertices: []
       indices: 
       edges: []

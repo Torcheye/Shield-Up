@@ -13,7 +13,7 @@ public class PlayerUpgrade : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.xpToNextLevel);
+        UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.XpToNextLevel);
         _pickedUpXps = new List<GameObject>();
     }
 
@@ -36,13 +36,15 @@ public class PlayerUpgrade : MonoBehaviour
         XpPickupFactory.DestroyItem(xp);
         _pickedUpXps.Remove(xp);
         DataManager.Instance.playerXp++;
-        UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.xpToNextLevel);
+        UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.XpToNextLevel);
         
-        if (DataManager.Instance.playerXp >= DataManager.Instance.xpToNextLevel)
+        if (DataManager.Instance.playerXp >= DataManager.Instance.XpToNextLevel)
         {
             DataManager.Instance.playerXp = 0;
-            DataManager.Instance.xpToNextLevel++;
-            UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.xpToNextLevel);
+            
+            DataManager.Instance.playerLevel++;
+            
+            UIManager.Instance.UpdatePlayerXp(DataManager.Instance.playerXp, DataManager.Instance.XpToNextLevel);
             DataManager.Instance.IsGamePaused = true;
             UIManager.Instance.OpenUpgradeScreen();
         }

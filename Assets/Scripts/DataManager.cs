@@ -22,10 +22,11 @@ public class DataManager : MonoBehaviour
     [Header("Player")]
     public int playerMaxHp;
     public int playerXp = 0;
-    public int xpToNextLevel = 3;
+    public int XpToNextLevel => GetXpToNextLevel();
     public Transform playerTransform;
     public Color playerHitColor = Color.red;
     public float playerVignetteLastDuration;
+    public int playerLevel;
     
     [Header("Config")]
     public WeaponsConfig weaponsConfig;
@@ -60,6 +61,12 @@ public class DataManager : MonoBehaviour
     public float bleedHurtInterval;
     public int bleedDamage;
     public bool IsBossAttackBoostEnabled { get; private set; }
+    
+    public int GetXpToNextLevel()
+    {
+        return Mathf.RoundToInt(Mathf.Pow(1.15f, playerLevel + 11) - 1.7f);
+    }
+    
     private void Awake()
     {
         if (Instance == null)

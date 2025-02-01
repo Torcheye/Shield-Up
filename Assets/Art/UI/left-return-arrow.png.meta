@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 8b87716f76f6c614f8637e6d50702a20
+guid: e7295c2d6a21968499954fb55fac8cac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6768968777133281243
-    second: newBullets_0
-  - first:
-      213: 3498874236380052515
-    second: newBullets_1
-  - first:
-      213: -648168491710012970
-    second: newBullets_2
+      213: 2102540212635522960
+    second: left-return-arrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: newBullets_0
+      name: left-return-arrow_0
       rect:
         serializedVersion: 2
-        x: 341
-        y: 677
-        width: 102
-        height: 102
+        x: 13
+        y: 0
+        width: 230
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bdf4db04d3530fd50800000000000000
-      internalID: 6768968777133281243
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newBullets_1
-      rect:
-        serializedVersion: 2
-        x: 1039
-        y: 294
-        width: 827
-        height: 811
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 32cf235849f7e8030800000000000000
-      internalID: 3498874236380052515
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: newBullets_2
-      rect:
-        serializedVersion: 2
-        x: 2213
-        y: 252
-        width: 956
-        height: 953
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d12601e03e3107f0800000000000000
-      internalID: -648168491710012970
+      spriteID: 0975d140f29bd2d10800000000000000
+      internalID: 2102540212635522960
       vertices: []
       indices: 
       edges: []
@@ -188,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      newBullets_0: 6768968777133281243
-      newBullets_1: 3498874236380052515
-      newBullets_2: -648168491710012970
+      left-return-arrow_0: 2102540212635522960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

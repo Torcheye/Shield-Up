@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,7 +75,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("Upgrading weapon option");
         ringController.UpgradeWeapon(_selectedWeaponSlot.SlotIndex);
         UpdateWeaponSlotsUI();
-        SetOptionsScreen(4);
+        SetOptionsScreen(5);
     }
     
     public void SelectNewWeaponOption(int type)
@@ -86,24 +87,21 @@ public class UIManager : MonoBehaviour
         Debug.Log("Selecting new weapon option: " + weaponType);
         ringController.AddNewWeapon(_selectedWeaponSlot.SlotIndex, weaponType);
         UpdateWeaponSlotsUI();
-        SetOptionsScreen(4);
+        SetOptionsScreen(5);
     }
 
     public void SelectWeaponSlot(WeaponSlotUI weaponSlot)
     {
-        foreach (var slot in _weaponSlotUIs)
+        foreach (var slot in _weaponSlotUIs.Where(slot => slot != weaponSlot))
         {
-            if (slot != weaponSlot)
-            {
-                slot.OnDeselect();
-            }
+            slot.OnDeselect();
         }
         weaponSlot.OnSelect();
         _selectedWeaponSlot = weaponSlot;
         Debug.Log("Selected weapon slot: " + weaponSlot.SlotIndex);
         if (_upgradeOptionChosen)
         {
-            SetOptionsScreen(4);
+            SetOptionsScreen(5);
         }
         else
         {
@@ -119,11 +117,6 @@ public class UIManager : MonoBehaviour
             optionsScreen.SetActive(false);
         }
         optionsScreens[selectedWeaponSlotLevel].SetActive(true);
-
-        if (selectedWeaponSlotLevel == 4)
-        {
-            _upgradeOptionChosen = true;
-        }
     }
 
     public void OpenUpgradeScreen()

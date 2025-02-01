@@ -9,7 +9,6 @@ public class HeartAttack : BossAttack
     [SerializeField] private float propelRadius;
     [SerializeField] private ObjectRangeTrigger propulsionTrigger;
     [SerializeField] private SpriteRenderer propulsionSprite;
-    [SerializeField] private BossStateManager bossStateManager;
     
     [Header("Boost")]
     [SerializeField] private float normalAttackBoostIntervalMultiplier;

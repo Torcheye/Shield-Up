@@ -481,12 +481,11 @@ MonoBehaviour:
   enhancedAttackTime: 1
   autoAttack: 1
   skeletonAnimation: {fileID: 5075349802449342511}
-  propelDuration: 1.4
-  propelPower: 55
-  propelRadius: 9
+  propelDuration: 1.2
+  propelPower: 50
+  propelRadius: 8
   propulsionTrigger: {fileID: 7883473449539714718}
   propulsionSprite: {fileID: 1245540049456338562}
-  bossStateManager: {fileID: 0}
   normalAttackBoostIntervalMultiplier: 0.5
 --- !u!114 &3355925106484657640
 MonoBehaviour:
@@ -507,8 +506,8 @@ MonoBehaviour:
   normalMoveBounds:
     m_Center: {x: 0, y: 0.48, z: 0}
     m_Extent: {x: 11.78, y: 6, z: 0}
-  switchYLine: -2
-  regenCount: 0
+  switchYLine: -2.5
+  regenCount: 5
   regenInterval: 0.7
   postRegenTime: 1
   bossStateManager: {fileID: 0}

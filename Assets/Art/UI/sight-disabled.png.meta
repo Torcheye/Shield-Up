@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 21eac7ce04b431548afacc1052e792dd
+guid: 217fb7771d556e8439f4609fdf1a93af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6781812916237051117
-    second: itemUpgrade_0
+      213: 7110521825291084204
+    second: sight-disabled_0
   - first:
-      213: 623922962120152103
-    second: itemUpgrade_1
+      213: -1627531639630657939
+    second: sight-disabled_1
   - first:
-      213: -8382423865459110012
-    second: itemUpgrade_2
+      213: 2756119382349082949
+    second: sight-disabled_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itemUpgrade_0
+      name: sight-disabled_0
       rect:
         serializedVersion: 2
-        x: 123
-        y: 169
-        width: 235
-        height: 337
+        x: 12
+        y: 82
+        width: 154
+        height: 116
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de4277d6ae6dd1e50800000000000000
-      internalID: 6781812916237051117
+      spriteID: ca1232c4de5ada260800000000000000
+      internalID: 7110521825291084204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itemUpgrade_1
+      name: sight-disabled_1
       rect:
         serializedVersion: 2
-        x: 456
-        y: 172
-        width: 235
-        height: 337
+        x: 37
+        y: 38
+        width: 179
+        height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 724916cd0ae98a800800000000000000
-      internalID: 623922962120152103
+      spriteID: d660b17c898d969e0800000000000000
+      internalID: -1627531639630657939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itemUpgrade_2
+      name: sight-disabled_2
       rect:
         serializedVersion: 2
-        x: 756
-        y: 157
-        width: 268
-        height: 357
+        x: 89
+        y: 58
+        width: 155
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 48f8d8608e5abab80800000000000000
-      internalID: -8382423865459110012
+      spriteID: 5417c77c9f3bf3620800000000000000
+      internalID: 2756119382349082949
       vertices: []
       indices: 
       edges: []
@@ -188,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      itemUpgrade_0: 6781812916237051117
-      itemUpgrade_1: 623922962120152103
-      itemUpgrade_2: -8382423865459110012
+      sight-disabled_0: 7110521825291084204
+      sight-disabled_1: -1627531639630657939
+      sight-disabled_2: 2756119382349082949
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

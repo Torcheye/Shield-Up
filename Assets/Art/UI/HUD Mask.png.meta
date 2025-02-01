@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 21eac7ce04b431548afacc1052e792dd
+guid: 9617507fb151a5d448124e1700c64725
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6781812916237051117
-    second: itemUpgrade_0
+      213: -1947492476409884007
+    second: HUD Mask_0
   - first:
-      213: 623922962120152103
-    second: itemUpgrade_1
-  - first:
-      213: -8382423865459110012
-    second: itemUpgrade_2
+      213: 5005793167128860659
+    second: HUD Mask_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itemUpgrade_0
+      name: HUD Mask_0
       rect:
         serializedVersion: 2
-        x: 123
-        y: 169
-        width: 235
-        height: 337
+        x: 175
+        y: 448
+        width: 394
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de4277d6ae6dd1e50800000000000000
-      internalID: 6781812916237051117
+      spriteID: 992d7d439ed19f4e0800000000000000
+      internalID: -1947492476409884007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itemUpgrade_1
+      name: HUD Mask_1
       rect:
         serializedVersion: 2
-        x: 456
-        y: 172
-        width: 235
-        height: 337
+        x: 41
+        y: 11
+        width: 37
+        height: 394
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,30 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 724916cd0ae98a800800000000000000
-      internalID: 623922962120152103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: itemUpgrade_2
-      rect:
-        serializedVersion: 2
-        x: 756
-        y: 157
-        width: 268
-        height: 357
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 48f8d8608e5abab80800000000000000
-      internalID: -8382423865459110012
+      spriteID: 3f71bc91d56287540800000000000000
+      internalID: 5005793167128860659
       vertices: []
       indices: 
       edges: []
@@ -188,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      itemUpgrade_0: 6781812916237051117
-      itemUpgrade_1: 623922962120152103
-      itemUpgrade_2: -8382423865459110012
+      HUD Mask_0: -1947492476409884007
+      HUD Mask_1: 5005793167128860659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

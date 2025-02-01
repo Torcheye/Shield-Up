@@ -7,9 +7,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [Header("HUD")]
-    [SerializeField] private Material playerHpBar;
+    [SerializeField] private Image playerHpBar;
+    [SerializeField] private Image playerXpBar;
     [SerializeField] private PlayerStatusEffectUI[] playerStatusEffectUIs;
-    [SerializeField] private Material playerXpBar;
 
     [Header("Effects")] 
     [SerializeField] private Image blindEffect;
@@ -174,14 +174,18 @@ public class UIManager : MonoBehaviour
 
     public void UpdatePlayerHp(int currentHp, int maxHp)
     {
-        playerHpBar.SetFloat(Value, currentHp);
-        playerHpBar.SetFloat(MaxValue, maxHp);
+        playerHpBar.material.SetFloat(Value, currentHp);
+        playerHpBar.material.SetFloat(MaxValue, maxHp);
+        playerHpBar.enabled = false;
+        playerHpBar.enabled = true;
     }
     
     public void UpdatePlayerXp(int currentXp, int xpToNextLevel)
     {
-        playerXpBar.SetFloat(Value, currentXp);
-        playerXpBar.SetFloat(MaxValue, xpToNextLevel);
+        playerXpBar.material.SetFloat(Value, currentXp);
+        playerXpBar.material.SetFloat(MaxValue, xpToNextLevel);
+        playerXpBar.enabled = false;
+        playerXpBar.enabled = true;
     }
     
     public void UpdatePlayerStatusEffects(int effectIndex, float progress)

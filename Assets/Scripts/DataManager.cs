@@ -56,6 +56,9 @@ public class DataManager : MonoBehaviour
     public float hitStopDuration;
     public float hitStopTimeScale;
     public float bossAttackBoostTime;
+    public float bleedDuration;
+    public float bleedHurtInterval;
+    public int bleedDamage;
     public bool IsBossAttackBoostEnabled { get; private set; }
     private void Awake()
     {

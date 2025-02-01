@@ -17,7 +17,14 @@ public class Dagger : Weapon
             {
                 var result = damageable.TakeDamage(DataManager.Instance.weaponsConfig.GetDaggerDamage(Level), IsHostile);
                 if (result)
+                {
                     StartCoroutine(DoSwingAnimation(transform.position.x > other.transform.position.x));
+                    
+                    if (Level == 3)
+                    {
+                        damageable.ApplyEffect(Effect.Bleed, DataManager.Instance.bleedDuration);
+                    }
+                }
             }
         }
     }

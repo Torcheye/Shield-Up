@@ -14,10 +14,17 @@ public class StatusEffect : MonoBehaviour
     [SerializeField] private RingController copySourceRing;
     [ShowIf(nameof(isPlayer))]
     [SerializeField] private RingController copyTargetRing;
+
+    [Header("Bleed"), ShowIf(nameof(_isBoss))] 
+    [SerializeField] private Damageable bossDamageable;
+    [SerializeField, ShowIf(nameof(_isBoss))]
+    private ParticleSystem bleedParticle;
     
     private readonly Dictionary<Effect, EffectTimer> _effects = new();
     private Camera _camera;
     private bool _copyActivated;
+    private float _bleedTimer;
+    private bool _isBoss => !isPlayer;
 
     private void Awake()
     {
@@ -26,6 +33,11 @@ public class StatusEffect : MonoBehaviour
         foreach (Effect effect in Enum.GetValues(typeof(Effect)))
         {
             _effects[effect] = new EffectTimer();
+        }
+
+        if (_isBoss)
+        {
+            bleedParticle.Stop();
         }
     }
 
@@ -46,42 +58,73 @@ public class StatusEffect : MonoBehaviour
             {
                 UpdatePlayerStatusEffect(effect.Key, effect.Value);
             }
+            else
+            {
+                if (effect.Key == Effect.Bleed)
+                {
+                    UpdateBleed(effect.Value);
+                }
+            }
+        }
+    }
+
+    private void UpdateBleed(EffectTimer timer)
+    {
+        if (timer.IsAlive())
+        {
+            _bleedTimer += Time.deltaTime;
+            if (_bleedTimer >= DataManager.Instance.bleedHurtInterval)
+            {
+                bossDamageable.TakeDamage(DataManager.Instance.bleedDamage, false);
+                _bleedTimer = 0;
+            }
+            
+            if (!bleedParticle.isPlaying)
+            {
+                bleedParticle.Play();
+            }
+        }
+        else
+        {
+            if (bleedParticle.isPlaying)
+            {
+                bleedParticle.Stop();
+            }
         }
     }
     
     private void UpdatePlayerStatusEffect(Effect effect, EffectTimer timer)
     {
-        UIManager.Instance.UpdatePlayerStatusEffects((int) effect, timer.GetProgress());
+        if (effect == Effect.Bleed)
+            return;
+        
+        var progress = timer.GetProgress();
+        UIManager.Instance.UpdatePlayerStatusEffects((int) effect, progress);
                 
         switch (effect)
         {
             case Effect.Blind:
-            {
                 var screenPos = _camera.WorldToScreenPoint(transform.position) / new Vector2(Screen.width, Screen.height);
-                UIManager.Instance.UpdateBlindEffect(screenPos, timer.GetProgress());
+                UIManager.Instance.UpdateBlindEffect(screenPos, progress);
                 break;
-            }
             case Effect.Copycat when !_copyActivated && timer.IsAlive():
                 copySourceRing.CopyOver(copyTargetRing);
                 _copyActivated = true;
                 break;
             case Effect.Copycat:
-            {
                 if (_copyActivated && !timer.IsAlive())
                 {
                     copyTargetRing.ClearAll();
                     _copyActivated = false;
                 }
-
                 break;
-            }
             case Effect.Slow:
-                playerController.SetSlowMultiplier(timer.GetProgress() > 0);
+                playerController.SetSlowMultiplier(progress > 0);
                 break;
             case Effect.Invulnerable:
                 break;
             case Effect.Dizzy:
-                playerController.SetDizzyMultiplier(timer.GetProgress() > 0);
+                playerController.SetDizzyMultiplier(progress > 0);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(effect), effect, null);
@@ -91,6 +134,11 @@ public class StatusEffect : MonoBehaviour
     public void ApplyEffect(Effect effect, float duration)
     {
         _effects[effect].Start(duration);
+        
+        if (effect == Effect.Bleed)
+        {
+            _bleedTimer = 0;
+        }
     }
     
     public bool HasEffect(Effect effect)

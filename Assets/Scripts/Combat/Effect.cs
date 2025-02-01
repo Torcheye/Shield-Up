@@ -4,5 +4,6 @@
     Blind,
     Copycat,
     Slow,
-    Dizzy
+    Dizzy,
+    Bleed
 }

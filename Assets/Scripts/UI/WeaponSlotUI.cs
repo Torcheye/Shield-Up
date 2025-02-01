@@ -12,14 +12,14 @@ public class WeaponSlotUI : MonoBehaviour
 
     [SerializeField] private Image weaponIcon;
     [SerializeField] private GameObject selectionOutline;
+    [SerializeField] private GameObject l2Icon;
+    [SerializeField] private GameObject l3Icon;
 
     private void Awake()
     {
         selectionOutline.SetActive(false);
-    }
-
-    private void LateUpdate()
-    {
+        l2Icon.SetActive(false);
+        l3Icon.SetActive(false);
         transform.rotation = quaternion.identity;
     }
     
@@ -50,7 +50,22 @@ public class WeaponSlotUI : MonoBehaviour
         else
         {
             weaponIcon.enabled = true;
-            weaponIcon.sprite = DataManager.Instance.weaponsConfig.GetWeaponSprite(weaponType);
+            weaponIcon.sprite = DataManager.Instance.weaponsConfig.GetWeaponSprite(weaponType, level < 3);
+            if (level == 2)
+            {
+                l2Icon.SetActive(true);
+                l3Icon.SetActive(false);
+            }
+            else if (level == 3)
+            {
+                l2Icon.SetActive(false);
+                l3Icon.SetActive(true);
+            }
+            else
+            {
+                l2Icon.SetActive(false);
+                l3Icon.SetActive(false);
+            }
         }
     }
 }

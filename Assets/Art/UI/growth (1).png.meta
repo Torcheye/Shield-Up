@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 21eac7ce04b431548afacc1052e792dd
+guid: ffc0b22c0c2a50a46988dcd2d25632d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6781812916237051117
-    second: itemUpgrade_0
+      213: -5550973799848222248
+    second: growth (1)_0
   - first:
-      213: 623922962120152103
-    second: itemUpgrade_1
-  - first:
-      213: -8382423865459110012
-    second: itemUpgrade_2
+      213: 235105703455992824
+    second: growth (1)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,12 +49,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itemUpgrade_0
+      name: growth (1)_0
       rect:
         serializedVersion: 2
-        x: 123
-        y: 169
-        width: 235
-        height: 337
+        x: 32
+        y: 11
+        width: 192
+        height: 138
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de4277d6ae6dd1e50800000000000000
-      internalID: 6781812916237051117
+      spriteID: 8d1eb864dbaf6f2b0800000000000000
+      internalID: -5550973799848222248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itemUpgrade_1
+      name: growth (1)_1
       rect:
         serializedVersion: 2
-        x: 456
-        y: 172
-        width: 235
-        height: 337
+        x: 51
+        y: 140
+        width: 154
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,30 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 724916cd0ae98a800800000000000000
-      internalID: 623922962120152103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: itemUpgrade_2
-      rect:
-        serializedVersion: 2
-        x: 756
-        y: 157
-        width: 268
-        height: 357
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 48f8d8608e5abab80800000000000000
-      internalID: -8382423865459110012
+      spriteID: 8fba9234463434300800000000000000
+      internalID: 235105703455992824
       vertices: []
       indices: 
       edges: []
@@ -188,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      itemUpgrade_0: 6781812916237051117
-      itemUpgrade_1: 623922962120152103
-      itemUpgrade_2: -8382423865459110012
+      growth (1)_0: -5550973799848222248
+      growth (1)_1: 235105703455992824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

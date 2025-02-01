@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class Potion : Weapon
 {
-    [SerializeField] private Image chargeImage;
+    [SerializeField] private Image[] chargeImages;
     
     private int _chargeCount;
     private int _maxChargeCount;
@@ -16,7 +16,7 @@ public class Potion : Weapon
     
     private void Update()
     {
-        chargeImage.fillAmount = (float)_chargeCount / _maxChargeCount;
+        chargeImages[Level-1].fillAmount = (float)_chargeCount / _maxChargeCount;
         
         if (_chargeCount >= _maxChargeCount)
         {

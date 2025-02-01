@@ -36,7 +36,8 @@ public class Shield : Weapon
         
         spriteRenderer.enabled = _shieldCooldownTimer >= _shieldCooldown;
         
-        spriteRenderer.flipX = ringController.transform.position.x < transform.position.x;
+        var flipX = ringController.transform.position.x < transform.position.x ? -1 : 1;
+        transform.localScale = new Vector3(flipX, 1, 1);
     }
 
     public bool Deflect()

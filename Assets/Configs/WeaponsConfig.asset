@@ -14,15 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   daggerPrefab: {fileID: 7212092133301199805, guid: e978b734d56726947b190b07bf6664b8, type: 3}
   daggerSprite: {fileID: 1729840402284382006, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
+  daggerL3Sprite: {fileID: 8943728508470143933, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
   daggerDmgL1: 1
-  daggerDmgL2: 1
+  daggerDmgL2: 2
   daggerBleed: 3
   shieldPrefab: {fileID: 7212092133301199805, guid: 2aba2b8c4ef5e274fb1072ac894d8623, type: 3}
   shieldSprite: {fileID: 6240419937970178579, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
+  shieldL3Sprite: {fileID: -8382423865459110012, guid: 21eac7ce04b431548afacc1052e792dd, type: 3}
   shieldCooldown: 5
   shieldBlockL1: 1
   shieldBlockL2: 2
   potionPrefab: {fileID: 3464062274857641238, guid: d8e05b8fabcef2a45a6464bd5b6955db, type: 3}
   potionSprite: {fileID: 6334439168542168994, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
+  potionL3Sprite: {fileID: 623922962120152103, guid: 21eac7ce04b431548afacc1052e792dd, type: 3}
   potionChargeL1: 5
   potionChargeL2: 2

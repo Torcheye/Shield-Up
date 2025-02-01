@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dagger : Weapon
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Transform swingPivot;
     [SerializeField] private float swingDuration;
     [SerializeField] private float swingAngle;
     
@@ -24,8 +24,8 @@ public class Dagger : Weapon
     
     private IEnumerator DoSwingAnimation(bool left)
     {
-        spriteRenderer.transform.DOPunchRotation(new Vector3(0, 0, left ? swingAngle : -swingAngle), swingDuration, 3, 0);
+        swingPivot.DOPunchRotation(new Vector3(0, 0, left ? swingAngle : -swingAngle), swingDuration, 3, 0);
         yield return new WaitForSeconds(swingDuration);
-        spriteRenderer.transform.localEulerAngles = Vector3.zero;
+        swingPivot.localEulerAngles = Vector3.zero;
     }
 }

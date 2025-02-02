@@ -18,6 +18,7 @@ public class MouthAttack : BossAttack
     [SerializeField] private float suctionRampUpTime;
     [SerializeField] private ObjectRangeTrigger suctionTrigger;
     [SerializeField] private ParticleSystem suctionParticles;
+    [SerializeField] private GameObject enhancedTrigger;
     
     [Header("Animation")]
     [SerializeField, SpineAnimation] private string attackAnimation;
@@ -40,6 +41,7 @@ public class MouthAttack : BossAttack
         
         _burstAmount = burstAmount;
         _burstInterval = burstInterval;
+        enhancedTrigger.SetActive(false);
         
         DataManager.Instance.OnBossAttackBoostEnable.AddListener(() =>
         {
@@ -76,6 +78,7 @@ public class MouthAttack : BossAttack
     
     private IEnumerator DoSuction()
     {
+        enhancedTrigger.SetActive(true);
         moveController.CanSetInactive = false;
         _isSucking = true;
         suctionParticles.Play();
@@ -85,6 +88,7 @@ public class MouthAttack : BossAttack
         _isSucking = false;
         suctionParticles.Stop();
         skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
+        enhancedTrigger.SetActive(false);
         
         StartCoroutine(ShootBulletBurst());
     }

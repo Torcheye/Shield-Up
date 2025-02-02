@@ -11,6 +11,7 @@ TagManager:
   - AcidPool
   - Potion
   - LevelSidePortal
+  - MouthEnhancedAttack
   layers:
   - Default
   - TransparentFX

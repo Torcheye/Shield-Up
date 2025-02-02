@@ -27,6 +27,8 @@ MonoBehaviour:
   mouthHp: 0
   mouthMoveSpeed: 0
   mouthHit: 0
+  mouthEnhancedAttackDamage: 1
+  mouthEnhancedAttackInterval: 0.3
   footHp: 0
   footMoveSpeed: 0
   footHit: 0

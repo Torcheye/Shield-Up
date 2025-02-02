@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3877636390814947064}
   - component: {fileID: 5827508217730303653}
+  - component: {fileID: 215304382704758237}
   m_Layer: 0
   m_Name: XP
   m_TagString: XpPickup
@@ -185,6 +186,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &215304382704758237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482488087352316884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b4b291e211482cac0bfbf61d17feda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 20
+  cannotBeDestroyedTime: 4
 --- !u!1 &6867574771390364016
 GameObject:
   m_ObjectHideFlags: 0

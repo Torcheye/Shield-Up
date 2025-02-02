@@ -27,6 +27,8 @@ public class BossConfig : ScriptableObject
     public int mouthHp;
     public float mouthMoveSpeed;
     public int mouthHit;
+    public int mouthEnhancedAttackDamage;
+    public float mouthEnhancedAttackInterval;
     
     [Header("Foot")] 
     public int footHp;

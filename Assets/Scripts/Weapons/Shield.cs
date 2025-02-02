@@ -21,7 +21,7 @@ public class Shield : Weapon
         _shieldCooldown = DataManager.Instance.weaponsConfig.shieldCooldown;
         _shieldCooldownTimer = _shieldCooldown;
     }
-    
+
     private void Update()
     {
         if (_shieldCooldownTimer < _shieldCooldown)
@@ -33,11 +33,12 @@ public class Shield : Weapon
         {
             cooldownImage.fillAmount = 0;
         }
-        
+
         spriteRenderer.enabled = _shieldCooldownTimer >= _shieldCooldown;
-        
+
         var flipX = ringController.transform.position.x < transform.position.x ? -1 : 1;
-        transform.localScale = new Vector3(flipX, 1, 1);
+        var t = levelObjects[Level - 1].transform;
+        t.localScale = new Vector3(flipX * Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
     }
 
     public bool Deflect()

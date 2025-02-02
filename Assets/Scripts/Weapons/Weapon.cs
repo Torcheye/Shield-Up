@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     private int _level;
     
     [SerializeField] private TrailRenderer trailRenderer;
-    [SerializeField] private GameObject[] levelObjects;
+    [SerializeField] protected GameObject[] levelObjects;
     
     public void Initialize(bool isHostile, WeaponType type, RingController rc, PlayerDamageable pd, Vector2Int slotIndex)
     {

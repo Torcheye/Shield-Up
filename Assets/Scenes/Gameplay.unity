@@ -12364,8 +12364,8 @@ MonoBehaviour:
   damageColorFadeDuration: 0.3
   damageCooldown: 0.2
   healColor: {r: 0, g: 1, b: 0, a: 1}
-  healColorLastDuration: 0.1
-  healColorFadeDuration: 0.5
+  healColorLastDuration: 0.5
+  healColorFadeDuration: 0.7
   bossRotationTime: 45
   bossRotationOrderFTUE: 00000000020000000100000003000000
   breakableGroundRegenTime: 10
@@ -44425,7 +44425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: startWeaponType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: playerDamageable

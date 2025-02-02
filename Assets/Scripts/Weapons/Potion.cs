@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Potion : Weapon
 {
     [SerializeField] private Image[] chargeImages;
+    [SerializeField] private Collider2D absorbTrigger;
+    [SerializeField] private float absorbScale;
+    [SerializeField] private float absorbScaleDuration;
     
     private int _chargeCount;
     private int _maxChargeCount;
@@ -17,6 +22,12 @@ public class Potion : Weapon
     private void Update()
     {
         chargeImages[Level-1].fillAmount = (float)_chargeCount / _maxChargeCount;
+    }
+    
+    public void Charge()
+    {
+        _chargeCount++;
+        StartCoroutine(DoScaleAnimation());
         
         if (_chargeCount >= _maxChargeCount)
         {
@@ -26,8 +37,12 @@ public class Potion : Weapon
         }
     }
     
-    public void Charge()
+    private IEnumerator DoScaleAnimation()
     {
-        _chargeCount++;
+        absorbTrigger.enabled = false;
+        transform.DOPunchScale(Vector3.one * absorbScale, absorbScaleDuration, 3, 0);
+        yield return new WaitForSeconds(absorbScaleDuration);
+        transform.localScale = Vector3.one;
+        absorbTrigger.enabled = true;
     }
 }

@@ -560,7 +560,7 @@ MonoBehaviour:
   - {fileID: 182113829702387091}
   spriteRenderer: {fileID: 258606268148735301}
   cooldownImage: {fileID: 814800696352475908}
-  deflectScale: 1.6
+  deflectScale: 1.8
   deflectScaleDuration: 0.5
   deflectTrigger: {fileID: 6069947464787909493}
 --- !u!1 &8609907805823750441

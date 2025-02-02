@@ -18,6 +18,7 @@ public class HeartMoveController : BossMoveController
     [SerializeField] private float regenInterval;
     [SerializeField] private float postRegenTime;
     [SerializeField] private BossStateManager bossStateManager;
+    [SerializeField] private LineRenderer[] vessels;
 
     private Vector2 _target;
     private State _state = State.Normal;
@@ -59,6 +60,16 @@ public class HeartMoveController : BossMoveController
         bossStateManager.ResumeBossRotation();
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        
+        foreach (var vessel in vessels)
+        {
+            vessel.SetPosition(0, transform.position);
+        }
+    }
+
     private void Update()
     {
         if (_state == State.Normal)
@@ -79,6 +90,11 @@ public class HeartMoveController : BossMoveController
         }
         
         transform.position = Vector2.MoveTowards(transform.position, _target, moveSpeed * Time.deltaTime);
+        
+        foreach (var vessel in vessels)
+        {
+            vessel.SetPosition(0, transform.position);
+        }
     }
     
     private void SwitchState(State state)

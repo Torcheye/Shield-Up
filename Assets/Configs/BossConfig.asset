@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b83537db874678b9c43cc3812775c4, type: 3}
   m_Name: BossConfig
   m_EditorClassIdentifier: 
-  baseHp: 120
+  baseHp: 100
   baseMoveSpeed: 1
   baseHit: 5
   hpOverrides: 0000000001
@@ -32,6 +32,6 @@ MonoBehaviour:
   footHp: 0
   footMoveSpeed: 0
   footHit: 0
-  heartHp: 30
+  heartHp: 25
   heartMoveSpeed: 0.65
   heartHit: 5

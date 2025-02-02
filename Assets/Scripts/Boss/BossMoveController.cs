@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BossMoveController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class BossMoveController : MonoBehaviour
     [SerializeField] private BossHpBar bossHpBar;
     [SerializeField] protected BossDamageable bossDamageable;
     [SerializeField] private BossAttack bossAttack;
+    [SerializeField] private LineRenderer vessel;
     
     protected float moveSpeed;
     private bool _isActive;
@@ -36,6 +38,16 @@ public class BossMoveController : MonoBehaviour
     private void LateUpdate()
     {
         transform.rotation = Quaternion.identity;
+        if (bossType != BossType.Heart)
+        {
+            vessel.SetPosition(1, transform.position);
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (bossType != BossType.Heart)
+            vessel.enabled = false;
     }
 
     protected virtual void OnSetIsActive()

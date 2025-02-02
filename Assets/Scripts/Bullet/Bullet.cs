@@ -163,6 +163,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (!_doCollide)
+            return;
+        
         if (other.CompareTag("Damageable"))
         {
             var damageable = other.GetComponentInParent<Damageable>();
@@ -172,6 +175,7 @@ public class Bullet : MonoBehaviour
                 if (HasEffect)
                     damageable.ApplyEffect(Effect, EffectDuration);
                 BulletFactory.Instance.DestroyBullet(this);
+                _doCollide = false;
             }
         }
     }
@@ -218,6 +222,7 @@ public class Bullet : MonoBehaviour
             }
             
             BulletFactory.Instance.DestroyBullet(this);
+            _doCollide = false;
         }
 
         if (other.CompareTag("Potion"))
@@ -232,9 +237,10 @@ public class Bullet : MonoBehaviour
             
             potion.Charge();
             BulletFactory.Instance.DestroyBullet(this);
+            _doCollide = false;
         }
         
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") && gameObject.activeInHierarchy)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
@@ -243,14 +249,19 @@ public class Bullet : MonoBehaviour
                 return;
             
             BulletFactory.Instance.DestroyBullet(this);
-            var contactFilter = new ContactFilter2D{ layerMask = LayerMask.GetMask("Ground") };
+            _doCollide = false;
+            var contactFilter = new ContactFilter2D
+            {
+                layerMask = LayerMask.GetMask("Ground"), 
+                useLayerMask = true
+            };
             Physics2D.OverlapCircle(transform.position, Size, contactFilter, _groundInRange);
             
             foreach (var g in _groundInRange)
             {
-                if (g.transform.parent.TryGetComponent<GroundBlock>(out var groundBlock)
-                    && transform.position.y > groundBlock.transform.position.y
-                    && groundBlock.TakeHit())
+                if (g != null
+                    && g.transform.parent.TryGetComponent<GroundBlock>(out var groundBlock)
+                    && transform.position.y > groundBlock.transform.position.y)
                 {
                     groundBlock.AttachAcidPool(DataManager.Instance.acidPoolDuration);
                 }

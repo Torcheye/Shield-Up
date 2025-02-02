@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Spine.Unity;
+using TorcheyeUtility;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -90,6 +91,7 @@ public class FootAttack : BossAttack
 
     public override void EnhancedAttack()
     {
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossEnhanced);
         _generatedIndicators.ForEach(indicator => indicator.gameObject.SetActive(false));
         _generatedIndicators.Clear();
         StopCoroutine(_loopAttackCoroutine);
@@ -195,6 +197,7 @@ public class FootAttack : BossAttack
             BulletFactory.Instance.SpawnBullet(normalAttackBulletConfig, transform.position, new Vector2(-direction.y, direction.x), true, transform);
             
             normalAttackImpulseSource.GenerateImpulse();
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.FootNormalAttack);
             
             skeletonAnimation.AnimationState.SetAnimation(0, attackAnimation, false);
             skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);

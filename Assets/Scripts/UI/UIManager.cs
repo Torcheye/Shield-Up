@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TorcheyeUtility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,14 +40,21 @@ public class UIManager : MonoBehaviour
     private WeaponSlotUI _selectedWeaponSlot;
     private bool _upgradeOptionChosen;
     
+    public void ButtonClickSound()
+    {
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ClickButton);
+    }
+    
     public void ShowGameOverScreen()
     {
         gameOverScreen.SetActive(true);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ToggleScreen);
     }
     
     public void ShowGameSuccessScreen()
     {
         gameSuccessScreen.SetActive(true);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ToggleScreen);
     }
     
     public void LoadScene(int sceneIndex)
@@ -95,9 +103,14 @@ public class UIManager : MonoBehaviour
             return;
 
         Debug.Log("Upgrading weapon option");
-        ringController.UpgradeWeapon(_selectedWeaponSlot.SlotIndex);
+        var newLevel = ringController.UpgradeWeapon(_selectedWeaponSlot.SlotIndex);
         UpdateWeaponSlotsUI();
         SetOptionsScreen(5);
+        if (newLevel == 3)
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.EvolveWeapon);
+        else
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.UpgradeWeapon);
+
     }
     
     public void SelectNewWeaponOption(int type)
@@ -110,6 +123,7 @@ public class UIManager : MonoBehaviour
         ringController.AddNewWeapon(_selectedWeaponSlot.SlotIndex, weaponType);
         UpdateWeaponSlotsUI();
         SetOptionsScreen(5);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.UpgradeWeapon);
     }
 
     public void SelectWeaponSlot(WeaponSlotUI weaponSlot)
@@ -129,6 +143,7 @@ public class UIManager : MonoBehaviour
         {
             SetOptionsScreen(weaponSlot.Level + 1);
         }
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.SelectWeaponSlot);
     }
     
     // 0 is default, nothing selected
@@ -139,6 +154,7 @@ public class UIManager : MonoBehaviour
             optionsScreen.SetActive(false);
         }
         optionsScreens[selectedWeaponSlotLevel].SetActive(true);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ToggleScreen);
     }
 
     public void OpenUpgradeScreen()
@@ -152,6 +168,7 @@ public class UIManager : MonoBehaviour
         {
             slot.OnDeselect();
         }
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ToggleScreen);
     }
     
     private void UpdateWeaponSlotsUI()
@@ -170,6 +187,7 @@ public class UIManager : MonoBehaviour
     {
         upgradeScreen.SetActive(false);
         DataManager.Instance.IsGamePaused = false;
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ToggleScreen);
     }
     
     public void UpdateBlindEffect(Vector4 screenPos, float progress)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using Sirenix.Utilities;
+using TorcheyeUtility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -177,6 +178,8 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocityY = 0;
         rb.AddForce(_slowMultiplier * jumpPower * Vector2.up, ForceMode2D.Impulse);
         
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerJump);
+        
         _jumpBufferTimer = 0;
         _doubleJumpCount++;
         StartCoroutine(JumpTrail());
@@ -210,6 +213,8 @@ public class PlayerController : MonoBehaviour
         
         statusEffect.ApplyEffect(Effect.Invulnerable, dashDuration);
         rb.linearVelocityY = 0;
+        
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerDash);
         
         yield return new WaitForSeconds(dashDuration);
         

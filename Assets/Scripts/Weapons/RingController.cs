@@ -60,7 +60,7 @@ public class RingController : MonoBehaviour
         SpawnWeapon(type, slotIndex);
     }
     
-    public void UpgradeWeapon(Vector2Int slotIndex)
+    public int UpgradeWeapon(Vector2Int slotIndex)
     {
         if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)
         {
@@ -69,11 +69,11 @@ public class RingController : MonoBehaviour
         
         if (!_weapons.TryGetValue(slotIndex, out var weapon))
         {
-            Debug.LogError("No weapon to upgrade at " + slotIndex);
-            return;
+            throw new Exception("No weapon to upgrade at " + slotIndex);
         }
 
         weapon.Level++;
+        return weapon.Level;
     }
     
     public void RemoveWeapon(Vector2Int slotIndex, float delay = 0)

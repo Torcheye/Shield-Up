@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class Dagger : Weapon
@@ -19,6 +20,7 @@ public class Dagger : Weapon
                 if (result)
                 {
                     StartCoroutine(DoSwingAnimation(transform.position.x > other.transform.position.x));
+                    AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.DaggerHit);
                     
                     if (Level == 3)
                     {

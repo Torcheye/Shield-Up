@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -103,6 +104,8 @@ public class Bullet : MonoBehaviour
         _doMove = false;
         _doCollide = false;
         
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossChargeBullet);
+        
         DOTween.To(() => Size, x => Size = x, size, ChargeSpawnTime);
         yield return new WaitForSeconds(ChargeSpawnTime);
         _doMove = true;
@@ -186,6 +189,8 @@ public class Bullet : MonoBehaviour
                     damageable.ApplyEffect(Effect, EffectDuration);
                 BulletFactory.Instance.DestroyBullet(this);
                 _doCollide = false;
+                
+                AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BulletHitFlesh);
             }
         }
     }
@@ -225,6 +230,8 @@ public class Bullet : MonoBehaviour
                 {
                     BulletFactory.Instance.SpawnBullet(DataManager.Instance.normalBullet, transform.position, direction, IsHostile, Source);
                 }
+                
+                AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.ShieldDeflect);
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class GroundBlock : MonoBehaviour
@@ -43,6 +44,7 @@ public class GroundBlock : MonoBehaviour
     
     public void AttachAcidPool(float time)
     {
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.AcidPoolSpawn);
         StopAllCoroutines();
         StartCoroutine(DoSpawnAcidPool(time));
     }
@@ -69,11 +71,13 @@ public class GroundBlock : MonoBehaviour
             
             StopAllCoroutines();
             acidPool.SetActive(false);
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.GroundBlockBreak);
             return false;
         }
         else
         {
             FlashDamageColor();
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.GroundHit);
             spriteRenderer.sprite = damageSprites[hp - _currentHp];
             return true;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class PlayerUpgrade : MonoBehaviour
@@ -31,6 +32,7 @@ public class PlayerUpgrade : MonoBehaviour
     private IEnumerator PickUpXp(GameObject xp)
     {
         yield return new WaitForSeconds(pickUpTime);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.CollectXp);
         yield return null;
         
         XpPickupFactory.DestroyItem(xp);

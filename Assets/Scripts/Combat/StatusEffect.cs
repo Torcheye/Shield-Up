@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class StatusEffect : MonoBehaviour
@@ -138,6 +139,10 @@ public class StatusEffect : MonoBehaviour
         if (effect == Effect.Bleed)
         {
             _bleedTimer = 0;
+        }
+        if (effect == Effect.Copycat)
+        {
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.CopycatClownSound);
         }
     }
     

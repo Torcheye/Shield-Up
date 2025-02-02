@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using TorcheyeUtility;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -53,6 +54,7 @@ public class PlayerDamageable : Damageable
         UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
         if (dmg > 0)
         {
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerHurt);
             StartCoroutine(DoHitStop());
             StartCoroutine(DoVignette(DataManager.Instance.playerHitColor, 
                 DataManager.Instance.damageColorLastDuration, DataManager.Instance.damageColorFadeDuration));
@@ -84,6 +86,7 @@ public class PlayerDamageable : Damageable
 
     protected override void OnHeal(int amount)
     {
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerHeal);
         UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
         StartCoroutine(DoVignette(DataManager.Instance.healColor, 
             DataManager.Instance.healColorLastDuration, DataManager.Instance.healColorFadeDuration));

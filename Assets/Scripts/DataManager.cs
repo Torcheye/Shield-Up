@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TorcheyeUtility;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -97,6 +98,7 @@ public class DataManager : MonoBehaviour
 
     public void EnableBossAttackBoost()
     {
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossBoost);
         StartCoroutine(DoDisableBossAttackBoost());
     }
 

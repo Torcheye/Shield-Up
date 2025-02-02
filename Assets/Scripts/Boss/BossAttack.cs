@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Sirenix.OdinInspector;
 using Spine.Unity;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
@@ -54,6 +55,7 @@ public class BossAttack : MonoBehaviour
             if (_loopNormalAttack && moveController.IsActive)
             {
                 Attack();
+                AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot);
             }
         }
     }
@@ -73,6 +75,7 @@ public class BossAttack : MonoBehaviour
         _loopNormalAttack = false;
         moveController.DoMove = false;
         _isDoingEnhancedAttack = true;
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossEnhanced);
         EnhancedAttack();
         yield return new WaitForSeconds(enhancedAttackTime);
         _loopNormalAttack = true;

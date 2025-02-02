@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using TorcheyeUtility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,6 +51,7 @@ public class Potion : Weapon
     public void Charge()
     {
         _chargeCount++;
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PotionFill);
         StartCoroutine(DoScaleAnimation());
     }
     

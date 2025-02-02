@@ -52,6 +52,7 @@ public class Bullet : MonoBehaviour
     private float _spiralRadius;
     private float _spiralSpeed; // Angle increment speed
     private Collider2D[] _groundInRange = new Collider2D[4];
+    private ContactFilter2D _contactFilter = new ContactFilter2D();
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -116,6 +117,15 @@ public class Bullet : MonoBehaviour
         col.localScale = new Vector3(Size, Size, 1);
     }
 
+    private void Awake()
+    {
+        _contactFilter = new ContactFilter2D
+        {
+            layerMask = LayerMask.GetMask("Ground"), 
+            useLayerMask = true
+        };
+    }
+
     private void Update()
     {
         LifeLeft -= Time.deltaTime;
@@ -129,7 +139,7 @@ public class Bullet : MonoBehaviour
             _spawnNoCollisionTimer -= Time.deltaTime;
         }
     }
-
+    
     private void FixedUpdate()
     {
         if (_doMove && rb.gravityScale == 0)
@@ -245,28 +255,31 @@ public class Bullet : MonoBehaviour
             if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
             
-            if (!_spawnAcidPool) 
-                return;
-            
             BulletFactory.Instance.DestroyBullet(this);
             _doCollide = false;
-            var contactFilter = new ContactFilter2D
+
+            var hasGroundBlock = other.transform.parent.TryGetComponent<GroundBlock>(out var groundBlock);
+            if (!hasGroundBlock)
+                return;
+
+            if (!_spawnAcidPool)
             {
-                layerMask = LayerMask.GetMask("Ground"), 
-                useLayerMask = true
-            };
-            Physics2D.OverlapCircle(transform.position, Size, contactFilter, _groundInRange);
+                groundBlock.TakeHit();
+            }
+            else
+            {
+                Physics2D.OverlapCircle(transform.position, Size, _contactFilter, _groundInRange);
             
-            foreach (var g in _groundInRange)
-            {
-                if (g != null
-                    && g.transform.parent.TryGetComponent<GroundBlock>(out var groundBlock)
-                    && transform.position.y > groundBlock.transform.position.y)
+                foreach (var g in _groundInRange)
                 {
-                    groundBlock.AttachAcidPool(DataManager.Instance.acidPoolDuration);
+                    if (g != null
+                        && g.transform.parent.TryGetComponent<GroundBlock>(out groundBlock)
+                        && transform.position.y > groundBlock.transform.position.y)
+                    {
+                        groundBlock.AttachAcidPool(DataManager.Instance.acidPoolDuration);
+                    }
                 }
             }
-
         }
     }
 }

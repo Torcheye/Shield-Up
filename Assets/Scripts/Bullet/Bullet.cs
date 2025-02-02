@@ -161,6 +161,21 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Damageable"))
+        {
+            var damageable = other.GetComponentInParent<Damageable>();
+            bool hit = damageable.TakeDamage(Damage, _hostile);
+            if (hit)
+            {
+                if (HasEffect)
+                    damageable.ApplyEffect(Effect, EffectDuration);
+                BulletFactory.Instance.DestroyBullet(this);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!_doCollide)
@@ -212,18 +227,6 @@ public class Bullet : MonoBehaviour
             
             potion.Charge();
             BulletFactory.Instance.DestroyBullet(this);
-        }
-        
-        if (other.CompareTag("Damageable"))
-        {
-            var damageable = other.GetComponentInParent<Damageable>();
-            bool hit = damageable.TakeDamage(Damage, _hostile);
-            if (hit)
-            {
-                if (HasEffect)
-                    damageable.ApplyEffect(Effect, EffectDuration);
-                BulletFactory.Instance.DestroyBullet(this);
-            }
         }
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") && gameObject.activeInHierarchy)

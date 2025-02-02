@@ -29937,7 +29937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1342466996372133429, guid: f857f716454773d408e591f0aacb34e9, type: 3}
   bulletParent: {fileID: 1548053510}
-  maxBulletCount: 200
+  maxBulletCount: 300
 --- !u!4 &1548053510
 Transform:
   m_ObjectHideFlags: 0

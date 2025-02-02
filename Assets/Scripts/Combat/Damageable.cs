@@ -35,7 +35,6 @@ public class Damageable : MonoBehaviour
     public void Heal(int amount)
     {
         Hp += amount;
-        Debug.Log($"{gameObject.name} heals {amount} HP. Current HP: {Hp}");
         
         if (Hp > maxHp)
         {
@@ -56,7 +55,6 @@ public class Damageable : MonoBehaviour
         
         Hp -= dmg;
         _damageCooldown = DataManager.Instance.damageCooldown;
-        Debug.Log($"{gameObject.name} takes {dmg} damage. Current HP: {Hp}");
         
         if (Hp <= 0)
         {

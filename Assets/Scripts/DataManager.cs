@@ -75,7 +75,7 @@ public class DataManager : MonoBehaviour
     
     public int GetXpToNextLevel()
     {
-        return Mathf.RoundToInt(Mathf.Pow(1.15f, playerLevel + 11) - 1.7f);
+        return Mathf.RoundToInt(Mathf.Pow(1.1f, playerLevel + 15) - 1);
     }
     
     private void Awake()

@@ -9,14 +9,28 @@ public class PlayerDamageable : Damageable
 {
     [SerializeField] private CinemachineImpulseSource impulseSource;
     [SerializeField] private Volume hitVolume;
+    [SerializeField] private GameObject bubble;
     
     private Tween _vignetteTween;
     private Vignette _vignette;
+    
+    private IEnumerator DoShowBubble(float time)
+    {
+        bubble.SetActive(true);
+        yield return new WaitForSeconds(time);
+        bubble.SetActive(false);
+    }
+    
+    public void ShowBubble(float time)
+    {
+        StartCoroutine(DoShowBubble(time));
+    }
     
     private void OnEnable()
     {
         isPlayer = true;
         hitVolume.profile.TryGet(out _vignette);
+        bubble.SetActive(false);
     }
 
     protected override void Start()
@@ -33,7 +47,8 @@ public class PlayerDamageable : Damageable
         if (dmg > 0)
         {
             StartCoroutine(DoHitStop());
-            StartCoroutine(DoVignette(DataManager.Instance.playerHitColor, DataManager.Instance.playerVignetteLastDuration));
+            StartCoroutine(DoVignette(DataManager.Instance.playerHitColor, 
+                DataManager.Instance.damageColorLastDuration, DataManager.Instance.damageColorFadeDuration));
         }
     }
 
@@ -45,7 +60,7 @@ public class PlayerDamageable : Damageable
         Time.timeScale = 1;
     }
 
-    private IEnumerator DoVignette(Color color, float time)
+    private IEnumerator DoVignette(Color color, float lastTime, float fadeTime)
     {
         if (_vignetteTween != null && _vignetteTween.IsActive())
         {
@@ -53,14 +68,17 @@ public class PlayerDamageable : Damageable
         }
         
         _vignette.color.value = color;
-        _vignetteTween = DOTween.To(value => _vignette.intensity.value = value, .5f, 0, time);
-        yield return new WaitForSeconds(time);
+        _vignette.intensity.value = 0.5f;
+        yield return new WaitForSeconds(lastTime);
+        _vignetteTween = DOTween.To(value => _vignette.intensity.value = value, .5f, 0, fadeTime);
+        yield return new WaitForSeconds(fadeTime);
         _vignette.intensity.value = 0;
     }
 
     protected override void OnHeal(int amount)
     {
         UIManager.Instance.UpdatePlayerHp(Hp, DataManager.Instance.playerMaxHp);
-        StartCoroutine(DoVignette(DataManager.Instance.healColor, DataManager.Instance.playerVignetteLastDuration));
+        StartCoroutine(DoVignette(DataManager.Instance.healColor, 
+            DataManager.Instance.healColorLastDuration, DataManager.Instance.healColorFadeDuration));
     }
 }

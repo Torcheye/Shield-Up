@@ -18,8 +18,6 @@ public class WeaponSlotUI : MonoBehaviour
     private void Awake()
     {
         selectionOutline.SetActive(false);
-        l2Icon.SetActive(false);
-        l3Icon.SetActive(false);
         transform.rotation = quaternion.identity;
     }
     
@@ -31,6 +29,8 @@ public class WeaponSlotUI : MonoBehaviour
     public void OnDeselect()
     {
         selectionOutline.SetActive(false);
+        l2Icon.SetActive(false);
+        l3Icon.SetActive(false);
     }
     
     public void OnSelect()

@@ -27,5 +27,6 @@ MonoBehaviour:
   potionPrefab: {fileID: 3464062274857641238, guid: d8e05b8fabcef2a45a6464bd5b6955db, type: 3}
   potionSprite: {fileID: 6334439168542168994, guid: a0732bea5f91efd40abfe2b231911bdb, type: 3}
   potionL3Sprite: {fileID: 623922962120152103, guid: 21eac7ce04b431548afacc1052e792dd, type: 3}
-  potionChargeL1: 5
-  potionChargeL2: 2
+  potionChargeL1: 6
+  potionChargeL2: 3
+  potionL3BubbleDuration: 12

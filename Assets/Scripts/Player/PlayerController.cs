@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         
         rb.linearVelocity = new Vector2(_velocity.x, rb.linearVelocity.y);
 
-        bool isMoving = move.magnitude > 0;
+        var isMoving = Mathf.Abs(_velocity.x) > 0;
 
         if (isMoving)
         {

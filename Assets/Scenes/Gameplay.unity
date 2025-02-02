@@ -12570,8 +12570,8 @@ MonoBehaviour:
   damageColorFadeDuration: 0.3
   damageCooldown: 0.2
   healColor: {r: 0, g: 1, b: 0, a: 1}
-  healColorLastDuration: 0.1
-  healColorFadeDuration: 0.5
+  healColorLastDuration: 0.4
+  healColorFadeDuration: 0.7
   bossRotationTime: 45
   bossRotationOrderFTUE: 00000000020000000100000003000000
   breakableGroundRegenTime: 10
@@ -44944,7 +44944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: moveSpeed
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: ringPivot
@@ -44968,11 +44968,11 @@ PrefabInstance:
       objectReference: {fileID: 1912177604}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: 'rotateSpeeds.Array.data[0]'
-      value: 180
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: 'rotateSpeeds.Array.data[1]'
-      value: 140
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 6791639334948315546, guid: 414956188d0ae1641bde31d193e82f0d, type: 3}
       propertyPath: 'rotateSpeeds.Array.data[2]'

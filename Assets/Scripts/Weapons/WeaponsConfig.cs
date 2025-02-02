@@ -25,6 +25,7 @@ public class WeaponsConfig : ScriptableObject
     public Sprite potionL3Sprite;
     public int potionChargeL1;
     public int potionChargeL2;
+    public float potionL3BubbleDuration;
     
     public int GetDaggerDamage(int level)
     {

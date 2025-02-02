@@ -36,7 +36,7 @@ public class BossStateManager : MonoBehaviour
     {
         _surroundingBosses.Clear();
         SetBossActive(new List<BossType>() { DataManager.Instance.bossRotationOrderFTUE[0] });
-        yield return null;
+        yield return new WaitForSeconds(.5f);
         SetBossActive(new List<BossType>() { DataManager.Instance.bossRotationOrderFTUE[0] });
         _nextBossRotationIndex = 1;
     }

@@ -21,6 +21,7 @@ public class BossMoveController : MonoBehaviour
     [SerializeField] private Renderer rend;
     [SerializeField] private BossHpBar bossHpBar;
     [SerializeField] protected BossDamageable bossDamageable;
+    [SerializeField] private BossAttack bossAttack;
     
     protected float moveSpeed;
     private bool _isActive;
@@ -43,6 +44,8 @@ public class BossMoveController : MonoBehaviour
         {
             rend.material.EnableKeyword("GHOST_ON");
             bossDamageable.ToggleBoostMaterial(false);
+            
+            bossAttack.OnSetInactive();
         }
         else
         {

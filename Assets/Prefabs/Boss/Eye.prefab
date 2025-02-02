@@ -270,6 +270,7 @@ MonoBehaviour:
   bossType: 0
   bossAttack: {fileID: 8181074127829086781}
   bossMoveController: {fileID: 197598924683689743}
+  bossStateManager: {fileID: 0}
 --- !u!114 &6737299760182726091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +310,7 @@ MonoBehaviour:
   rend: {fileID: 4664841510911765299}
   bossHpBar: {fileID: 8481611249514888202}
   bossDamageable: {fileID: 4121802469804835952}
+  bossAttack: {fileID: 8181074127829086781}
   splineAnimate: {fileID: 6737299760182726091}
 --- !u!114 &8181074127829086781
 MonoBehaviour:

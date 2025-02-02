@@ -74,6 +74,7 @@ MonoBehaviour:
   bossType: 1
   bossAttack: {fileID: 6030766794193699265}
   bossMoveController: {fileID: 5280537198843342274}
+  bossStateManager: {fileID: 0}
 --- !u!114 &5280537198843342274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
   rend: {fileID: 1700214173801190623}
   bossHpBar: {fileID: 8643630304504296792}
   bossDamageable: {fileID: 8898569602759505762}
+  bossAttack: {fileID: 6030766794193699265}
   attack: {fileID: 6030766794193699265}
   normalAttackPrepTime: 2.5
   normalAttackPostTime: 6.5

@@ -18,6 +18,8 @@ public class EyeAttack : BossAttack
     
     [Header("Boost")]
     [SerializeField] private float normalAttackBoostIntervalMultiplier;
+    
+    private Coroutine _enhancedAttackCoroutine;
 
     protected override void Start()
     {
@@ -35,6 +37,14 @@ public class EyeAttack : BossAttack
         });
     }
 
+    public override void OnSetInactive()
+    {
+        base.OnSetInactive();
+        
+        if (_enhancedAttackCoroutine != null)
+            StopCoroutine(_enhancedAttackCoroutine);
+    }
+
     public override void Attack()
     {
         ShootBullet(Quaternion.Euler(0, 0, Random.Range(-delta, delta)) * GetTargetDirection());
@@ -47,7 +57,7 @@ public class EyeAttack : BossAttack
 
     public override void EnhancedAttack()
     {
-        StartCoroutine(DoEnhancedAttack());
+        _enhancedAttackCoroutine = StartCoroutine(DoEnhancedAttack());
     }
 
     private IEnumerator DoEnhancedAttack()

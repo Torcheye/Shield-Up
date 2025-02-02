@@ -12919,7 +12919,7 @@ MonoBehaviour:
   healColorLastDuration: 0.4
   healColorFadeDuration: 0.7
   bossRotationTime: 45
-  bossRotationOrderFTUE: 00000000020000000100000003000000
+  bossRotationOrderFTUE: 02000000000000000100000003000000
   breakableGroundRegenTime: 10
   acidPoolDuration: 8
   acidHurtInterval: 0.4

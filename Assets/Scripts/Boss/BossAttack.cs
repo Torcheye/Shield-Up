@@ -70,6 +70,10 @@ public class BossAttack : MonoBehaviour
         return true;
     }
     
+    public virtual void OnSetInactive()
+    {
+    }
+    
     private IEnumerator DoEnhancedAttack()
     {
         _loopNormalAttack = false;

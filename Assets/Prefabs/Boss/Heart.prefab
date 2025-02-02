@@ -263,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 5f23ead9583a6e34fbabb53739eb0498, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -467,6 +467,7 @@ MonoBehaviour:
   bossType: 4
   bossAttack: {fileID: 5173642242872964870}
   bossMoveController: {fileID: 3355925106484657640}
+  bossStateManager: {fileID: 0}
 --- !u!114 &5173642242872964870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +507,7 @@ MonoBehaviour:
   rend: {fileID: 3693596558799042327}
   bossHpBar: {fileID: 5520698530308053636}
   bossDamageable: {fileID: 7585994462390322509}
+  bossAttack: {fileID: 5173642242872964870}
   normalMoveBounds:
     m_Center: {x: 0, y: 0.48, z: 0}
     m_Extent: {x: 11.78, y: 6, z: 0}

@@ -35,7 +35,7 @@ public class BrainMoveController : BossMoveController
     {
         while (gameObject.activeInHierarchy)
         {
-            if (!DoMove)
+            if (!DoMove || !IsActive)
             {
                 yield return null;
                 continue;

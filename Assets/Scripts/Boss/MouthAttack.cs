@@ -34,6 +34,8 @@ public class MouthAttack : BossAttack
     private float _suctionTimer;
     private int _burstAmount;
     private float _burstInterval;
+    private Coroutine _suctionCoroutine;
+    private Coroutine _burstCoroutine;
 
     protected override void Start()
     {
@@ -59,6 +61,19 @@ public class MouthAttack : BossAttack
         });
     }
 
+    public override void OnSetInactive()
+    {
+        base.OnSetInactive();
+        
+        _isSucking = false;
+        suctionParticles.Stop();
+        enhancedTrigger.SetActive(false);
+        if (_suctionCoroutine != null)
+            StopCoroutine(_suctionCoroutine);
+        if (_burstCoroutine != null)
+            StopCoroutine(_burstCoroutine);
+    }
+
     public override void Attack()
     {
         var playerPos = DataManager.Instance.playerTransform.position;
@@ -73,7 +88,7 @@ public class MouthAttack : BossAttack
 
     public override void EnhancedAttack()
     {
-        StartCoroutine(DoSuction());
+        _suctionCoroutine = StartCoroutine(DoSuction());
     }
     
     private IEnumerator DoSuction()
@@ -90,7 +105,7 @@ public class MouthAttack : BossAttack
         skeletonAnimation.AnimationState.SetAnimation(0, idleAnimation, true);
         enhancedTrigger.SetActive(false);
         
-        StartCoroutine(ShootBulletBurst());
+        _burstCoroutine = StartCoroutine(ShootBulletBurst());
     }
     
     private IEnumerator ShootBulletBurst()

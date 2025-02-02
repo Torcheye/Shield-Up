@@ -329,6 +329,7 @@ MonoBehaviour:
   rend: {fileID: 1173583842156871386}
   bossHpBar: {fileID: 3754041050302419127}
   bossDamageable: {fileID: 3686532079087321764}
+  bossAttack: {fileID: 6689278359055738466}
   attack: {fileID: 6689278359055738466}
 --- !u!114 &8422690791932603898
 MonoBehaviour:

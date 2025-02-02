@@ -73,6 +73,7 @@ public class FootAttack : BossAttack
     {
         if (isActive)
         {
+            transform.position = Vector3.zero;
             if (_loopAttackCoroutine != null)
                 StopCoroutine(_loopAttackCoroutine);
             _loopAttackCoroutine = LoopAttack();

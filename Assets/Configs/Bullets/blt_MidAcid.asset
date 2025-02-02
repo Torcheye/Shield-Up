@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
-  size: 0.7
+  size: 0.9
   lifeTime: 5
   sprite: {fileID: -7243563388056777162, guid: fc6927963641349418e91ef1b1eb9643, type: 3}
   spiralSpeed: 0

@@ -34,7 +34,7 @@ public class ObjectRangeTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         var rb = other.attachedRigidbody;
-        if (tagsToCheck.Contains(rb.tag) && !objectsInTriggerStay.Contains(rb))
+        if (rb != null && tagsToCheck.Contains(rb.tag) && !objectsInTriggerStay.Contains(rb))
         {
             objectsInTriggerStay.Add(rb);
             objectsInTriggerEnter.Add(rb);
@@ -44,7 +44,7 @@ public class ObjectRangeTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         var rb = other.attachedRigidbody;
-        if (objectsInTriggerStay.Contains(rb) && tagsToCheck.Contains(rb.tag))
+        if (rb != null && objectsInTriggerStay.Contains(rb) && tagsToCheck.Contains(rb.tag))
         {
             objectsInTriggerStay.Remove(rb);
         }

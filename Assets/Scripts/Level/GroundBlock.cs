@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class GroundBlock : MonoBehaviour
@@ -9,15 +10,16 @@ public class GroundBlock : MonoBehaviour
     [SerializeField] private Sprite[] damageSprites;
     [SerializeField] private float damageColorFlashDuration;
     [SerializeField] private GameObject colliderObject;
+    [SerializeField] private GameObject acidPool;
     
     private int _currentHp;
     private Tween _damageColorTween;
     private float _regenTimer;
-    private Transform _acidPool;
     private static readonly int HitEffectBlend = Shader.PropertyToID("_HitEffectBlend");
 
     private void Awake()
     {
+        acidPool.SetActive(false);
         _currentHp = hp;
     }
 
@@ -39,10 +41,17 @@ public class GroundBlock : MonoBehaviour
         }
     }
     
-    public void AttachAcidPool(Transform acidPool)
+    public void AttachAcidPool(float time)
     {
-        acidPool.SetParent(transform);
-        _acidPool = acidPool;
+        StopAllCoroutines();
+        StartCoroutine(DoSpawnAcidPool(time));
+    }
+    
+    private IEnumerator DoSpawnAcidPool(float time)
+    {
+        acidPool.SetActive(true);
+        yield return new WaitForSeconds(time);
+        acidPool.SetActive(false);
     }
 
     /// returns whether the block still exists
@@ -58,11 +67,8 @@ public class GroundBlock : MonoBehaviour
             spriteRenderer.material.EnableKeyword("OUTBASE_ON");
             _regenTimer = DataManager.Instance.breakableGroundRegenTime;
             
-            if (_acidPool != null)
-            {
-                AcidPoolFactory.DestroyItem(_acidPool.gameObject);
-                _acidPool = null;
-            }
+            StopAllCoroutines();
+            acidPool.SetActive(false);
             return false;
         }
         else

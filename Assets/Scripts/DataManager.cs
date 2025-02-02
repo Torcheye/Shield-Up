@@ -51,6 +51,7 @@ public class DataManager : MonoBehaviour
     public float breakableGroundRegenTime;
     
     [Header("Effects")]
+    public float acidPoolDuration;
     public float acidHurtInterval;
     public int acidDamage;
     public float slowEffectMultiplier;

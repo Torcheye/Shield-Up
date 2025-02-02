@@ -52,6 +52,7 @@ MonoBehaviour:
   rb: {fileID: 6855875935535833997}
   spawnNoCollisionTime: 0.15
   friendlySprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  acidSpawnRange: 0.8
 --- !u!50 &6855875935535833997
 Rigidbody2D:
   serializedVersion: 5

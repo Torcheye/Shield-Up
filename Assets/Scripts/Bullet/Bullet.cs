@@ -39,6 +39,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float spawnNoCollisionTime = 0.15f;
     [SerializeField] private Sprite friendlySprite;
+    [SerializeField] private float acidSpawnRange;
     
     private float _size;
     private bool _hostile;
@@ -50,7 +51,7 @@ public class Bullet : MonoBehaviour
     private float _spiralAngle;
     private float _spiralRadius;
     private float _spiralSpeed; // Angle increment speed
-    private Sprite _sprite;
+    private Collider2D[] _groundInRange = new Collider2D[4];
     
     public void Initialize(BulletConfig config, Vector2 position, Vector2 direction, bool hostile, Transform source, Transform dynamicTarget = null)
     {
@@ -61,7 +62,6 @@ public class Bullet : MonoBehaviour
         IsHostile = hostile;
         Source = source;
         spriteRenderer.sprite = config.sprite;
-        _sprite = config.sprite;
         Effect = config.effect;
         EffectDuration = config.effectDuration;
         HasEffect = config.hasEffect;
@@ -239,17 +239,23 @@ public class Bullet : MonoBehaviour
             if (Penetrating || _spawnNoCollisionTimer > 0) 
                 return;
             
-            BulletFactory.Instance.DestroyBullet(this);
-
-            var groundBlockParent = other.transform.parent;
-            var groundBlock = groundBlockParent.GetComponent<GroundBlock>();
+            if (!_spawnAcidPool) 
+                return;
             
-            if (groundBlock.TakeHit() && _spawnAcidPool && transform.position.y >= groundBlockParent.position.y)
+            BulletFactory.Instance.DestroyBullet(this);
+            var contactFilter = new ContactFilter2D{ layerMask = LayerMask.GetMask("Ground") };
+            Physics2D.OverlapCircle(transform.position, Size, contactFilter, _groundInRange);
+            
+            foreach (var g in _groundInRange)
             {
-                var pos = other.ClosestPoint(transform.position);
-                var acid = AcidPoolFactory.Instance.SpawnItem(pos);
-                groundBlock.AttachAcidPool(acid.transform);
+                if (g.transform.parent.TryGetComponent<GroundBlock>(out var groundBlock)
+                    && transform.position.y > groundBlock.transform.position.y
+                    && groundBlock.TakeHit())
+                {
+                    groundBlock.AttachAcidPool(DataManager.Instance.acidPoolDuration);
+                }
             }
+
         }
     }
 }

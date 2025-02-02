@@ -17,7 +17,7 @@ MonoBehaviour:
   baseHit: 5
   hpOverrides: 0000000001
   moveSpeedOverrides: 0000000001
-  hitOverrides: 0000000001
+  hitOverrides: 0000000000
   eyeHp: 0
   eyeMoveSpeed: 0
   eyeHit: 0
@@ -34,4 +34,4 @@ MonoBehaviour:
   footHit: 0
   heartHp: 30
   heartMoveSpeed: 0.65
-  heartHit: 7
+  heartHit: 5

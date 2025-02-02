@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Spine.Unity;
+using TorcheyeUtility;
 using UnityEngine;
 
 public class MouthAttack : BossAttack
@@ -116,6 +117,7 @@ public class MouthAttack : BossAttack
             Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector3.up * burstUpPower;
             randomDir += new Vector2(Random.Range(-burstRandomPower, burstRandomPower), Random.Range(-burstRandomPower, burstRandomPower));
             BulletFactory.Instance.SpawnBullet(acidBullet, transform.position, randomDir, true, transform);
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot);
             yield return new WaitForSeconds(_burstInterval);
         }
         moveController.CanSetInactive = true;

@@ -63,6 +63,8 @@ public class DataManager : MonoBehaviour
     public float bleedHurtInterval;
     public int bleedDamage;
     public bool IsBossAttackBoostEnabled { get; private set; }
+    [SerializeField] private GameObject normalBG;
+    [SerializeField] private GameObject boostBG;
     
     public int GetXpToNextLevel()
     {
@@ -98,6 +100,8 @@ public class DataManager : MonoBehaviour
 
     public void EnableBossAttackBoost()
     {
+        normalBG.SetActive(false);
+        boostBG.SetActive(true);
         AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossBoost);
         StartCoroutine(DoDisableBossAttackBoost());
     }
@@ -109,5 +113,7 @@ public class DataManager : MonoBehaviour
         yield return new WaitForSeconds(bossAttackBoostTime);
         OnBossAttackBoostDisable.Invoke();
         IsBossAttackBoostEnabled = false;
+        normalBG.SetActive(true);
+        boostBG.SetActive(false);
     }
 }

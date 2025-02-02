@@ -69,6 +69,7 @@ public class MouthAttack : BossAttack
         _isSucking = false;
         suctionParticles.Stop();
         enhancedTrigger.SetActive(false);
+        DataManager.Instance.ToggleShake(false);
         if (_suctionCoroutine != null)
             StopCoroutine(_suctionCoroutine);
         if (_burstCoroutine != null)
@@ -94,6 +95,7 @@ public class MouthAttack : BossAttack
     
     private IEnumerator DoSuction()
     {
+        DataManager.Instance.ToggleShake(true);
         enhancedTrigger.SetActive(true);
         moveController.CanSetInactive = false;
         _isSucking = true;
@@ -117,10 +119,11 @@ public class MouthAttack : BossAttack
             Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector3.up * burstUpPower;
             randomDir += new Vector2(Random.Range(-burstRandomPower, burstRandomPower), Random.Range(-burstRandomPower, burstRandomPower));
             BulletFactory.Instance.SpawnBullet(acidBullet, transform.position, randomDir, true, transform);
-            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot);
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot, .5f);
             yield return new WaitForSeconds(_burstInterval);
         }
         moveController.CanSetInactive = true;
+        DataManager.Instance.ToggleShake(false);
     }
 
     private void Update()

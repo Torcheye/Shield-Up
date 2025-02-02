@@ -19,16 +19,7 @@ public class BrainMoveController : BossMoveController
     {
         base.Start();
         _moveTime = 1 / moveSpeed;
-    }
-
-    protected override void OnSetIsActive()
-    {
-        base.OnSetIsActive();
-        
-        if (IsActive)
-        {
-            StartCoroutine(DoLoopMove());
-        }
+        StartCoroutine(DoLoopMove());
     }
 
     private IEnumerator DoLoopMove()

@@ -12930,20 +12930,21 @@ MonoBehaviour:
   healColorLastDuration: 0.4
   healColorFadeDuration: 0.7
   bossRotationTime: 45
-  bossRotationOrderFTUE: 02000000000000000100000003000000
+  bossRotationOrderFTUE: 00000000020000000100000003000000
   breakableGroundRegenTime: 10
   acidPoolDuration: 8
   acidHurtInterval: 0.4
   acidDamage: 1
   slowEffectMultiplier: 0.5
   hitStopDuration: 0.28
-  hitStopTimeScale: 0.25
+  hitStopTimeScale: 0.1
   bossAttackBoostTime: 8
   bleedDuration: 3.01
   bleedHurtInterval: 1
   bleedDamage: 1
   normalBG: {fileID: 1031012290}
   boostBG: {fileID: 1630647187}
+  shake: {fileID: 1752997587}
 --- !u!4 &672007652
 Transform:
   m_ObjectHideFlags: 0
@@ -35493,6 +35494,7 @@ GameObject:
   - component: {fileID: 1752997582}
   - component: {fileID: 1752997586}
   - component: {fileID: 1752997585}
+  - component: {fileID: 1752997587}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -35619,6 +35621,23 @@ MonoBehaviour:
         PositionOffset: 0
         SearchResolution: 3
         SearchIteration: 2
+--- !u!114 &1752997587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752997580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 2
+  FrequencyGain: 0.3
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1753670815
 GameObject:
   m_ObjectHideFlags: 0
@@ -36194,7 +36213,7 @@ MonoBehaviour:
   - effect: 3
     clip: {fileID: 8300000, guid: 50bbdce63ce39b54481e44a806d58da8, type: 3}
   - effect: 4
-    clip: {fileID: 8300000, guid: b92c29a981c2a6f45b5a3e3d7315b409, type: 3}
+    clip: {fileID: 8300000, guid: d56d37754308d564ca9c91c943dc6745, type: 3}
   - effect: 5
     clip: {fileID: 8300000, guid: 2746c5cf28193414585d83733c77c7fb, type: 3}
   - effect: 6
@@ -36220,7 +36239,7 @@ MonoBehaviour:
   - effect: 16
     clip: {fileID: 8300000, guid: 8b76ca02583161d42af2f54877776986, type: 3}
   - effect: 17
-    clip: {fileID: 8300000, guid: bfd512e00cccd244cbcdcf2fd8d022d0, type: 3}
+    clip: {fileID: 8300000, guid: 65d260dc5edd42f4ead50001bf09face, type: 3}
   - effect: 18
     clip: {fileID: 8300000, guid: ba5a1d5254c535a469396935d88120b7, type: 3}
   - effect: 19
@@ -36231,6 +36250,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: db48a2005318da24b93484476d806761, type: 3}
   - effect: 22
     clip: {fileID: 8300000, guid: e1eec59311f13724c936faf8e951c614, type: 3}
+  - effect: 23
+    clip: {fileID: 8300000, guid: c619008f1efb180488a78e4a966a3e16, type: 3}
   musicClips: []
   soundEffectSource: {fileID: 1683178445}
   musicSource: {fileID: 2007808854}

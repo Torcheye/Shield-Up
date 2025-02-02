@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using Spine.Unity;
+using TorcheyeUtility;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class BrainAttack : BossAttack
@@ -11,6 +13,7 @@ public class BrainAttack : BossAttack
     [SerializeField] private float normalBurstInterval;
     [SerializeField] private int enhancedShootAmount;
     [SerializeField] private float enhancedShootPrepTime;
+    [SerializeField] private CinemachineImpulseSource impulse;
     
     [Header("Animation")]
     [SerializeField, SpineAnimation] private string attackAnimation;
@@ -87,6 +90,7 @@ public class BrainAttack : BossAttack
             skeletonAnimation.AnimationState.SetAnimation(0, enhancedAnimation, false);
             skeletonAnimation.AnimationState.AddAnimation(0, idleAnimation, true, 0);
             moveController.CanSetInactive = false;
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossChargeBullet, 0.5f);
         }
         yield return new WaitForSeconds(enhanced ? enhancedShootPrepTime : 0);
         for (int i = 0; i < amount; i++)
@@ -95,11 +99,13 @@ public class BrainAttack : BossAttack
             var dir = Quaternion.Euler(0, 0, angle) * Vector3.up;
             BulletFactory.Instance.SpawnBullet(config, transform.position, dir, true, transform, DataManager.Instance.playerTransform);
         }
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot, .5f);
         moveController.CanSetInactive = true;
     }
 
     public override void EnhancedAttack()
     {
         StartCoroutine(BurstAttack(enhancedShootAmount, enhancedBullet, true));
+        impulse.GenerateImpulse();
     }
 }

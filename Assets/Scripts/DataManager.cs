@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TorcheyeUtility;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -65,6 +66,12 @@ public class DataManager : MonoBehaviour
     public bool IsBossAttackBoostEnabled { get; private set; }
     [SerializeField] private GameObject normalBG;
     [SerializeField] private GameObject boostBG;
+    [SerializeField] private CinemachineBasicMultiChannelPerlin shake;
+    
+    public void ToggleShake(bool enable)
+    {
+        shake.enabled = enable;
+    }
     
     public int GetXpToNextLevel()
     {

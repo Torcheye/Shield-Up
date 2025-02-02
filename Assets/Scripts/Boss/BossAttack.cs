@@ -55,7 +55,11 @@ public class BossAttack : MonoBehaviour
             if (_loopNormalAttack && moveController.IsActive)
             {
                 Attack();
-                AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot);
+                if (moveController.Type != BossType.Heart)
+                    AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossShoot, .5f);
+                else 
+                    AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.HeartAttack);
+
             }
         }
     }

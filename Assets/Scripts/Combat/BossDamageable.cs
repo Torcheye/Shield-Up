@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TorcheyeUtility;
+using UnityEngine;
 
 public class BossDamageable : Damageable
 {
@@ -9,6 +10,7 @@ public class BossDamageable : Damageable
     [SerializeField] private BossAttack bossAttack;
     [SerializeField] private BossMoveController bossMoveController;
     [SerializeField] private BossStateManager bossStateManager;
+    [SerializeField] private ParticleSystem normalBleed;
 
     private int _maxHit;
     private float _enhancedAttackTimer;
@@ -82,6 +84,8 @@ public class BossDamageable : Damageable
         
         HitCount++;
         XpPickupFactory.Instance.SpawnItem(transform.position);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BulletHitFlesh);
+        normalBleed.Play();
         
         if (HitCount >= _maxHit)
         {

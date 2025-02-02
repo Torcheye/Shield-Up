@@ -105,6 +105,7 @@ public class FootAttack : BossAttack
         // reset
         moveController.DoMove = false;
         moveController.CanSetInactive = false;
+        DataManager.Instance.ToggleShake(true);
 
         for (int i = 0; i < 3; i++)
         {
@@ -136,6 +137,7 @@ public class FootAttack : BossAttack
         enhancedAttackTrigger.enabled = false;
         spriteTransform.localRotation = Quaternion.identity;
         moveController.CanSetInactive = true;
+        DataManager.Instance.ToggleShake(false);
     }
 
     private IEnumerator LoopAttack()

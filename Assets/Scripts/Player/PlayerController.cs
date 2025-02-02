@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocityY = 0;
         rb.AddForce(_slowMultiplier * jumpPower * Vector2.up, ForceMode2D.Impulse);
         
-        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerJump);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerJump, 0.5f);
         
         _jumpBufferTimer = 0;
         _doubleJumpCount++;

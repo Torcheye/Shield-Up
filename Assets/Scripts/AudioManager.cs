@@ -34,7 +34,8 @@ namespace TorcheyeUtility
             GroundBlockBreak,
             CollectXp,
             BossBoost,
-            GroundHit
+            GroundHit,
+            HeartAttack
         }
 
         public enum Music

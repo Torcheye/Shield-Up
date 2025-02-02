@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Spine.Unity;
+using TorcheyeUtility;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -63,12 +64,15 @@ public class EyeAttack : BossAttack
     private IEnumerator DoEnhancedAttack()
     {
         moveController.CanSetInactive = true;
+        DataManager.Instance.ToggleShake(true);
         for (int i = 0; i < enhancedAttackCount; i++)
         {
             var dir = Quaternion.Euler(0, 0, Random.Range(-delta, delta)) * GetTargetDirection();
             BulletFactory.Instance.SpawnBullet(enhancedBullet, transform.position, dir, true, transform, DataManager.Instance.playerTransform);
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossChargeBullet, 0.5f);
             yield return new WaitForSeconds(enhancedAttackInterval);
         }
+        DataManager.Instance.ToggleShake(false);
         moveController.CanSetInactive = true;
     }
 

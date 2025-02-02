@@ -104,8 +104,6 @@ public class Bullet : MonoBehaviour
         _doMove = false;
         _doCollide = false;
         
-        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BossChargeBullet);
-        
         DOTween.To(() => Size, x => Size = x, size, ChargeSpawnTime);
         yield return new WaitForSeconds(ChargeSpawnTime);
         _doMove = true;

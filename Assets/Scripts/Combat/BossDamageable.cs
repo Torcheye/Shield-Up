@@ -75,7 +75,7 @@ public class BossDamageable : Damageable
 
     protected override void OnTakeDamage(int dmg)
     {
-        if (_enhancedAttackTimer > 0 || !bossMoveController.IsActive)
+        if (_enhancedAttackTimer > 0 || !bossMoveController.IsActive || dmg == 0)
         {
             return;
         }

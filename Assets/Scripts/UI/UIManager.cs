@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using TorcheyeUtility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private WeaponSlotUI[] weaponSlotUIRing2; 
     [SerializeField] private RingController ringController;
     [SerializeField] private GameObject[] optionsScreens;
+    [SerializeField] private GameObject[] upgradeOptionTexts;
+    [SerializeField] private GameObject[] evolveOptionTexts;
     
     [Header("Misc")]
     [SerializeField] private GameObject gameOverScreen;
@@ -106,11 +109,11 @@ public class UIManager : MonoBehaviour
         var newLevel = ringController.UpgradeWeapon(_selectedWeaponSlot.SlotIndex);
         UpdateWeaponSlotsUI();
         SetOptionsScreen(5);
+        _upgradeOptionChosen = true;
         if (newLevel == 3)
             AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.EvolveWeapon);
         else
             AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.UpgradeWeapon);
-
     }
     
     public void SelectNewWeaponOption(int type)
@@ -142,6 +145,19 @@ public class UIManager : MonoBehaviour
         else
         {
             SetOptionsScreen(weaponSlot.Level + 1);
+            ringController.GetWeapon(weaponSlot.SlotIndex, out var weaponType, out _);
+            if (weaponSlot.Level == 1)
+            {
+                foreach (var upgradeOptionText in upgradeOptionTexts)
+                    upgradeOptionText.SetActive(false);
+                upgradeOptionTexts[(int)weaponType].SetActive(true);
+            }
+            else if (weaponSlot.Level == 2)
+            {
+                foreach (var evolveOptionText in evolveOptionTexts)
+                    evolveOptionText.SetActive(false);
+                evolveOptionTexts[(int)weaponType].SetActive(true);
+            }
         }
         AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.SelectWeaponSlot);
     }

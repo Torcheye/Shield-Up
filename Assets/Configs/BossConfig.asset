@@ -34,4 +34,4 @@ MonoBehaviour:
   footHit: 0
   heartHp: 30
   heartMoveSpeed: 0.65
-  heartHit: 6
+  heartHit: 7

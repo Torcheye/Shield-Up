@@ -40,8 +40,9 @@ public class BrainAttack : BossAttack
             _normalBulletAmount = normalBulletAmount + normalBulletAmountBoost;
             _normalBurstAmount = normalBurstAmount + normalBurstAmountBoost;
             
-            StopAllCoroutines();
-            StartCoroutine(DoAttack());
+            // StopAllCoroutines();
+            // StartCoroutine(DoAttack());
+            ResetAutoAttack();
         });
         
         DataManager.Instance.OnBossAttackBoostDisable.AddListener(() =>

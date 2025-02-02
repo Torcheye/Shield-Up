@@ -21,6 +21,17 @@ public class BossStateManager : MonoBehaviour
     private int _nextBossActiveCount = 1;
     private bool _enableRotationTimer = true;
     
+    public void RemoveBoss(BossMoveController boss)
+    {
+        aliveBosses.Remove(boss);
+        RemoveFromSurroundingBosses(boss);
+        
+        if (aliveBosses.Count == 0)
+        {
+            UIManager.Instance.ShowGameSuccessScreen();
+        }
+    }
+    
     private IEnumerator Start()
     {
         _surroundingBosses.Clear();

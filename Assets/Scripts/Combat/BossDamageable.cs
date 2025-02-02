@@ -8,6 +8,7 @@ public class BossDamageable : Damageable
     [SerializeField] private BossType bossType;
     [SerializeField] private BossAttack bossAttack;
     [SerializeField] private BossMoveController bossMoveController;
+    [SerializeField] private BossStateManager bossStateManager;
 
     private int _maxHit;
     private float _enhancedAttackTimer;
@@ -105,6 +106,7 @@ public class BossDamageable : Damageable
         {
             bossMoveController.IsActive = false;
             gameObject.SetActive(false);
+            bossStateManager.RemoveBoss(bossMoveController);
         }
     }
 }

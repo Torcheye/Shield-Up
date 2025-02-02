@@ -20,7 +20,7 @@ MonoBehaviour:
   spiralSpeed: 0
   hasEffect: 1
   effect: 1
-  effectDuration: 5
+  effectDuration: 6
   penetrating: 1
   chargeSpawnTime: 0.6
   gravity: 0

@@ -37,6 +37,9 @@ public class HeartMoveController : BossMoveController
         var maxBossReached = bossStateManager.IncreaseNextBossActiveCountAndResetTimer();
         if (maxBossReached)
         {
+            IsActive = false;
+            gameObject.SetActive(false);
+            bossStateManager.RemoveBoss(this);
             return;
         }
         SwitchState(State.ReturnToCenter);

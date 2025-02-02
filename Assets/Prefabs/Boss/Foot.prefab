@@ -263,6 +263,7 @@ MonoBehaviour:
   bossType: 3
   bossAttack: {fileID: 6689278359055738466}
   bossMoveController: {fileID: 1288320249470007498}
+  bossStateManager: {fileID: 0}
 --- !u!114 &6689278359055738466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +308,7 @@ MonoBehaviour:
   enhancedAttackDamage: 1
   enhancedAttackHasEffect: 1
   enhancedAttackEffect: 4
-  enhancedAttackEffectDuration: 4.5
+  enhancedAttackEffectDuration: 7
   enhancedAttackTrigger: {fileID: 4828712023671480439}
   attackAnimation: attack
   idleAnimation: idle

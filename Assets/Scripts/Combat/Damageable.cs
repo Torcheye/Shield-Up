@@ -55,7 +55,7 @@ public class Damageable : MonoBehaviour
         
         Hp -= dmg;
         _damageCooldown = DataManager.Instance.damageCooldown;
-        Debug.Log($"{gameObject.name} took {dmg} damage. Remaining HP: {Hp}");
+        //Debug.Log($"{gameObject.name} took {dmg} damage. Remaining HP: {Hp}");
         
         if (Hp <= 0)
         {

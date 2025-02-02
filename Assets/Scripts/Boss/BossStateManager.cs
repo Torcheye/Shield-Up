@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossStateManager : MonoBehaviour
 {
@@ -18,20 +21,30 @@ public class BossStateManager : MonoBehaviour
     private int _nextBossActiveCount = 1;
     private bool _enableRotationTimer = true;
     
-    private void Start()
+    private IEnumerator Start()
     {
         _surroundingBosses.Clear();
         SetBossActive(new List<BossType>() { DataManager.Instance.bossRotationOrderFTUE[0] });
-        _nextBossRotationIndex++;
+        yield return null;
+        SetBossActive(new List<BossType>() { DataManager.Instance.bossRotationOrderFTUE[0] });
+        _nextBossRotationIndex = 1;
     }
-    
-    public void IncreaseNextBossActiveCountAndResetTimer()
+
+    /// returns whether the max boss count is reached
+    public bool IncreaseNextBossActiveCountAndResetTimer()
     {
         if (_nextBossActiveCount < aliveBosses.Count)
+        {
             _nextBossActiveCount++;
+        }
+        else
+        {
+            return true;
+        }
         _enableRotationTimer = false;
         _bossRotationTimer = 0;
         SetBossActive(new List<BossType>());
+        return false;
     }
 
     public void ResumeBossRotation()

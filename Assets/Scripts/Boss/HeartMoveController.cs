@@ -34,7 +34,11 @@ public class HeartMoveController : BossMoveController
 
     public void OnHpIsZero()
     {
-        bossStateManager.IncreaseNextBossActiveCountAndResetTimer();
+        var maxBossReached = bossStateManager.IncreaseNextBossActiveCountAndResetTimer();
+        if (maxBossReached)
+        {
+            return;
+        }
         SwitchState(State.ReturnToCenter);
     }
 

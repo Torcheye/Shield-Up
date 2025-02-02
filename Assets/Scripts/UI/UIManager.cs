@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -23,6 +24,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private WeaponSlotUI[] weaponSlotUIRing2; 
     [SerializeField] private RingController ringController;
     [SerializeField] private GameObject[] optionsScreens;
+    
+    [Header("Misc")]
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject gameSuccessScreen;
         
     private static readonly int PlayerScreenPos = Shader.PropertyToID("_PlayerScreenPos");
     private static readonly int OuterRadius = Shader.PropertyToID("_OuterRadius");
@@ -33,6 +38,21 @@ public class UIManager : MonoBehaviour
     private List<WeaponSlotUI> _weaponSlotUIs;
     private WeaponSlotUI _selectedWeaponSlot;
     private bool _upgradeOptionChosen;
+    
+    public void ShowGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+    }
+    
+    public void ShowGameSuccessScreen()
+    {
+        gameSuccessScreen.SetActive(true);
+    }
+    
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
 
     private void Awake()
     {
@@ -47,6 +67,8 @@ public class UIManager : MonoBehaviour
         
         blindEffect.gameObject.SetActive(false);
         upgradeScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
+        gameSuccessScreen.SetActive(false);
         
         _weaponSlotUIs = new List<WeaponSlotUI>();
         for (var i = 0; i < weaponSlotUIRing0.Length; i++)

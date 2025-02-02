@@ -25,7 +25,14 @@ public class PlayerDamageable : Damageable
     {
         StartCoroutine(DoShowBubble(time));
     }
-    
+
+    protected override void Die()
+    {
+        base.Die();
+        
+        UIManager.Instance.ShowGameOverScreen();
+    }
+
     private void OnEnable()
     {
         isPlayer = true;

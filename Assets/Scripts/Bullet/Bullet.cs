@@ -201,6 +201,11 @@ public class Bullet : MonoBehaviour
                 if (!shield.IsHostile)
                 {
                     BulletFactory.Instance.SpawnBullet(DataManager.Instance.deflectBullet, transform.position, direction, !IsHostile, DataManager.Instance.playerTransform);
+                    if (shield.Level == 3)
+                    {
+                        direction = Quaternion.Euler(0, 0, randomAngle) * direction;
+                        BulletFactory.Instance.SpawnBullet(DataManager.Instance.deflectBullet, transform.position, direction, !IsHostile, DataManager.Instance.playerTransform);
+                    }
                 }
                 else
                 {

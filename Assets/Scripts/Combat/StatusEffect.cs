@@ -154,6 +154,12 @@ public class EffectTimer
     
     public void Start(float duration)
     {
+        if (duration < Duration)
+        {
+            TimeLeft = duration;
+            return;
+        }
+        
         TimeLeft = duration;
         Duration = duration;
     }

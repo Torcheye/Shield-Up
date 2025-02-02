@@ -22,19 +22,35 @@ public class Potion : Weapon
     private void Update()
     {
         chargeImages[Level-1].fillAmount = (float)_chargeCount / _maxChargeCount;
+        
+        if (_chargeCount >= _maxChargeCount)
+        {
+            _chargeCount = 0;
+            ringController.RemoveWeapon(slotIndex, absorbScaleDuration);
+            
+            if (Level < 3)
+            {
+                playerDamageable.Heal(1);
+            }
+            else
+            {
+                playerDamageable.ShowBubble(DataManager.Instance.weaponsConfig.potionL3BubbleDuration);
+                playerDamageable.ApplyEffect(Effect.Invulnerable, DataManager.Instance.weaponsConfig.potionL3BubbleDuration);
+            }
+        }
     }
-    
+
+    protected override void OnLevelChange(int newLevel)
+    {
+        base.OnLevelChange(newLevel);
+        
+        _maxChargeCount = DataManager.Instance.weaponsConfig.GetPotionCharge(Level);
+    }
+
     public void Charge()
     {
         _chargeCount++;
         StartCoroutine(DoScaleAnimation());
-        
-        if (_chargeCount >= _maxChargeCount)
-        {
-            playerDamageable.Heal(1);
-            _chargeCount = 0;
-            ringController.RemoveWeapon(slotIndex);
-        }
     }
     
     private IEnumerator DoScaleAnimation()

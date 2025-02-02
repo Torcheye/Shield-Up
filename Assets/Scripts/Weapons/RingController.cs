@@ -76,7 +76,7 @@ public class RingController : MonoBehaviour
         weapon.Level++;
     }
     
-    public void RemoveWeapon(Vector2Int slotIndex)
+    public void RemoveWeapon(Vector2Int slotIndex, float delay = 0)
     {
         if (slotIndex.x < 0 || slotIndex.x >= 3 || slotIndex.y < 0 || slotIndex.y >= 3)
         {
@@ -89,7 +89,7 @@ public class RingController : MonoBehaviour
             return;
         }
         
-        Destroy(weapon.gameObject);
+        Destroy(weapon.gameObject, delay);
         _weapons.Remove(slotIndex);
     }
 

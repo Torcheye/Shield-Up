@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
         this.slotIndex = slotIndex;
     }
     
-    private void OnLevelChange(int newLevel)
+    protected virtual void OnLevelChange(int newLevel)
     {
         foreach (var obj in levelObjects)
         {
